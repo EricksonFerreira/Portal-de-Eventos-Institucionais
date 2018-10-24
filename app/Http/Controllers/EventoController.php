@@ -7,12 +7,18 @@ use Illuminate\Http\Request;
 
 class EventoController extends Controller {
 
+	 public function __construct(){
+        // Nesse caso o middleware auth será aplicado a todos os métodos
+        $this->middleware('auth')->except('index');
+
+    }
 	public function index() {
 		$Eventos = Evento::all();
 		$Total = Evento::all()->count();
 		return view('index', compact('Eventos', 'Total'));
 	}
 	public function create() {
+		$this->middleware('auth');
 		return view('criar-evento');
 	}
 
@@ -60,25 +66,8 @@ class EventoController extends Controller {
 	}
 
 	public function update(Request $request, $id) {
-		$validar = $request->validate([
-			'nome' => 'required',
-			'email' => 'required|email',
-			'site' => 'required',
-			'descricao' => 'required',
-		], [
-			'nome.required' => 'Cala a boca e preenche o teu nome',
-			'email.required' => 'Cala a boca e coloca o teu email',
-			'email.email' => 'Bora meu irmão coloca um email válido',
-			'site.required' => 'Cala a boca coloca o teu site',
-			'descricao.required' => 'Cala a boca e coloca uma descrição',
-		]);
-
-		$Eventos = new Evento;
-		$Eventos->nome = $request->nome;
-		$Eventos->email = $request->email;
-		$Eventos->site = $request->site;
-		$Eventos->descricao = $request->descricao;
-		$Eventos->save();
+		//Pega a model pelo id e coloca tudo que vem pelo request.
+		Evento::find($id)->update($request->all());
 		return redirect('/evento');
 	}
 

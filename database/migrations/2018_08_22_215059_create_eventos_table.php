@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateEventosTable extends Migration {
 	/**
@@ -11,7 +11,7 @@ class CreateEventosTable extends Migration {
 	 * @return void
 	 */
 	public function up() {
-		Schema::create('evento2', function (Blueprint $table) {
+		Schema::create('eventos', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('nome');
 			$table->string('email');

@@ -1,6 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
+
+use App\Evento;
+use Illuminate\Http\Request;
+
 
 class HomeController extends Controller {
 	/**
@@ -18,6 +21,7 @@ class HomeController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		return view('index');
-	}
+		$Eventos = Evento::all();
+		$Total = Evento::all()->count();
+		return view('index', compact('Eventos', 'Total'));	}
 }
