@@ -13,6 +13,8 @@ class CreateEventosTable extends Migration {
 	public function up() {
 		Schema::create('eventos', function (Blueprint $table) {
 			$table->increments('id');
+			$table->unsignedInteger('user_id');
+    		$table->foreign('user_id')->references('id')->on('users')->onDelte('cascade');
 			$table->string('nome');
 			$table->string('email');
 			$table->string('site');
