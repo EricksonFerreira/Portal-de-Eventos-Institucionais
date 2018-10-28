@@ -28,32 +28,36 @@ class EventoController extends Controller {
 		//com os indices e o que eu quero que seja validado
 		$validar = $request->validate([
 			'nome' => 'required',
-			'email' => 'required|email',
-			'site' => 'required',
 			'descricao' => 'required',
+			'email' => 'required|email',
+			'email' => 'required|email',
+			'telefone' => 'required',
 		],
 			//neste 2 array digo os indices e separando por um ponto
 			//coloco a validação e neste indice coloco a mensagem que eu
 			//quero que apareça
 			[
 				'nome.required' => 'Cala a boca e preenche o teu nome',
+				'descricao.required' => 'Cala a boca e coloca uma descrição',
 				'email.required' => 'Cala a boca e coloca o teu email',
 				'email.email' => 'Bora meu irmão coloca um email válido',
-				'site.required' => 'Cala a boca coloca o teu site',
-				'descricao.required' => 'Cala a boca e coloca uma descrição',
+				'telefone.required' => 'Bora meu irmão coloca o teu telefone',
 			]);
 		// O {{old()}} faz com que o que eu tenha digitado não venha ser perdido
 
 		//dd é um var_dump do laravel, listando todos os itens preenchidos
 		//dd($request->all());
-		$Eventos = new Evento;
-		$Eventos->nome = $request->nome;
-		$Eventos->email = $request->email;
-		$Eventos->site = $request->site;
-		$Eventos->descricao = $request->descricao;
-		$Eventos->user_id = $request->user()->id;
+		$Eventos	 			= new Evento;
+		$Eventos->user_id 		= $request->user()->id;
+		$Eventos->nome 			= $request->nome;
+		$Eventos->descricao 	= $request->descricao;
+		$Eventos->email 		= $request->email;
+		$Eventos->telefone 		= $request->telefone;
+		$Eventos->imagem 		= $request->imagem;
+		$Eventos->vagas 		= $request->vagas;
+		$Eventos->inicio_evento = $request->inicio_evento;
+		$Eventos->fim_evento	= $request->fim_evento;
 		$Eventos->save();
-
 		return redirect('/evento');}
 
 	public function show($id) {

@@ -16,9 +16,13 @@ class CreateEventosTable extends Migration {
 			$table->Integer('user_id')->unsigned();
     		$table->foreign('user_id')->references('id')->on('users')->onDelte('cascade');
 			$table->string('nome');
-			$table->string('email');
-			$table->string('site');
 			$table->string('descricao');
+			$table->string('email')->unique();
+			$table->string('telefone');
+			$table->string('imagem');
+			$table->Integer('vagas');
+			$table->date('inicio_evento');
+			$table->date('fim_evento');
 			$table->timestamps();
 		});
 	}

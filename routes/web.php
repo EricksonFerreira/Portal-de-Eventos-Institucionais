@@ -12,7 +12,6 @@
  */
 Route::get('/', 'EventoController@index');
 Route::resource('evento', 'EventoController');
-Route::resource('casa', 'HomeController');
 /*Route::get('/', function () {
 return view('index');
 });

@@ -26,11 +26,16 @@
         @else
 			@foreach($Eventos as  $evento)
 			 <div class="a">
-						<div>Nome : {{$evento->nome}}</div>
-						<div>Email : {{$evento->email}}</div>
-						<div>Site : {{$evento->site}}</div>
-						<div>Descricao : {{$evento->descricao}}</div>
-						<div>Author : {{$evento->user->name}}</div>
+						<div>Id 		: {{$evento->id}}</div>
+						<div>Nome 		: {{$evento->nome}}</div>
+						<div>Descricao 	: {{$evento->descricao}}</div>
+						<div>Email 		: {{$evento->email}}</div>
+						<div>telefone 	: {{$evento->telefone}}</div>
+						<div>vagas 		: {{$evento->vagas}}</div>
+						<div>created 	: {{$evento->created_at}}</div>
+						<div>Inicio 	: {{$evento->inicio_evento}}</div>
+						<div>Fim 		: {{$evento->fim_evento}}</div>
+						<div>Author 	: {{$evento->user->name}}</div>
 				@can('update-evento', $evento)
 				<a href="{{url("/evento/{$evento->id}/update")}}">editar</a><br>
 			<form method="POST" action="{{route('evento.destroy', $evento->id)}}">

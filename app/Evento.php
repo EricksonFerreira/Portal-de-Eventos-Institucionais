@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Evento extends Model {
-	protected $fillable = ['nome', 'email', 'site', 'descricao'];
-	protected $guarded = ['id','user_id', 'created_at', 'update_at'];
+	protected $fillable = [
+		'nome', 'descricao', 'email', 'telefone','inicio_evento', 'update_at','vagas','imagem'
+	];
+	protected $guarded = ['id','user_id', 'created_at',  'fim_evento'];
 	protected $table = "eventos";
 	
 	public function user() {
