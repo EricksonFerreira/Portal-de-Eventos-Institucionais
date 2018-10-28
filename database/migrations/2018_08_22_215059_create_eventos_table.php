@@ -19,6 +19,7 @@ class CreateEventosTable extends Migration {
 			$table->string('descricao');
 			$table->string('email')->unique();
 			$table->string('telefone');
+			$table->enum('role',['participante', 'monitor' , 'manager'])->default('participante');
 			$table->string('imagem');
 			$table->Integer('vagas');
 			$table->date('inicio_evento');
