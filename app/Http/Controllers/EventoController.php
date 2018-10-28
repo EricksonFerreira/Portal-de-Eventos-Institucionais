@@ -18,8 +18,7 @@ class EventoController extends Controller {
 		return view('index', compact('Eventos', 'Total'));
 	}
 	public function create() {
-		$this->middleware('auth');
-		return view('criar-evento');
+		return view('criar-evento');
 	}
 
 	public function store(Request $request) {
@@ -52,6 +51,7 @@ class EventoController extends Controller {
 		$Eventos->email = $request->email;
 		$Eventos->site = $request->site;
 		$Eventos->descricao = $request->descricao;
+		$Eventos->user_id = $request->user()->id;
 		$Eventos->save();
 
 		return redirect('/evento');}

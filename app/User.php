@@ -26,7 +26,5 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function evento() {
-        return $this->belongsTo(Evento::class);
-    }
+
 }

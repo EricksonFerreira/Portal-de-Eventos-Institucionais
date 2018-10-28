@@ -12,6 +12,7 @@
  */
 Route::get('/', 'EventoController@index');
 Route::resource('evento', 'EventoController');
+Route::resource('casa', 'HomeController');
 /*Route::get('/', function () {
 return view('index');
 });
@@ -24,6 +25,8 @@ Route::get('edit/{evento}/edit', 'EventoController@edit');
 Route::patch('update/{evento}', 'EventoController@update');
 Route::delete('destroy/{evento}', 'EventoController@destroy');
  */
+
 Auth::routes();
+Route::get('/evento/{id}/update', 'HomeController@update');
 
 Route::get('/home', 'HomeController@index')->name('home');

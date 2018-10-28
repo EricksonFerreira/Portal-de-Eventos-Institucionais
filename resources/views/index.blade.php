@@ -30,13 +30,16 @@
 						<div>Email : {{$evento->email}}</div>
 						<div>Site : {{$evento->site}}</div>
 						<div>Descricao : {{$evento->descricao}}</div>
-				<a href="{{route('evento.edit', $evento->id)}}">editar</a><br>
-
+						<div>Author : {{$evento->user->name}}</div>
+				@can('update-evento', $evento)
+				<a href="{{url("/evento/{$evento->id}/update")}}">editar</a><br>
 			<form method="POST" action="{{route('evento.destroy', $evento->id)}}">
 					<input type="hidden" name="_method" value="DELETE">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<input type="submit" value="Delete">
 				</form>
+				@endcan
+				<hr>
 
 			 </div><br>
 			@endforeach

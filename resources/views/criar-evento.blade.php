@@ -24,6 +24,7 @@
 		<input type="text" name="site" value="{{old('site')}}">
 		<label>Descrição: </label>
 		<input type="text" name="descricao" value="{{old('descricao')}}">
+		 <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<input type="submit" value="Enviar">
 	</form>
