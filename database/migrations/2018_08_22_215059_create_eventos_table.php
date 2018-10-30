@@ -12,6 +12,7 @@ class CreateEventosTable extends Migration {
 	 */
 	public function up() {
 		Schema::create('eventos', function (Blueprint $table) {
+			/*dados da tabela eventos*/
 			$table->increments('id');
 			$table->Integer('user_id')->unsigned();
     		$table->foreign('user_id')->references('id')->on('users')->onDelte('cascade');
@@ -19,7 +20,6 @@ class CreateEventosTable extends Migration {
 			$table->string('descricao');
 			$table->string('email')->unique();
 			$table->string('telefone');
-			$table->enum('role',['participante', 'monitor' , 'manager'])->default('participante');
 			$table->string('imagem');
 			$table->Integer('vagas');
 			$table->date('inicio_evento');
