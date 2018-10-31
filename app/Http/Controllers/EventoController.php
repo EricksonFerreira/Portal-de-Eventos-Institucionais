@@ -16,7 +16,8 @@ class EventoController extends Controller {
     }
 	public function index() {
 		/*Pega todos os itens da model Evento e leva para a index*/
-		$Eventos 	= Evento::all();
+		//$Eventos 	= Evento::all(); 
+		$Eventos 	= Evento::with('users')->get();
 		$Total 		= Evento::all()->count();
 		return view('index', compact('Eventos', 'Total'));
 	}
@@ -41,11 +42,11 @@ class EventoController extends Controller {
 			coloco a validação e neste indice coloco a mensagem que eu
 			quero que apareça*/
 			[
-				'nome.required' 			=> 'Cala a boca e preenche o teu nome',
-				'descricao.required' 	=> 'Cala a boca e coloca uma descrição',
-				'email.required' 			=> 'Cala a boca e coloca o teu email',
-				'email.email'					=> 'Bora meu irmão coloca um email válido',
-				'telefone.required' 	=> 'Bora meu irmão coloca o teu telefone',
+				'nome.required' 			=> 'preenche o teu nome',
+				'descricao.required' 	=> 'coloca uma descrição',
+				'email.required' 			=> 'coloca o teu email',
+				'email.email'					=> 'coloca um email válido',
+				'telefone.required' 	=> 'coloca o teu telefone',
 			]);
 		/*O {{old()}} faz com que o que eu tenha digitado não venha ser perdido
 
@@ -64,6 +65,8 @@ class EventoController extends Controller {
 		$Eventos->inicio_evento = $request->inicio_evento;
 		$Eventos->fim_evento		= $request->fim_evento;
 		$Eventos->save();
+
+		$request->session()->flash('alert-success', 'Evento cadastrado com sucesso!');
 		return redirect('/evento');}
 
 	public function show($id) {
@@ -94,3 +97,5 @@ class EventoController extends Controller {
 		echo $city->nome;
 	}
 }
+
+/*https://stackoverflow.com/questions/50349775/laravel-unique-validation-on-multiple-columns*/

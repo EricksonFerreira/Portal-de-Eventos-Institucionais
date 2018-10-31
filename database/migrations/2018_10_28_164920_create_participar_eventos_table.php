@@ -31,7 +31,8 @@ class CreateParticiparEventosTable extends Migration
 
             /* booleano para saber se o cara está no evento*/            
             $table->boolean('checking');
-            
+
+            $table->unique('evento_id', 'user_id');
             $table->timestamps();
         });
     }

@@ -22,5 +22,13 @@ class Evento extends Model {
 	/*Função que representa o relacionamento de muitos para muitos*/
 	 public function user(){
         return $this->belongsToMany(User::class);
-    } 
+    }
+
+    /*
+    public function jaParticipa(id_evento,id_usser){
+    		//buscar no banco
+
+        return true/false;
+    }
+    */
 }

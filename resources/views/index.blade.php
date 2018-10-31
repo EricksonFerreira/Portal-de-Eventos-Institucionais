@@ -18,7 +18,17 @@
 	</style>
 </head>
 <body>
+
+	 <div class="flash-message">
+    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+      @if(Session::has('alert-' . $msg))
+
+      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+      @endif
+    @endforeach
+  </div> <!-- end .flash-message -->
 	<h1>Bem Vindo ao Index</h1>
+
 	<a href="{{route('evento.create')}}">Criar Evento</a><br><br>
 <!-- Condição para saber se existe a variavel que lista -->
   @if (empty($Eventos))
@@ -30,6 +40,7 @@
 		@foreach($Eventos as  $evento)
 			 <div class="a">
 						<div>Id 		: {{$evento->id}}</div>
+						<div>user		: {{$evento->user['name']}}</div>
 						<div>Nome 		: {{$evento->nome}}</div>
 						<div>Descricao 	: {{$evento->descricao}}</div>
 						<div>Email 		: {{$evento->email}}</div>
@@ -39,7 +50,8 @@
 						<div>Inicio 	: {{$evento->inicio_evento}}</div>
 						<div>Fim 		: {{$evento->fim_evento}}</div>
 				<!-- Lista o nome do Autor que está na tabela user o atributo name-->			
-						<div>Autor 	: {{$evento->user_id}}</div>	
+				
+						<a href="{{url("/evento/{$evento->id}/upando")}}">participar</a><br>
 		<!--  Botão que cadastra o usuario na tabela participar -->
 		 	@can('participa-evento', $evento)
 				<a href="{{url("/evento/{$evento->id}/upando")}}">participar</a><br>

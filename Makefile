@@ -16,3 +16,5 @@ bd-conf:
 	sed -i 's/DB_DATABASE.*/DB_DATABASE=pei/' .env
 	sed -i 's/DB_USERNAME.*/DB_USERNAME=pei/' .env
 	sed -i 's/DB_PASSWORD.*/DB_PASSWORD=piadaruim/' .env
+	php artisan migrate
+
