@@ -44,7 +44,7 @@
 						<div>Nome 		: {{$evento->nome}}</div>
 						<div>Descricao 	: {{$evento->descricao}}</div>
 						<div>Email 		: {{$evento->email}}</div>
-						<img src="{{URL::asset('/img/evento'. $evento->imagem)}}" style="width:30em; height: 16.8em;"><div> {{$evento->imagem}}</div>
+						<img src="img/evento/{{$evento->imagem}}" style="width:30em; height: 16.8em;">
 						<div>vagas 		: {{$evento->vagas}}</div>
 						<div>telefone 	: {{$evento->telefone}}</div>
 						<div>created 	: {{$evento->created_at}}</div>

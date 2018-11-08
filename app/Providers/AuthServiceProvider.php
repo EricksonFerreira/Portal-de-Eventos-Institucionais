@@ -31,6 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         $gate->define('update-evento', function(User $user, Evento $evento){
             return $user->id == $evento->user_id;
         });
+
         
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Evento;
 use App\User;
 use Illuminate\Http\Request;
+use File;
+use Illuminate\Http\UploadedFile;
 
 class EventoController extends Controller {
 
@@ -20,7 +22,7 @@ class EventoController extends Controller {
 		$Eventos 	= Evento::all();
 		$Users 		= User::all();
 		$Total 		= Evento::all()->count();
-		return view('index', compact('Eventos', 'Total'));
+		return view('index', compact('Eventos', 'Total', 'Users '));
 	}
 	public function create() {
 		/*Redireciona para a View de criar evento*/
@@ -57,17 +59,23 @@ class EventoController extends Controller {
 		/*Cadastrando imagens no banco*/
 		// Verifica se informou o arquivo e se é válido
 
-    	if($request->hasFile('imagem')){
     		$imagem = $request->imagem;
+    		// ob_start();
+    		// var_dump($request);
+    		// file_put_contents('/tmp/dump', ob_get_clean());
+    		// exit();
+    
+    	if($request->hasFile('imagem')){
+    		$imagem = $request->file('imagem');
     		$numero = rand(1111,9999);
-    		$dir = "img/cursos/";
+    		$dir = "img/evento/";
     		$ex = $imagem -> guessClientExtension();
     		$nomeImagem = "imagem_".$numero.".".$ex;
     		$imagem->move($dir,$nomeImagem);
     		$dados['imagem'] = $dir."/".$nomeImagem;
     	}else{
     		$request->session()->flash('alert-success', 'Não existe imagem!');
-		return redirect('/evento');
+			return redirect('/evento');
     	}	
  
 		/*Atualizando todos esses itens da model*/
@@ -77,7 +85,7 @@ class EventoController extends Controller {
 		$Eventos->descricao 		= $request->descricao;
 		$Eventos->email 			= $request->email;
 		$Eventos->telefone 			= $request->telefone;
-		$Eventos->imagem 			= $request->imagem;
+		$Eventos->imagem 			= $nomeImagem;
 		$Eventos->vagas 			= $request->vagas;
 		$Eventos->inicio_evento		= $request->inicio_evento;
 		$Eventos->fim_evento		= $request->fim_evento;

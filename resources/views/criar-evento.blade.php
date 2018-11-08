@@ -15,7 +15,7 @@
 		</ol>
 	<h1>Criar Evento</h1>
 	<a href="{{route('evento.index')}}">Index</a>
-	<form action="{{route('evento.store')}}" method="POST">
+	<form action="{{route('evento.store')}}" method="POST" enctype="multipart/form-data">
 		<label>Nome: </label>
 		<input type="text" name="nome" value="{{old('nome')}}">
 		<label>Descrição: </label>
