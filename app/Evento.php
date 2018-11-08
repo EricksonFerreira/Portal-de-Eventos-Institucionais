@@ -5,6 +5,7 @@ namespace App;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 	
 class Evento extends Model {
 	/*nome da tabela*/
@@ -20,8 +21,12 @@ class Evento extends Model {
 	protected $guarded	= ['id','user_id'];
 	
 	/*Função que representa o relacionamento de muitos para muitos*/
-	 public function user(){
+	 public function users(){
         return $this->belongsToMany(User::class);
+    }	
+    /*Função que representa o relacionamento de um para muitos*/
+	 public function user(){
+        return $this->belongsTo(User::class);
     }
 
     /*
@@ -31,4 +36,6 @@ class Evento extends Model {
         return true/false;
     }
     */
+
 }
+ 

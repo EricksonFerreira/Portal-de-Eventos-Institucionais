@@ -18,7 +18,7 @@
 		<label>Telefone: </label>
 		<input type="text" name="telefone" value="{{old('telefone')}}">
 		<label>Imagem: </label>
-		<input type="text" name="imagem" value="{{old('imagem')}}">
+		<input type="file" name="imagem" value="{{old('imagem')}}">
 		<label>Inicio Evento: </label>
 		<input type="date" name="created_at" value="{{old('created_at')}}">
 		<label>Fim: </label>

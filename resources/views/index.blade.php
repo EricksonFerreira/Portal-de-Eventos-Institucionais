@@ -40,10 +40,12 @@
 		@foreach($Eventos as  $evento)
 			 <div class="a">
 						<div>Id 		: {{$evento->id}}</div>
-						<div>user		: {{$evento->user['name']}}</div>
+						<div>usuario 	: {{$evento->user->name}}</div>
 						<div>Nome 		: {{$evento->nome}}</div>
 						<div>Descricao 	: {{$evento->descricao}}</div>
 						<div>Email 		: {{$evento->email}}</div>
+						<img src="{{URL::asset('/img/evento'. $evento->imagem)}}" style="width:30em; height: 16.8em;"><div> {{$evento->imagem}}</div>
+						<div>vagas 		: {{$evento->vagas}}</div>
 						<div>telefone 	: {{$evento->telefone}}</div>
 						<div>created 	: {{$evento->created_at}}</div>
 						<div>update 	: {{$evento->update_at}}</div>

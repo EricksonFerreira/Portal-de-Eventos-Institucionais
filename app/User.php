@@ -5,6 +5,8 @@ namespace App;
 use App\Evento;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -17,8 +19,12 @@ class User extends Authenticatable
     /*nome dos atributos que não poderão ser vistos*/
     protected $hidden 	= ['password', 'remember_token'];
 	
-	/*Função que representa o relacionamento de muitos para muitos*/
-     public function evento(){
+    /*Função que representa o relacionamento de muitos para muitos*/
+     public function eventos(){
         return $this->belongsToMany(Evento::class);
+    }	
+    /*Função que representa o relacionamento de um para muitos*/
+     public function evento(){
+        return $this->hasMany(Evento::class);
     }
 }

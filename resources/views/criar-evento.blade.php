@@ -25,7 +25,7 @@
 		<label>Telefone: </label>
 		<input type="text" name="telefone" value="{{old('telefone')}}">
 		<label>Imagem: </label>
-		<input type="text" name="imagem" value="{{old('imagem')}}">
+		<input type="file" name="imagem" value="{{old('imagem')}}">
 		<label>vagas: </label>
 		<input type="number" name="vagas" value="{{old('vagas')}}">
 		<br>

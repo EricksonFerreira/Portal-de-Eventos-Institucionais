@@ -17,7 +17,8 @@ class EventoController extends Controller {
 	public function index() {
 		/*Pega todos os itens da model Evento e leva para a index*/
 		//$Eventos 	= Evento::all(); 
-		$Eventos 	= Evento::with('users')->get();
+		$Eventos 	= Evento::all();
+		$Users 		= User::all();
 		$Total 		= Evento::all()->count();
 		return view('index', compact('Eventos', 'Total'));
 	}
@@ -33,42 +34,59 @@ class EventoController extends Controller {
 		com os indices e o que eu quero que seja validado*/
 		$validar 			= 	$request->validate([
 			'nome' 			=> 'required',
-			'descricao' => 'required',
+			'descricao'		=> 'required',
 			'email' 		=> 'required|email',
 			'email' 		=> 'required|email',
-			'telefone' 	=> 'required',
+			'telefone' 		=> 'required',
 		],
 			/*neste 2 array digo os indices e separando por um ponto
 			coloco a validação e neste indice coloco a mensagem que eu
 			quero que apareça*/
 			[
-				'nome.required' 			=> 'preenche o teu nome',
-				'descricao.required' 	=> 'coloca uma descrição',
-				'email.required' 			=> 'coloca o teu email',
-				'email.email'					=> 'coloca um email válido',
-				'telefone.required' 	=> 'coloca o teu telefone',
+			'nome.required' 		=> 'preenche o teu nome',
+			'descricao.required' 	=> 'coloca uma descrição',
+			'email.required' 		=> 'coloca o teu email',
+			'email.email'			=> 'coloca um email válido',
+			'telefone.required' 	=> 'coloca o teu telefone',
 			]);
 		/*O {{old()}} faz com que o que eu tenha digitado não venha ser perdido
 
 		dd é um var_dump do laravel, listando todos os itens preenchidos
 		dd($request->all());*/
 
+		/*Cadastrando imagens no banco*/
+		// Verifica se informou o arquivo e se é válido
+
+    	if($request->hasFile('imagem')){
+    		$imagem = $request->imagem;
+    		$numero = rand(1111,9999);
+    		$dir = "img/cursos/";
+    		$ex = $imagem -> guessClientExtension();
+    		$nomeImagem = "imagem_".$numero.".".$ex;
+    		$imagem->move($dir,$nomeImagem);
+    		$dados['imagem'] = $dir."/".$nomeImagem;
+    	}else{
+    		$request->session()->flash('alert-success', 'Não existe imagem!');
+		return redirect('/evento');
+    	}	
+ 
 		/*Atualizando todos esses itens da model*/
-		$Eventos	 							= new Evento;
+		$Eventos	 				= new Evento;
 		$Eventos->user_id 			= $request->user()->id;
-		$Eventos->nome 					= $request->nome;
+		$Eventos->nome 				= $request->nome;
 		$Eventos->descricao 		= $request->descricao;
-		$Eventos->email 				= $request->email;
+		$Eventos->email 			= $request->email;
 		$Eventos->telefone 			= $request->telefone;
-		$Eventos->imagem 				= $request->imagem;
-		$Eventos->vagas 				= $request->vagas;
-		$Eventos->inicio_evento = $request->inicio_evento;
+		$Eventos->imagem 			= $request->imagem;
+		$Eventos->vagas 			= $request->vagas;
+		$Eventos->inicio_evento		= $request->inicio_evento;
 		$Eventos->fim_evento		= $request->fim_evento;
 		$Eventos->save();
 
+		
 		$request->session()->flash('alert-success', 'Evento cadastrado com sucesso!');
-		return redirect('/evento');}
-
+		return redirect('/evento');
+	}
 	public function show($id) {
 		//
 	}
