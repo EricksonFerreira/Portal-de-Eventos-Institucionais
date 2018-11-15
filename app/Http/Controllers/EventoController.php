@@ -38,18 +38,23 @@ class EventoController extends Controller {
 			'nome' 			=> 'required',
 			'descricao'		=> 'required',
 			'email' 		=> 'required|email',
-			'email' 		=> 'required|email',
 			'telefone' 		=> 'required',
+			'imagem' 		=> 'required',
+			'vagas' 		=> 'required',
+			'campus' 		=> 'required',
 		],
 			/*neste 2 array digo os indices e separando por um ponto
 			coloco a validação e neste indice coloco a mensagem que eu
 			quero que apareça*/
 			[
-			'nome.required' 		=> 'preenche o teu nome',
-			'descricao.required' 	=> 'coloca uma descrição',
-			'email.required' 		=> 'coloca o teu email',
-			'email.email'			=> 'coloca um email válido',
-			'telefone.required' 	=> 'coloca o teu telefone',
+			'nome.required' 		=> 'preenche o seu nome',
+			'descricao.required' 	=> 'coloque uma descrição',
+			'email.required' 		=> 'coloque um email',
+			'email.email'			=> 'coloque um email válido',
+			'telefone.required' 	=> 'coloque o seu telefone',
+			'imagem.required' 		=> 'coloque uma imagem',
+			'vagas.required' 		=> 'coloque o numero de vagas',
+			'Campus.required' 		=> 'Coloque um campus',
 			]);
 		/*O {{old()}} faz com que o que eu tenha digitado não venha ser perdido
 
@@ -61,7 +66,6 @@ class EventoController extends Controller {
 
     		$imagem = $request->imagem;
     		// ob_start();
-    		// var_dump($request);
     		// file_put_contents('/tmp/dump', ob_get_clean());
     		// exit();
     
@@ -83,14 +87,18 @@ class EventoController extends Controller {
 		$Eventos->user_id 			= $request->user()->id;
 		$Eventos->nome 				= $request->nome;
 		$Eventos->descricao 		= $request->descricao;
+		$Eventos->campus 			= $request->campus;
 		$Eventos->email 			= $request->email;
 		$Eventos->telefone 			= $request->telefone;
 		$Eventos->imagem 			= $nomeImagem;
 		$Eventos->vagas 			= $request->vagas;
 		$Eventos->inicio_evento		= $request->inicio_evento;
+		$Eventos->hora_inicio		= $request->hora_inicio;
 		$Eventos->fim_evento		= $request->fim_evento;
+		$Eventos->hora_fim			= $request->hora_fim;
 		$Eventos->save();
 
+    		 //var_dump($Eventos);
 		
 		$request->session()->flash('alert-success', 'Evento cadastrado com sucesso!');
 		return redirect('/evento');

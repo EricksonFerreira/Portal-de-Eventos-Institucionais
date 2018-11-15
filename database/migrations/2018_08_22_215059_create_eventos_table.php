@@ -18,12 +18,15 @@ class CreateEventosTable extends Migration {
     		$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->string('nome');
 			$table->string('descricao');
+			$table->enum('campus' , ['abreu', 'afogados', 'barreiros', 'belojardim', 'igarassu', 'recife']);
 			$table->string('email')->unique();
 			$table->string('telefone');
 			$table->string('imagem');
 			$table->Integer('vagas');
 			$table->date('inicio_evento');
+			$table->time('hora_inicio');
 			$table->date('fim_evento');
+			$table->time('hora_fim');
 			$table->timestamps();
 		});
 	}

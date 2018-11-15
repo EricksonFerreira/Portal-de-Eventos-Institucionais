@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<br><br><br><br>
+<!-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -73,5 +74,79 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
+</div> -->
+-----------------------------------------*------------------------------------------
+    <div class="column">
+        <div class="ui message">
+            <h2 class="ui teal image header">
+                <img src="_imagem/_icone/ifpe.png" class="ui hurger image">
+                <div class="content">
+                     Cadastre-se agora, Eventos - IFPE
+                </div>
+            </h2>
+        </div>
+        <div class="ui green segment">
+            <form method="POST" action="{{ route('register') }}" class="ui form">
+                @csrf
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user green icon"></i>
+                        <input id="name" type="text" name="name" placeholder="Nome" required autofocus>
+                            @if ($errors->has('name'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                            @endif
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field"> 
+                        <div class="ui left icon input">
+                            <i class="envelope green icon"></i>
+                            <input id="email" type="email" name="email" placeholder="Email" value= "{{ old('email') }}" required>
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                        </div>
+                    </div>
+                <!--     <div class="field">
+                        <div class="ui left icon input">
+                            <i class="phone  green icon"></i>
+                            <input id="telefone" type="text" name="telefone" placeholder="Telefone" required>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="two fields">
+                    <div class="field"> 
+                        <div class="ui left icon input">
+                            <i class="lock green icon"></i>
+                            <input id="password" type="password" name="senha" placeholder="Senha" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock green icon"></i>
+                            <input id="password-confirm" type="password" name="password_confirmation" placeholder="Repita a senha" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <button type="submit" class="ui fluid large inverted green submit button">
+                        {{ __('Registro') }}
+                    </button>
+                </div></a>
+            </form>
+        </div>
+        <!-- <div class="ui message">
+            <center>Já tem uma conta? <a href="login.php" style="color: #4ee44e;">Faça o login</a></center>
+        </div>   -->
+    </div>
+    @endsection

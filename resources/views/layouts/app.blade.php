@@ -24,10 +24,10 @@
 <body>
     <div id="app">
         <div class="ui large fixed stackable menu">
-            <a href="" class="item">
+            <a href="{{ url('/') }}" class="item">
                 <img src="../../../public/img/icone/ifpe.png" alt="">
             </a>
-            <a href="eventos.php" class="item">
+            <a href="{{ url('/') }}" class="item">
                 <i class="calendar green icon"></i><span style="color: green">Ver Eventos</span>
             </a>
             <div class=" right menu">

@@ -12,10 +12,10 @@ class Evento extends Model {
 	protected $table 	= 	"eventos";
 
 	/*nome dos atributos que poderão ser alterados*/
-	protected $fillable = ['nome', 'descricao', 'email', 'telefone', 'vagas','imagem'];
+	protected $fillable = ['nome', 'descricao', 'email', 'telefone', 'vagas','imagem', 'campus'];
 
 	/*nome dos atributos que representam as horas*/
-	protected $date 	= ['created_at','update_at','inicio_evento','fim_evento'];
+	protected $date 	= ['created_at','update_at','inicio_evento','hora_inicio','fim_evento','hora_fim'];
 
 	/*nome dos atributos que poderão ser não alterados*/
 	protected $guarded	= ['id','user_id'];
