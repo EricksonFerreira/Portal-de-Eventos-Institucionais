@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Evento;
+use App\ParticiparEvento;
 use App\User;
 use Illuminate\Http\Request;
 use File;
@@ -13,7 +14,7 @@ class EventoController extends Controller {
 	 public function __construct(){
     /*Nesse caso o middleware auth será aplicado a todos os métodos*/
     /*Com isso só pode acessar as paginas caso esteja logado exceto a index*/
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except('index','show');
 
     }
 	public function index() {
@@ -104,7 +105,8 @@ class EventoController extends Controller {
 		return redirect('/evento');
 	}
 	public function show($id) {
-		//
+		$Eventos = Evento::find($id);
+		return view('show', compact('Eventos'));
 	}
 
 	public function edit($id) {
@@ -125,6 +127,7 @@ class EventoController extends Controller {
 		$Eventos->delete();
 		return redirect('/evento');
 	}
+
 	/*Treinamento*/
 	public function participar() {
 		$city = Evento::where('nome', 'Erickson')->get()->first();

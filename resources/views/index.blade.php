@@ -69,7 +69,7 @@
 							</a>
 						</form>
 						@endcan
-					<a href="#">			
+					<a href="{{route('evento.show', $evento->id)}}">			
 						<button class="ui green  button">
 							<i class="calendar icon"></i>Consultar Evento
 						</button>

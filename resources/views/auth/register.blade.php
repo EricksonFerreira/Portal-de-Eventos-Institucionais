@@ -79,7 +79,7 @@
     <div class="column">
         <div class="ui message">
             <h2 class="ui teal image header">
-                <img src="_imagem/_icone/ifpe.png" class="ui hurger image">
+                <img src="../img/icone/ifpe.png" class="ui hurger image">
                 <div class="content">
                      Cadastre-se agora, Eventos - IFPE
                 </div>
