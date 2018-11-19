@@ -6,19 +6,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Index</title>
-	<style type="text/css">
-	.a{
-			border: 1px solid black;
-			width: 15em;
-			height: 7em;
-			text-align: center;
-			padding: 5px;
-			border-radius: 10%;
-		}
-	</style>
+
 </head>
 <body>
-
+<br>
+<br>
+<br>
+<br>
 	 <div class="flash-message">
     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
       @if(Session::has('alert-' . $msg))
@@ -27,9 +21,21 @@
       @endif
     @endforeach
   </div> <!-- end .flash-message -->
-	<h1>Bem Vindo ao Index</h1>
+  <div class="ui three column grid">
+			<div class="column">
+				<div class="ui segment">
+					<center>
+						<a href="{{route('evento.create')}}">
+							<button class="ui basic medium button">
+								<h1 class="ui green header">Novo Evento<br>
+									<center><i class="plus large icon"></i></center>
+								</h1>
+							</button>
+						</a>
+					</center>	
+				</div>
+			</div>
 
-	<a href="{{route('evento.create')}}">Criar Evento</a><br><br>
 <!-- Condição para saber se existe a variavel que lista -->
   @if (empty($Eventos))
   	<!-- Se não existir aparece essa mensagem -->
@@ -38,20 +44,19 @@
 		<!-- Se ela existir vai aparecer isso-->			
 		<!-- Listar todos os atributos dos itens já cadastrados na tabela-->			
 		@foreach($Eventos as  $evento)
-<div class="column">
+			<div class="column">
 				<div class="ui green segment">
-					<a class="ui green ribbon label">{{$evento->created_at}}</a><br></br>
+					<a class="ui green ribbon label">{{$evento->inicio_evento}} - {{$evento->hora_inicio}} às {{$evento->fim_evento}} - {{$evento->hora_fim}}</a><br></br>
 					<img class="ui centered large rounded image" src="img/evento/{{$evento->imagem}}">
 					<center><h3 class="ui header"><br>{{$evento->nome}}</h3></center>
 					<center><h5 class="ui disabled header">{{$evento->descricao}}</h5></center>
 					<div class="ui divider"></div>
 
-					<a href="detalhesEventos.php">			
 			<!-- Pega a função de app\Providers\AuthServiceProvider.php
 				 Caso esteja de acordo com o provider ele vai fazer aparecer o que está dentro-->
 						@can('update-evento', $evento)
 						<a href="{{url("/evento/{$evento->id}/update")}}">
-								<button class="ui green inverted button">
+								<button class="ui green inverted button ">
 									<i class="edit icon"></i>Editar Evento
 								</button>
 							</a>
@@ -64,6 +69,7 @@
 							</a>
 						</form>
 						@endcan
+					<a href="#">			
 						<button class="ui green  button">
 							<i class="calendar icon"></i>Consultar Evento
 						</button>

@@ -119,7 +119,10 @@
             </div>
         </form>  
         <div class="ui message">
-            <center>Não tem uma conta? <a href="{{ route('password.request') }}" style="color: green;">  Cadastre-se</a></center>
+            <center>Não tem uma conta? <a href="{{ route('register') }}" style="color: green;">  Cadastre-se</a></center>
+        </div>    
+        <div class="ui message">
+            <center>Esqueceu a senha? <a href="{{ route('password.request') }}" style="color: green;">  Recuperar a Senha</a></center>
         </div>  
     </div>
 @endsection
