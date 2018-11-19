@@ -40,7 +40,7 @@
 		@foreach($Eventos as  $evento)
 <div class="column">
 				<div class="ui green segment">
-					<a class="ui green ribbon label">21/04/2018 - 17:00 Ás 20:00</a><br></br>
+					<a class="ui green ribbon label">{{$evento->created_at}}</a><br></br>
 					<img class="ui centered large rounded image" src="img/evento/{{$evento->imagem}}">
 					<center><h3 class="ui header"><br>{{$evento->nome}}</h3></center>
 					<center><h5 class="ui disabled header">{{$evento->descricao}}</h5></center>
