@@ -122,7 +122,7 @@
                     <div class="field"> 
                         <div class="ui left icon input">
                             <i class="lock green icon"></i>
-                            <input id="password" type="password" name="senha" placeholder="Senha" required>
+                            <input id="password" type="password" name="password" placeholder="Senha" required>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
