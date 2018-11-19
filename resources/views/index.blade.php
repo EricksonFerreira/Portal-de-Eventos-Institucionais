@@ -22,6 +22,8 @@
     @endforeach
   </div> <!-- end .flash-message -->
   <div class="ui three column grid">
+			
+		@can('criar-evento')
 			<div class="column">
 				<div class="ui segment">
 					<center>
@@ -35,6 +37,7 @@
 					</center>	
 				</div>
 			</div>
+		@endcan
 
 <!-- Condição para saber se existe a variavel que lista -->
   @if (empty($Eventos))

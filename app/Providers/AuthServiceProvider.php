@@ -30,6 +30,10 @@ class AuthServiceProvider extends ServiceProvider
     /* Caso seja chamado e o usuario que criou o evento esteja logado poderá entrar no @can */
         $gate->define('update-evento', function(User $user, Evento $evento){
             return $user->id == $evento->user_id;
+        });        
+
+        $gate->define('criar-evento', function(User $user){
+            return $user->role == 'manager';
         });
 
         
