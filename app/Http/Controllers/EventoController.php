@@ -105,8 +105,9 @@ class EventoController extends Controller {
 		return redirect('/evento');
 	}
 	public function show($id) {
-		$Eventos = Evento::find($id);
-		return view('show', compact('Eventos'));
+		$eventos = Evento::find($id);
+		$participantes = count(ParticiparEvento::where('evento_id', '=', $id)->get());
+		return view('show', compact('eventos', 'participantes'));
 	}
 
 	public function edit($id) {

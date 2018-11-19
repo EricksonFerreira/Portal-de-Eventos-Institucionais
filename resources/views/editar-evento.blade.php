@@ -19,7 +19,7 @@
 						<strong><h3 class="ui dividing header">Sobre o evento</h3></strong>
 						<div class="field">
 							<br><label>Nome*
-								<input type="text" name="nome" placeholder="Nome do evento" value="{{old('nome')}}" >
+								<input type="text" name="nome" placeholder="Nome do evento" value="{{$evento->nome}}" >
 							</label>
 							<div class="field">
 								<br><label>Descrição*

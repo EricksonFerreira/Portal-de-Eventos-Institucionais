@@ -10,6 +10,9 @@ conf:
 conf-git-erickson:
 	git config user.email "erickson.rinho@hotmail.com"
 	git config user.name "Erickson"
+conf-git-erickson:
+	git config user.email "eduardobispof"
+	git config user.name "eduardobispof@gmail.com"
 
 bd-conf:
 	mysql -u root -p --execute="drop database if exists pei; create database pei; drop user if exists 'pei'; create user 'pei' identified by 'piadaruim'; grant all privileges on pei.* to 'pei';"
