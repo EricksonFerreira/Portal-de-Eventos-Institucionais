@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
         });        
 
         $gate->define('criar-evento', function(User $user){
-            return $user->role == 'manager';
+            return $user->role == 'participante';
         });
 
         

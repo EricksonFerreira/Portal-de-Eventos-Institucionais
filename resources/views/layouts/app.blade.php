@@ -31,12 +31,13 @@
                 <i class="calendar green icon"></i><span style="color: green">Ver Eventos</span>
             </a>
             <div class=" right menu">
-                <div class="item">
+                <!-- <div class="item">
                     <div class="ui action input"> 
                         <input type="text" placeholder="Procurar evento">
                         <button class="ui icon green button"><i class="search icon"></i></button>
                     </div>
                 </div>
+                 -->
         @guest      
                 <a href="{{ route('login') }}"class="item">
                     <button class="ui green inverted button">

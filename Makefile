@@ -10,7 +10,8 @@ conf:
 conf-git-erickson:
 	git config user.email "erickson.rinho@hotmail.com"
 	git config user.name "Erickson"
-conf-git-erickson:
+
+conf-git-eduardo:
 	git config user.email "eduardobispof"
 	git config user.name "eduardobispof@gmail.com"
 

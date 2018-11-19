@@ -117,6 +117,33 @@ class EventoController extends Controller {
 	}
 
 	public function update(Request $request, $id) {
+		/*validando os dados
+		pego o request com as validações e coloco dentro da variavel
+		mando um request com o método validate
+		com os indices e o que eu quero que seja validado*/
+		$validar 			= 	$request->validate([
+			'nome' 			=> 'required',
+			'descricao'		=> 'required',
+			'email' 		=> 'required|email',
+			'telefone' 		=> 'required',
+			'imagem' 		=> 'required',
+			'vagas' 		=> 'required',
+			'campus' 		=> 'required',
+		],
+			/*neste 2 array digo os indices e separando por um ponto
+			coloco a validação e neste indice coloco a mensagem que eu
+			quero que apareça*/
+			[
+			'nome.required' 		=> 'preenche o seu nome',
+			'descricao.required' 	=> 'coloque uma descrição',
+			'email.required' 		=> 'coloque um email',
+			'email.email'			=> 'coloque um email válido',
+			'telefone.required' 	=> 'coloque o seu telefone',
+			'imagem.required' 		=> 'coloque uma imagem',
+			'vagas.required' 		=> 'coloque o numero de vagas',
+			'Campus.required' 		=> 'Coloque um campus',
+			]);
+
 		/*Pega a model pelo id e coloca tudo que vem pelo request.*/
 		Evento::find($id)->update($request->all());
 		return redirect('/evento');

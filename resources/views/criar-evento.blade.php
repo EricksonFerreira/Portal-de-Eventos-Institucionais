@@ -45,17 +45,17 @@
 							</div>
 							<div class="three fields">
 								<div class="field">
-									<br><label>Email
+									<br><label>Email*
 										<input type="text" name="email" placeholder="Email para contato"  value="{{old('email')}}">
 									</label>
 								</div>
 								<div class="field">
-									<br><label>Telefone
+									<br><label>Telefone*
 										<input type="text" name="telefone" placeholder="Telefone para contato" value="{{old('telefone')}}">
 									</label>
 								</div>								
 								<div class="field">
-									<br><label>Vagas
+									<br><label>Vagas*
 										<input type="number" name="vagas" value="{{old('vagas')}}">
 									</label>
 								</div>
