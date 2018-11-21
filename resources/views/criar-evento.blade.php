@@ -69,7 +69,7 @@
 							<div class="five fields">
 								<div class="field">
 									<br><label>Inicio*
-										<input type="date" name="inicio_evento" value="2018-11-15" placeholder="Data do evento">
+										<input type="date" name="inicio_evento" value="2018-11-21" placeholder="Data do evento">
 									</label>
 								</div>
 								<div class="field">
@@ -82,7 +82,7 @@
 								</div>
 								<div class="field">
 									<br><label>Término*
-										<input type="date" value="2018-11-15" name="fim_evento" >
+										<input type="date" value="2018-11-22" name="fim_evento" >
 									</label>
 								</div>
 								<div class="field">

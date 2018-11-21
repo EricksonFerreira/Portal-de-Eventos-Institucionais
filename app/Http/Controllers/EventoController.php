@@ -15,15 +15,14 @@ class EventoController extends Controller {
     /*Nesse caso o middleware auth será aplicado a todos os métodos*/
     /*Com isso só pode acessar as paginas caso esteja logado exceto a index*/
         $this->middleware('auth')->except('index','show');
-
     }
 	public function index() {
 		/*Pega todos os itens da model Evento e leva para a index*/
-		//$Eventos 	= Evento::all(); 
-		$Eventos 	= Evento::all();
-		$Users 		= User::all();
-		$Total 		= Evento::all()->count();
-		return view('index', compact('Eventos', 'Total', 'Users '));
+		//$eventos 	= Evento::all(); 
+		$eventos 	= Evento::all();
+		$users 		= User::all();
+		$total 		= Evento::all()->count();
+		return view('index', compact('eventos', 'total', 'users'));
 	}
 	public function create() {
 		/*Redireciona para a View de criar evento*/
@@ -84,40 +83,44 @@ class EventoController extends Controller {
     	}	
  
 		/*Atualizando todos esses itens da model*/
-		$Eventos	 				= new Evento;
-		$Eventos->user_id 			= $request->user()->id;
-		$Eventos->nome 				= $request->nome;
-		$Eventos->descricao 		= $request->descricao;
-		$Eventos->campus 			= $request->campus;
-		$Eventos->email 			= $request->email;
-		$Eventos->telefone 			= $request->telefone;
-		$Eventos->imagem 			= $nomeImagem;
-		$Eventos->vagas 			= $request->vagas;
-		$Eventos->inicio_evento		= $request->inicio_evento;
-		$Eventos->hora_inicio		= $request->hora_inicio;
-		$Eventos->fim_evento		= $request->fim_evento;
-		$Eventos->hora_fim			= $request->hora_fim;
-		$Eventos->save();
+		$eventos	 				= new Evento;
+		$eventos->user_id 			= $request->user()->id;
+		$eventos->nome 				= $request->nome;
+		$eventos->descricao 		= $request->descricao;
+		$eventos->campus 			= $request->campus;
+		$eventos->email 			= $request->email;
+		$eventos->telefone 			= $request->telefone;
+		$eventos->imagem 			= $nomeImagem;
+		$eventos->vagas 			= $request->vagas;
+		$eventos->inicio_evento		= $request->inicio_evento;
+		$eventos->hora_inicio		= $request->hora_inicio;
+		$eventos->fim_evento		= $request->fim_evento;
+		$eventos->hora_fim			= $request->hora_fim;
+		$eventos->save();
 
-    		 //var_dump($Eventos);
+    		 //var_dump($eventos);
 		
 		$request->session()->flash('alert-success', 'Evento cadastrado com sucesso!');
 		return redirect('/evento');
 	}
 	public function show($id) {
+
 		$eventos = Evento::find($id);
 		$participantes = count(ParticiparEvento::where('evento_id', '=', $id)->get());
-		return view('show', compact('eventos', 'participantes'));
+		$participa = ParticiparEvento::where('evento_id', '=', $id)->get();
+		$QuantVagas = $eventos->vagas - $participantes;
+		$c = 0;
+		return view('show', compact('eventos', 'participantes', 'QuantVagas', 'participa', 'c'));
 	}
 
 	public function edit($id) {
 		/*Redireciona para o View editar com todos os dados do evento selecionado*/
-		$evento = Evento::find($id);
-		return view('editar-evento', compact('evento'));
+		$eventos = Evento::find($id);
+		return view('editar-evento', compact('eventos'));
 	}
 
 	public function update(Request $request, $id) {
-		/*validando os dados
+				/*validando os dados
 		pego o request com as validações e coloco dentro da variavel
 		mando um request com o método validate
 		com os indices e o que eu quero que seja validado*/
@@ -143,17 +146,70 @@ class EventoController extends Controller {
 			'vagas.required' 		=> 'coloque o numero de vagas',
 			'Campus.required' 		=> 'Coloque um campus',
 			]);
+		/*O {{old()}} faz com que o que eu tenha digitado não venha ser perdido
 
-		/*Pega a model pelo id e coloca tudo que vem pelo request.*/
-		Evento::find($id)->update($request->all());
+		dd é um var_dump do laravel, listando todos os itens preenchidos
+		dd($request->all());*/
+
+		/*Cadastrando imagens no banco*/
+		// Verifica se informou o arquivo e se é válido
+
+    		$imagem = $request->imagem;
+    		// ob_start();
+    		// file_put_contents('/tmp/dump', ob_get_clean());
+    		// exit();
+    
+    	if($request->hasFile('imagem')){
+    		$imagem = $request->file('imagem');
+    		$numero = rand(1111,9999);
+    		$dir = "img/evento/";
+    		$ex = $imagem -> guessClientExtension();
+    		$nomeImagem = "imagem_".$numero.".".$ex;
+    		$imagem->move($dir,$nomeImagem);
+    		$dados['imagem'] = $dir."/".$nomeImagem;
+    	}else{
+    		$request->session()->flash('alert-success', 'Não existe imagem!');
+			return redirect('/evento');
+    	}	
+		
+		/* Pega tudo pelo id do ityem no Evento e altera*/
+	   	$eventos	 				= Evento::find($id);
+		$eventos->user_id 			= $request->user()->id;
+		$eventos->nome 				= $request->nome;
+		$eventos->descricao 		= $request->descricao;
+		$eventos->campus 			= $request->campus;
+		$eventos->email 			= $request->email;
+		$eventos->telefone 			= $request->telefone;
+		$eventos->imagem 			= $nomeImagem;
+		$eventos->vagas 			= $request->vagas;
+		$eventos->inicio_evento		= $request->inicio_evento;
+		$eventos->hora_inicio		= $request->hora_inicio;
+		$eventos->fim_evento		= $request->fim_evento;
+		$eventos->hora_fim			= $request->hora_fim;
+		$eventos->save();
+
+		$request->session()->flash('alert-update', 'Evento Atualizado com sucesso!');
 		return redirect('/evento');
 	}
 
 	public function destroy($id) {
 		/*Pega o item pelo id e destroi*/
-		$Eventos = Evento::find($id);
-		$Eventos->delete();
+		$eventos = Evento::find($id);
+		$eventos->delete();
 		return redirect('/evento');
+	}	
+	public function destroyParticipante($id) {
+		/*Pega o item pelo id e destroi*/
+		$participante = ParticiparEvento::find($id);
+		$participante->delete();
+		return redirect('/evento');
+	}
+
+	public function myEvent($id) {
+		/*Pega o item pelo id e destroi*/
+		// $eventos = User::find($id);
+		$eventos = Evento::where('user_id', '=', $id)->get(); 
+		return view('index', compact('eventos'));	
 	}
 
 	/*Treinamento*/

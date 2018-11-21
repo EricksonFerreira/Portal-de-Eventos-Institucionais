@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function __construct()
     {
         /*Só pega se algum usuario esteja logado (Autenticação)*/
-        $this->middleware('auth');
+        $this->middleware('auth')->except('upando');
     }
 
     /**
@@ -53,9 +53,10 @@ class HomeController extends Controller
         $participar->checking          = false;
         $participar->save();
         
+        $User = $request->user()->id;
         /*Pega a model pelo id e coloca tudo que vem pelo request.
         $evento = Evento::find($id)->update($request->all());
         */
-        return redirect('evento');
+        return redirect('evento/');
     }
 }

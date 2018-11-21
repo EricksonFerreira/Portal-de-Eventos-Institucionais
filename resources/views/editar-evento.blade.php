@@ -3,12 +3,12 @@
 @section('content')
 <?php 
 	$campi = [
-		'abreu' => 'IFPE - CAMPUS - ABREU E LIMA',
-		'afogados' => 'IFPE - CAMPUS - AFOGADOS',
+		'abreu' 	=> 'IFPE - CAMPUS - ABREU E LIMA',
+		'afogados' 	=> 'IFPE - CAMPUS - AFOGADOS',
 		'barreiros' => 'IFPE - CAMPUS - BARREIROS',
-		'belojardim' => 'IFPE - CAMPUS - BELO JARDIM',
-		'igarassu' => 'IFPE - CAMPUS - IGARASSU',
-		'recife' => 'IFPE - CAMPUS - RECIFE'
+		'belojardim'=> 'IFPE - CAMPUS - BELO JARDIM',
+		'igarassu' 	=> 'IFPE - CAMPUS - IGARASSU',
+		'recife' 	=> 'IFPE - CAMPUS - RECIFE'
 	];
 ?>
 <br><br><br><br>
@@ -21,6 +21,7 @@
 		<div class="ui segment">
 			<div class="ui vertically divided grid">
 				<div class="column">
+					{{var_dump($evento->campus)}}
 					<form action="{{route('evento.update', $evento->id)}}" class="ui form" id="cadastro" method="post" enctype="multipart/form-data">{{ csrf_field() }}{{method_field('PUT')}}
 						<center>
 							<h2 class="ui  header">Editar Evento</h2>
@@ -33,29 +34,29 @@
 							</label>
 							<div class="field">
 								<br><label>Descrição*
-									<textarea placeholder="Descrição do Evento" name="descricao" value="{{ old('descricao',$evento->descricao ?? '') }}"></textarea>
+									<textarea placeholder="Descrição do Evento" name="descricao" value="">{{old('descricao',$evento->descricao ?? '')}}</textarea>
 								</label>
 							</div>
 							<div class="three fields">
 								<div class="field">
-									<br><label>Email
+									<br><label>Email*
 										<input type="text" name="email" placeholder="Email para contato"  value="{{ old('email',$evento->email ?? '') }}">
 									</label>
 								</div>
 								<div class="field">
-									<br><label>Telefone
+									<br><label>Telefone*
 										<input type="text" name="telefone" placeholder="Telefone para contato" value="{{ old('telefone',$evento->telefone ?? '') }}">
 									</label>
 								</div>								
 								<div class="field">
-									<br><label>Vagas
+									<br><label>Vagas*
 										<input type="number" name="vagas" value="{{ old('vagas',$evento->vagas ?? '') }}">
 									</label>
 								</div>
 								<div class="field">
 									<br><br><label for="file" class="ui icon green inverted button"><i class="file image icon"></i> Adicionar-Imagem
-										<input type="file" name="imagem" placeholder="Telefone para contato"   class="" value="{{ old('imagem',$evento->imagem ?? '') }}" style="display: none;" id="file" >
-									</label>
+										<input type="file" name="imagem" placeholder="Telefone para contato"   class="" value="img/evento/	{{ old('imagem',$evento->imagem ?? '') }}" style="display: none;" id="file" >
+									</label>{{var_dump( old('imagem',$evento->imagem ?? ''))}}
 								</div>
 							</div>
 							<br><strong><h3 class="ui dividing header">Data e hora do evento</h3></strong>
@@ -87,17 +88,11 @@
 							<br><strong><h3 class="ui dividing header">Endereço do evento</h3></strong>
 							<div class="field">
 								<br><label>Campus do evento*</label>
-								<select name="campus" class="ui fluid dropdown" value="{{ old('campus',$evento->campus ?? '') }}"   >
-									<option value=""></option>
-									<option value="abreu">IFPE - CAMPUS - ABREU E LIMA</option>
-									<option value="afogados">IFPE - CAMPUS - AFOGADOS</option>
-									<option value="barreiros">IFPE - CAMPUS - BARREIROS</option>
-									<option value="belojardim">IFPE - CAMPUS - BELO JARDIM</option>
-									<option value="igarassu">IFPE - CAMPUS - IGARASSU</option>
-									<option value="recife">IFPE - CAMPUS - RECIFE</option>
-										<?php foreach ($campi as $campusValue => $campusNome): ?>
-										<option value="<?= $campusValue ?>" <?= old('campus') == $campusValue ? 'selected' : '' ?>><?= $campusNome ?></option>
-									<?php endforeach ?>
+								<select name="campus" class="ui fluid dropdown" value="{{ old('campus',$evento->campus ?? '') }}" >
+						@foreach ($campi as $campusValue => $campusNome)
+							<option value="{{$campusValue}}" {{old('campus') == $campusValue ? 'selected' : ''}}>{{ $campusNome }}</option>
+						@endforeach
+
 								</select>
 							</div>
 							<div class="ui dividing header"></div>

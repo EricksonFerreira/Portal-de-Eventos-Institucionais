@@ -14,7 +14,7 @@
 <br>
 <br>
 	 <div class="flash-message">
-    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+    @foreach (['danger', 'warning', 'success', 'info', 'update'] as $msg)
       @if(Session::has('alert-' . $msg))
 
       <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
@@ -40,17 +40,17 @@
 		@endcan
 
 <!-- Condição para saber se existe a variavel que lista -->
-  @if (empty($Eventos))
+  @if (empty($eventos))
   	<!-- Se não existir aparece essa mensagem -->
           <br><h3 class="a">A variavel não exite!<br>Corija esse erro com urgência</h3>
         @else
 		<!-- Se ela existir vai aparecer isso-->			
 		<!-- Listar todos os atributos dos itens já cadastrados na tabela-->			
-		@foreach($Eventos as  $evento)
+		 @foreach($eventos as  $evento)
 			<div class="column">
 				<div class="ui green segment">
 					<a class="ui green ribbon label">{{$evento->inicio_evento}} - {{$evento->hora_inicio}} às {{$evento->fim_evento}} - {{$evento->hora_fim}}</a><br></br>
-					<img class="ui centered large rounded image" src="img/evento/{{$evento->imagem}}">
+					<img class="ui centered large rounded image" src="/../img/evento/{{$evento->imagem}}">
 					<center><h3 class="ui header"><br>{{$evento->nome}}</h3></center>
 					<center><h5 class="ui disabled header">{{$evento->descricao}}</h5></center>
 					<div class="ui divider"></div>

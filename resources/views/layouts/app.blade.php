@@ -25,9 +25,9 @@
     <div id="app">
         <div class="ui large fixed stackable menu">
             <a href="{{ url('/') }}" class="item">
-                <img src="../img/icone/ifpe.png" alt="">
+                <img src="/../img/icone/ifpe.png" alt="">
             </a>
-            <a href="{{ url('/') }}" class="item">
+             <a href="{{ url('/') }}" class="item">
                 <i class="calendar green icon"></i><span style="color: green">Ver Eventos</span>
             </a>
             <div class=" right menu">
@@ -56,6 +56,11 @@
         </div>
 
         @else
+        <?php $id = Auth::user()->id;?>
+        
+                <a href="{{url("/evento/{$id}/meuseventos")}}" class="item">
+                <i class="calendar green icon"></i><span style="color: green">Meus Eventos</span>
+            </a>
         <div class="item">  
             <button class="ui green inverted button">
                 <i class="user icon"></i>{{ Auth::user()->name }}
