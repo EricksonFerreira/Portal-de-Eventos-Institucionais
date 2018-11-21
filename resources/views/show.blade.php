@@ -14,15 +14,15 @@
 		<div>Inicio 			: {{$eventos->inicio_evento}}</div>
 		<div>Fim 				: {{$eventos->fim_evento}}</div>
 		<div>Participantes		: {{$participantes}}</div>
-			
-	@if(Auth::check())	
+
+	@if(Auth::check())
 		@if($QuantVagas > 0)
 			@foreach($participa as $participar)
 				@if(Auth::user()->id == $participar->user_id)
-						
+
 					{{$participar->id}}
-						
-						<form method="POST" action="{{url("/evento/{$participar->id}/destroy")}}">
+
+						<form method="GET" action="{{url("/evento/{$participar->id}/destroy")}}">
 							<input type="hidden" name="_method" value="DELETE">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<button class="ui green inverted button" type="submit">
@@ -30,7 +30,7 @@
 							</button>
 							</a>
 						</form>
-					<?php $c = 1;?>	
+					<?php $c = 1;?>
 				@endif
 			@endforeach
 				@unless($c == 1)
@@ -39,5 +39,5 @@
 		@else
 			<a href="#">Não há vagas</a><br>
 		@endif
-	@endif	
+	@endif
 @endsection
