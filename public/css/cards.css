@@ -1,0 +1,22 @@
+		body{
+			background-color: #e9e9e9;
+		}
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	.ui.ribbon.label{
+		z-index: 100	;
+	}
+	.ui.container{
+		width: 60%;
+		max-width: 400px;
+	}
+	.ui.link.cards{
+		margin: 1px;
+		text-align: center;
+	}
+	.ui.container{
+		width: 1600px;
+		margin-top: 50px; 
+	}

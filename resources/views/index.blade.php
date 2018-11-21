@@ -6,13 +6,18 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Index</title>
-
+	<style>
+		.ui.segment{
+			width: 500px;
+		}
+	</style>
 </head>
 <body>
 <br>
 <br>
 <br>
 <br>
+<div class="ui container">
 	 <div class="flash-message">
     @foreach (['danger', 'warning', 'success', 'info', 'update'] as $msg)
       @if(Session::has('alert-' . $msg))
@@ -47,59 +52,45 @@
 		<!-- Se ela existir vai aparecer isso-->			
 		<!-- Listar todos os atributos dos itens já cadastrados na tabela-->			
 		 @foreach($eventos as  $evento)
-			<div class="column">
-				<div class="ui green segment">
-					<a class="ui green ribbon label">{{$evento->inicio_evento}} - {{$evento->hora_inicio}} às {{$evento->fim_evento}} - {{$evento->hora_fim}}</a><br></br>
-					<img class="ui centered large rounded image" src="/../img/evento/{{$evento->imagem}}">
-					<center><h3 class="ui header"><br>{{$evento->nome}}</h3></center>
-					<center><h5 class="ui disabled header">{{$evento->descricao}}</h5></center>
-					<div class="ui divider"></div>
-
-			<!-- Pega a função de app\Providers\AuthServiceProvider.php
-				 Caso esteja de acordo com o provider ele vai fazer aparecer o que está dentro-->
-				@can('update-evento', $evento)
-					<a href="{{url("/evento/{$evento->id}/update")}}">
-								<button class="ui green inverted button ">
-									<i class="edit icon"></i>Editar Evento
-								</button>
-							</a>
-					<form method="POST" action="{{route('evento.destroy', $evento->id)}}">
-							<input type="hidden" name="_method" value="DELETE">
-							<input type="hidden" name="_token" value="{{ csrf_token() }}">
-							<button class="ui green inverted button" type="submit">
-								<i class="delete icon"></i>Deletar
-							</button>
-							</a>
-						</form>
-				@endcan
-						
-			<!-- O Usuario manager pode editar ou excluir qualquer evento -->
-				@can('manager-edit-evento', $evento)
-					<a href="{{url("/evento/{$evento->id}/update")}}">
-								<button class="ui green inverted button ">
-									<i class="edit icon"></i>Editar Evento
-								</button>
-							</a>
-					<form method="POST" action="{{route('evento.destroy', $evento->id)}}">
-							<input type="hidden" name="_method" value="DELETE">
-							<input type="hidden" name="_token" value="{{ csrf_token() }}">
-							<button class="ui green inverted button" type="submit">
-								<i class="delete icon"></i>Deletar
-							</button>
-							</a>
-						</form>
-				@endcan
-
-					<a href="{{route('evento.show', $evento->id)}}">			
-						<button class="ui green  button">
-							<i class="calendar icon"></i>Consultar Evento
-						</button>
-					</a>
-				</div>
-				</div>
+		 
+					<div style="float:left;">
+						<a href="#">
+							<div class="ui link cards">
+								<div class="green card" style="">
+									<div class="ui fluid image">
+										<label class="ui green ribbon label">{{$evento->inicio_evento}} - {{$evento->hora_inicio}} às {{$evento->fim_evento}} - {{$evento->hora_fim}}</label>		
+										<div class="image">
+											@isset($evento->imagem)
+												<img class="ui massive image" src="/../img/evento/{{$evento->imagem}}">
+											@else
+												<img class="ui massive image" src="B.jpg">
+											@endisset
+										</div>
+									</div>
+									<div class="content">
+										<div class="header"><center>{{$evento->nome}}</center></div>
+										<div class="description" >
+											<center>
+												<h5>
+														kkkk												</h5>
+											</center>	
+										</div>
+									</div>
+									<div class="extra content">
+										<a href="{{route('evento.show', $evento->id)}}">
+											<div class="ui green inverted button" style="width: 100%;">
+												<i class="calendar icon"></i>
+												Consultar Evento
+											</div>
+									</a>
+									</div>
+								</div>
+							</div> 
+						</a>
+					</div>	
 			@endforeach
         @endif
-
+</div>
 </body>
 </html>
 @endsection

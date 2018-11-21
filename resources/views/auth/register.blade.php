@@ -89,6 +89,7 @@
             <form method="POST" action="{{ route('register') }}" class="ui form">
                 @csrf
                 <div class="field">
+                    <label for="">Nome*</label>
                     <div class="ui left icon input">
                         <i class="user green icon"></i>
                         <input id="name" type="text" name="name" placeholder="Nome" required autofocus>
@@ -97,10 +98,23 @@
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
+                    <   /div>
+                </div>
+                <div class="field">
+                    <label for="">CPF*</label>
+                    <div class="ui left icon input">
+                        <i class="key green icon"></i>
+                        <input type="text" name="cpf" placeholder="CPF" required autofocus>
+                         @if ($errors->has('cpf'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('cpf') }}</strong>
+                                </span>
+                            @endif
                     </div>
                 </div>
                 <div class="two fields">
                     <div class="field"> 
+                        <label for="">Email*</label>
                         <div class="ui left icon input">
                             <i class="envelope green icon"></i>
                             <input id="email" type="email" name="email" placeholder="Email" value= "{{ old('email') }}" required>
@@ -111,15 +125,22 @@
                                 @endif
                         </div>
                     </div>
-                <!--     <div class="field">
+                     <div class="field">
+                        <label for="">Telefone*</label>
                         <div class="ui left icon input">
                             <i class="phone  green icon"></i>
                             <input id="telefone" type="text" name="telefone" placeholder="Telefone" required>
+                             @if ($errors->has('telefone'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('telefone') }}</strong>
+                                    </span>
+                                @endif
                         </div>
-                    </div> -->
+                    </div> 
                 </div>
                 <div class="two fields">
                     <div class="field"> 
+                        <label for="">Senha*</label>
                         <div class="ui left icon input">
                             <i class="lock green icon"></i>
                             <input id="password" type="password" name="password" placeholder="Senha" required>
@@ -132,6 +153,7 @@
                         </div>
                     </div>
                     <div class="field">
+                        <label for="">Repita a Senha*</label>
                         <div class="ui left icon input">
                             <i class="lock green icon"></i>
                             <input id="password-confirm" type="password" name="password_confirmation" placeholder="Repita a senha" required>
@@ -145,8 +167,9 @@
                 </div></a>
             </form>
         </div>
-        <!-- <div class="ui message">
-            <center>Já tem uma conta? <a href="login.php" style="color: #4ee44e;">Faça o login</a></center>
-        </div>   -->
+        <div class="ui message">
+            <center>Já tem uma conta? <a href="{{ route('login') }}" style="color: #4ee44e;">Faça o login</a></center>
+        </div>  
     </div>
+
     @endsection
