@@ -6,6 +6,7 @@ conf:
 	sudo apt-get install mysql-server-5.7
 	$(MAKE) bd-conf
 	php artisan migrate
+	php artisan migrate:refresh --seed
 
 conf-git-erickson:
 	git config user.email "erickson.rinho@hotmail.com"
