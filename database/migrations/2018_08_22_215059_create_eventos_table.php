@@ -17,7 +17,7 @@ class CreateEventosTable extends Migration {
 			$table->Integer('user_id')->unsigned();
     		$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			$table->string('nome');
-			$table->string('descricao');
+			$table->text('descricao');
 			$table->enum('campus' , ['abreu', 'afogados', 'barreiros', 'belojardim', 'igarassu', 'recife']);
 			$table->string('email');
 			$table->string('telefone');
