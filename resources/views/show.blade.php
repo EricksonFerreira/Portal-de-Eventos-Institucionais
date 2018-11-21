@@ -19,6 +19,7 @@
 		@if($QuantVagas > 0)
 			@foreach($participa as $participar)
 				@if(Auth::user()->id == $participar->user_id)
+				{{$participar->id}}
 						<form method="POST" action="{{url("/evento/{$participar->id}/destroy")}}">
 							<input type="hidden" name="_method" value="DELETE">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -31,7 +32,7 @@
 				@endif
 			@endforeach
 				@unless($c == 1)
-					<a href="{{url("/evento/{$eventos->id}/upando")}}">participar</a><br>
+					<a href="{{url("/evento/{$eventos->id}/participar")}}">participar</a><br>
 				@endunless
 		@else
 			<a href="#">Não há vagas</a><br>

@@ -16,13 +16,13 @@ Auth::routes();
 Route::get('/evento/{id}/update', 'HomeController@update');
 
 /* Chamar a função upando*/
-Route::get('/evento/{id}/upando', 'HomeController@upando');
+Route::get('/evento/{id}/participar', 'HomeController@participar');
 
 /* Chamar a função myevent*/
 Route::get('/evento/{id}/meuseventos', 'EventoController@myEvent');
 
 /* Chamar a função destroyParticipante*/
-Route::get('/evento/{id}/destroy', 'EventoController@destroyParticipante');
+Route::get('/evento/{id}/destroy', 'HomeController@destroyParticipante');
 
 /* Vai para a função index quando for para o home*/
 Route::get('/home', 'HomeController@index')->name('home');

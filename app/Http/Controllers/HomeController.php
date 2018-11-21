@@ -46,7 +46,7 @@ class HomeController extends Controller
         Evento::find($id)->update($request->all());
         return view('editar-evento', compact('evento'));
     }
-     public function upando(Request $request, $id) {
+     public function participar(Request $request, $id) {
         $participar                    = new ParticiparEvento;
         $participar->user_id           = $request->user()->id;
         $participar->evento_id         = $id;
@@ -58,5 +58,11 @@ class HomeController extends Controller
         $evento = Evento::find($id)->update($request->all());
         */
         return redirect('evento/');
+    }
+    public function destroyParticipante($id) {
+        /*Pega o item pelo id e destroi*/
+        $participante = ParticiparEvento::find($id);
+        $participante->delete();
+        return redirect('/evento');
     }
 }

@@ -198,12 +198,6 @@ class EventoController extends Controller {
 		$eventos->delete();
 		return redirect('/evento');
 	}	
-	public function destroyParticipante($id) {
-		/*Pega o item pelo id e destroi*/
-		$participante = ParticiparEvento::find($id);
-		$participante->delete();
-		return redirect('/evento');
-	}
 
 	public function myEvent($id) {
 		/*Pega o item pelo id e destroi*/
