@@ -12,11 +12,11 @@ class CreateParticiparEventosTable extends Migration
      * @return void
      */
     public function up(){
-    
+
         Schema::create('participar_eventos', function (Blueprint $table) {
            /*O identificador do registro*/
             $table->increments('id');
-           
+
             /* Chave Estrangeira do banco eventos*/
             $table->Integer('evento_id')->unsigned();
             $table->foreign('evento_id')->references('id')->on('eventos')
@@ -29,8 +29,10 @@ class CreateParticiparEventosTable extends Migration
             ->onUpdated('cascade')
             ->onDelete('cascade');
 
-            /* booleano para saber se o cara está no evento*/            
+            /* booleano para saber se o cara está no evento*/
             $table->boolean('checking');
+
+            $table->enum('role',['participante', 'monitor' , 'manager'])->default('participante');
 
             $table->unique('evento_id', 'user_id');
             $table->timestamps();
