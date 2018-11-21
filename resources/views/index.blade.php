@@ -57,8 +57,8 @@
 
 			<!-- Pega a função de app\Providers\AuthServiceProvider.php
 				 Caso esteja de acordo com o provider ele vai fazer aparecer o que está dentro-->
-						@can('update-evento', $evento)
-						<a href="{{url("/evento/{$evento->id}/update")}}">
+				@can('update-evento', $evento)
+					<a href="{{url("/evento/{$evento->id}/update")}}">
 								<button class="ui green inverted button ">
 									<i class="edit icon"></i>Editar Evento
 								</button>
@@ -71,7 +71,25 @@
 							</button>
 							</a>
 						</form>
-						@endcan
+				@endcan
+						
+			<!-- O Usuario manager pode editar ou excluir qualquer evento -->
+				@can('manager-edit-evento', $evento)
+					<a href="{{url("/evento/{$evento->id}/update")}}">
+								<button class="ui green inverted button ">
+									<i class="edit icon"></i>Editar Evento
+								</button>
+							</a>
+					<form method="POST" action="{{route('evento.destroy', $evento->id)}}">
+							<input type="hidden" name="_method" value="DELETE">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<button class="ui green inverted button" type="submit">
+								<i class="delete icon"></i>Deletar
+							</button>
+							</a>
+						</form>
+				@endcan
+
 					<a href="{{route('evento.show', $evento->id)}}">			
 						<button class="ui green  button">
 							<i class="calendar icon"></i>Consultar Evento

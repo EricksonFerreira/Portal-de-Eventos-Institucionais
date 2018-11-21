@@ -96,15 +96,9 @@
 								<br><label>Campus do evento*</label>
 								<select name="campus" class="ui fluid dropdown" value="Escolha um campus"   >
 									<option value=""></option>
-									<!-- <option value="abreu">IFPE - CAMPUS - ABREU E LIMA</option>
-									<option value="afogados">IFPE - CAMPUS - AFOGADOS</option>
-									<option value="barreiros">IFPE - CAMPUS - BARREIROS</option>
-									<option value="belojardim">IFPE - CAMPUS - BELO JARDIM</option>
-									<option value="igarassu">IFPE - CAMPUS - IGARASSU</option>
-									<option value="recife">IFPE - CAMPUS - RECIFE</option> -->
-									<?php foreach ($campi as $campusValue => $campusNome): ?>
-										<option value="<?= $campusValue ?>" <?= old('campus') == $campusValue ? 'selected' : '' ?>><?= $campusNome ?></option>
-									<?php endforeach ?>
+						@foreach ($campi as $campusValue => $campusNome)
+							<option value="{{$campusValue}}" {{old('campus') == $campusValue ? 'selected' : ''}}>{{ $campusNome }}</option>
+						@endforeach
 								</select>
 							</div>
 							<div class="ui dividing header"></div>

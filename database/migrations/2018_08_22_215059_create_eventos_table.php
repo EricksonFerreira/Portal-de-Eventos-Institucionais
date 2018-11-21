@@ -19,7 +19,7 @@ class CreateEventosTable extends Migration {
 			$table->string('nome');
 			$table->string('descricao');
 			$table->enum('campus' , ['abreu', 'afogados', 'barreiros', 'belojardim', 'igarassu', 'recife']);
-			$table->string('email')->unique();
+			$table->string('email');
 			$table->string('telefone');
 			$table->string('imagem');
 			$table->Integer('vagas');

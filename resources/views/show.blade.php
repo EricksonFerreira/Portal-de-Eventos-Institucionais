@@ -19,7 +19,9 @@
 		@if($QuantVagas > 0)
 			@foreach($participa as $participar)
 				@if(Auth::user()->id == $participar->user_id)
-				{{$participar->id}}
+						
+					{{$participar->id}}
+						
 						<form method="POST" action="{{url("/evento/{$participar->id}/destroy")}}">
 							<input type="hidden" name="_method" value="DELETE">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
