@@ -18,7 +18,7 @@ class EventoController extends Controller {
     }
 	public function index() {
 		/*Pega todos os itens da model Evento e leva para a index*/
-		//$eventos 	= Evento::all(); 
+		//$eventos 	= Evento::all();
 		$eventos 	= Evento::all();
 		$users 		= User::all();
 		$total 		= Evento::all()->count();
@@ -37,9 +37,9 @@ class EventoController extends Controller {
 		$validar 			= 	$request->validate([
 			'nome' 			=> 'required',
 			'descricao'		=> 'required',
-			'email' 		=> 'required|email',
+			// 'email' 		=> 'email',
 			'telefone' 		=> 'required',
-			'imagem' 		=> 'required',
+			// 'imagem' 		=> 'required',
 			'vagas' 		=> 'required',
 			'campus' 		=> 'required',
 		],
@@ -49,10 +49,10 @@ class EventoController extends Controller {
 			[
 			'nome.required' 		=> 'preenche o seu nome',
 			'descricao.required' 	=> 'coloque uma descrição',
-			'email.required' 		=> 'coloque um email',
+			// 'email.required' 		=> 'coloque um email',
 			'email.email'			=> 'coloque um email válido',
 			'telefone.required' 	=> 'coloque o seu telefone',
-			'imagem.required' 		=> 'coloque uma imagem',
+			// 'imagem.required' 		=> 'coloque uma imagem',
 			'vagas.required' 		=> 'coloque o numero de vagas',
 			'Campus.required' 		=> 'Coloque um campus',
 			]);
@@ -68,7 +68,8 @@ class EventoController extends Controller {
     		// ob_start();
     		// file_put_contents('/tmp/dump', ob_get_clean());
     		// exit();
-    
+
+    	$nomeImagem = null;
     	if($request->hasFile('imagem')){
     		$imagem = $request->file('imagem');
     		$numero = rand(1111,9999);
@@ -77,11 +78,8 @@ class EventoController extends Controller {
     		$nomeImagem = "imagem_".$numero.".".$ex;
     		$imagem->move($dir,$nomeImagem);
     		$dados['imagem'] = $dir."/".$nomeImagem;
-    	}else{
-    		$request->session()->flash('alert-success', 'Não existe imagem!');
-			return redirect('/evento');
-    	}	
- 
+    	}
+
 		/*Atualizando todos esses itens da model*/
 		$eventos	 				= new Evento;
 		$eventos->user_id 			= $request->user()->id;
@@ -99,10 +97,11 @@ class EventoController extends Controller {
 		$eventos->save();
 
     		 //var_dump($eventos);
-		
+
 		$request->session()->flash('alert-success', 'Evento cadastrado com sucesso!');
 		return redirect('/evento');
 	}
+
 	public function show($id) {
 
 		$eventos = Evento::find($id);
@@ -158,7 +157,7 @@ class EventoController extends Controller {
     		// ob_start();
     		// file_put_contents('/tmp/dump', ob_get_clean());
     		// exit();
-    
+
     	if($request->hasFile('imagem')){
     		$imagem = $request->file('imagem');
     		$numero = rand(1111,9999);
@@ -170,8 +169,8 @@ class EventoController extends Controller {
     	}else{
     		$request->session()->flash('alert-success', 'Não existe imagem!');
 			return redirect('/evento');
-    	}	
-		
+    	}
+
 		/* Pega tudo pelo id do ityem no Evento e altera*/
 	   	$eventos	 				= Evento::find($id);
 		$eventos->user_id 			= $request->user()->id;
@@ -197,13 +196,13 @@ class EventoController extends Controller {
 		$eventos = Evento::find($id);
 		$eventos->delete();
 		return redirect('/evento');
-	}	
+	}
 
 	public function myEvent($id) {
 		/*Pega o item pelo id e destroi*/
 		// $eventos = User::find($id);
-		$eventos = Evento::where('user_id', '=', $id)->get(); 
-		return view('index', compact('eventos'));	
+		$eventos = Evento::where('user_id', '=', $id)->get();
+		return view('index', compact('eventos'));
 	}
 
 	/*Treinamento*/

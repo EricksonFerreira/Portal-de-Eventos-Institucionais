@@ -21,7 +21,7 @@ class CreateEventosTable extends Migration {
 			$table->enum('campus' , ['abreu', 'afogados', 'barreiros', 'belojardim', 'igarassu', 'recife']);
 			$table->string('email');
 			$table->string('telefone');
-			$table->string('imagem');
+			$table->string('imagem')->nullable();
 			$table->Integer('vagas');
 			$table->date('inicio_evento');
 			$table->time('hora_inicio');
