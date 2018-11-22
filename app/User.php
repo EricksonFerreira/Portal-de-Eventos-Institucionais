@@ -26,5 +26,9 @@ class User extends Authenticatable
     /*Função que representa o relacionamento de um para muitos*/
      public function evento(){
         return $this->hasMany(Evento::class);
+    }    
+    /*Função que representa o relacionamento de um para muitos*/
+     public function userPalestra(){
+        return $this->hasMany(Palestrante::class);
     }
 }

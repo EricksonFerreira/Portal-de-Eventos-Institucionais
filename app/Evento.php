@@ -3,9 +3,11 @@
 namespace App;
 
 use App\User;
+use App\Palestrante;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\hasMany;
 	
 class Evento extends Model {
 	/*nome da tabela*/
@@ -27,6 +29,10 @@ class Evento extends Model {
     /*Função que representa o relacionamento de um para muitos*/
 	 public function user(){
         return $this->belongsTo(User::class);
+    }    
+    /*Função que representa o relacionamento de um para muitos*/
+	 public function palestra(){
+        return $this->hasMany(Palestrante::class);
     }
 
     /*

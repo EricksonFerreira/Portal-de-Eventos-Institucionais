@@ -63,6 +63,5 @@ class HomeController extends Controller
         /*Pega o item pelo id e destroi*/
         $participante = ParticiparEvento::find($id);
         $participante->delete();
-        return redirect('/evento');
-    }
+        return redirect(route('evento.show', ['id' => $id]));    }
 }

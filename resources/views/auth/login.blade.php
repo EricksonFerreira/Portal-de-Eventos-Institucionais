@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<<!-- div class="container">
+<!-- div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -69,11 +69,13 @@
     </div>
 </div> -->
 ================================================================================================================
-<br><br><br><br>
+<head>    
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+</head>
     <div class="column">
         <div class="ui segment">
-            <h2 class="ui teal image header">
-                <img src="../img/icone/ifpe.png" class="ui hurger image">
+            <h2 class="ui teal image header">               
+                <img src="../img/icone/ifpe.png" class="ui hurger image" style="width: 15%;">
                 <div class="content">
                      Acesse agora, Eventos - IFPE
                 </div>

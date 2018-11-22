@@ -75,13 +75,15 @@
     </div>
 </div> -->
 -----------------------------------------*------------------------------------------
-<br><br><br><br>
+<head>    
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+</head>
     <div class="column">
         <div class="ui message">
             <h2 class="ui teal image header">
-                <img src="../img/icone/ifpe.png" class="ui hurger image">
+                <img src="../img/icone/ifpe.png" class="ui hurger image" style="width: 15%;">
                 <div class="content">
-                     Cadastre-se agora, Eventos - IFPE
+                     Cadastre-se, Eventos - IFPE
                 </div>
             </h2>
         </div>
@@ -98,7 +100,7 @@
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
-                    <   /div>
+                    </div>
                 </div>
                 <div class="field">
                     <label for="">CPF*</label>

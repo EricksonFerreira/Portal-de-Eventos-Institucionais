@@ -6,17 +6,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Index</title>
-	<style>
-		.ui.segment{
-			width: 500px;
-		}
-	</style>
+    <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
+
 </head>
 <body>
 <br>
 <br>
-<br>
-<br>
+
 <div class="ui container">
 	 <div class="flash-message">
     @foreach (['danger', 'warning', 'success', 'info', 'update'] as $msg)
@@ -28,6 +24,16 @@
   </div> <!-- end .flash-message -->
   <div class="ui three column grid">
 			
+
+<!-- Condição para saber se existe a variavel que lista -->
+  @if (empty($eventos))
+  	<!-- Se não existir aparece essa mensagem -->
+          <br><h3 class="a">A variavel não exite!<br>Corija esse erro com urgência</h3>
+        @else
+        <?php date_default_timezone_set("America/Recife");
+setlocale(LC_ALL, 'pt_BR');
+$created 	= date_create();?>
+		<!-- Se ela existir vai aparecer isso-->			
 		@can('criar-evento')
 			<div class="column">
 				<div class="ui segment">
@@ -43,54 +49,57 @@
 				</div>
 			</div>
 		@endcan
-
-<!-- Condição para saber se existe a variavel que lista -->
-  @if (empty($eventos))
-  	<!-- Se não existir aparece essa mensagem -->
-          <br><h3 class="a">A variavel não exite!<br>Corija esse erro com urgência</h3>
-        @else
-		<!-- Se ela existir vai aparecer isso-->			
-		<!-- Listar todos os atributos dos itens já cadastrados na tabela-->			
+		<!-- Listar todos os atributos dos itens já cadastrados na tabela-->
+		<center><div style="width: 100%;">			
 		 @foreach($eventos as  $evento)
-		 
-					<div style="float:left;">
-						<a href="#">
-							<div class="ui link cards">
-								<div class="green card" style="">
-									<div class="ui fluid image">
-										<label class="ui green ribbon label">{{$evento->inicio_evento}} - {{$evento->hora_inicio}} às {{$evento->fim_evento}} - {{$evento->hora_fim}}</label>		
-										<div class="image">
-											@isset($evento->imagem)
-												<img class="ui massive image" src="/../img/evento/{{$evento->imagem}}">
-											@else
-												<img class="ui massive image" src="B.jpg">
-											@endisset
-										</div>
-									</div>
-									<div class="content">
-										<div class="header"><center>{{$evento->nome}}</center></div>
-										<div class="description" >
-											<center>
-												<h5>
-														kkkk												</h5>
-											</center>	
-										</div>
-									</div>
-									<div class="extra content">
-										<a href="{{route('evento.show', $evento->id)}}">
-											<div class="ui green inverted button" style="width: 100%;">
-												<i class="calendar icon"></i>
-												Consultar Evento
-											</div>
-									</a>
-									</div>
+<?php 
+	$date 		= date_format($created, 'd-m-Y');
+	$iniDt=date('d-m-Y',strtotime($evento->inicio_evento));
+ 	$HrIni=date('H:i', 	strtotime($evento->hora_inicio));
+ 	$fimDt=date('d-m-Y',strtotime($evento->fim_evento));
+ 	$HrFim=date('H:i', 	strtotime($evento->hora_fim));
+?>		
+		@if($date < $iniDt) 
+		<div style="float: left">
+			<a href="{{route('evento.show', $evento->id)}}">
+				<div class="ui link cards">
+					<div class="green card" style="">
+						<div class="ui fluid image">
+							<label class="ui green ribbon label">{{$iniDt}} - {{$HrIni}} às {{$fimDt}} - {{$HrFim}}</label>		
+							<div class="image">
+								@isset($evento->imagem)
+									<img class="ui massive image" src="/../img/evento/{{$evento->imagem}}">
+									<p>oi</p>
+								@else
+									<img class="ui massive image" src="B.jpg">
+								@endisset
+							</div>
+						</div>
+						<div class="content">
+							<div class="header"><center>{{$evento->nome}}</center></div>
+							<div class="description" style="height: 10em;">
+								<center>
+							  <h5>{{$evento->descricao}}</h5>
+								</center>	
+							</div>
+						</div>
+						<div class="extra content">
+							<a href="{{route('evento.show', $evento->id)}}">
+								<div class="ui green inverted button" style="width: 100%;">
+									<i class="calendar icon"></i>
+									Consultar Evento
 								</div>
-							</div> 
-						</a>
-					</div>	
-			@endforeach
-        @endif
-</div>
+							</a>
+						</div>
+					</div>
+				</div> 
+			</a>
+		</div>	
+		@endif
+	@endforeach
+   @endif
+</div></center>
+
 </body>
 </html>
 @endsection
