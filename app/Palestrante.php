@@ -5,6 +5,7 @@ namespace App;
 use App\Evento;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\belongsTo;
+use Illuminate\Database\Eloquent\Relations\belongsToMany;
 
 class Palestrante extends Model
 {
@@ -16,13 +17,14 @@ class Palestrante extends Model
 
 	/*nome dos atributos que poderão ser alterados*/
 	protected $fillable = ['descricao', 'imagem'];
-    
-    /*Função que representa o relacionamento de um para muitos*/
-     public function palestra(){
-        return $this->belongsTo(Evento::class);
-    }    
+
     /*Função que representa o relacionamento de um para muitos*/
      public function userPalestra(){
         return $this->belongsTo(User::class);
     }
+    /*Função que representa o relacionamento de muitos para muitos*/
+     public function palestra(){
+        return $this->belongsToMany(Evento::class);
+    }   
+
 }

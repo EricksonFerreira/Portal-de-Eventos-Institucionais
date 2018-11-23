@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Evento;
 use App\ParticiparEvento;
+use App\Palestrante;
 use App\User;
 use Illuminate\Http\Request;
 use File;
@@ -105,11 +106,13 @@ class EventoController extends Controller {
 	public function show($id) {
 
 		$eventos = Evento::find($id);
+		$palestrante = Palestrante::where('evento_id', '=', $id)->get();
+		$user = User::where('id', '=', $palestrante);
 		$participantes = count(ParticiparEvento::where('evento_id', '=', $id)->get());
 		$participa = ParticiparEvento::where('evento_id', '=', $id)->get();
 		$QuantVagas = $eventos->vagas - $participantes;
 		$c = 0;
-		return view('show', compact('eventos', 'participantes', 'QuantVagas', 'participa', 'c'));
+		return view('show', compact('eventos', 'participantes', 'QuantVagas', 'participa', 'c', 'user'));
 	}
 
 	public function edit($id) {

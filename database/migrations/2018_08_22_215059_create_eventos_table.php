@@ -14,8 +14,11 @@ class CreateEventosTable extends Migration {
 		Schema::create('eventos', function (Blueprint $table) {
 			/*dados da tabela eventos*/
 			$table->increments('id');
-			$table->Integer('user_id')->unsigned();
+
+ 			/* Chave Estrangeira do banco eventos*/			
+ 			$table->Integer('user_id')->unsigned();
     		$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    		
 			$table->string('nome');
 			$table->text('descricao');
 			$table->enum('campus' , ['abreu', 'afogados', 'barreiros', 'belojardim', 'igarassu', 'recife']);

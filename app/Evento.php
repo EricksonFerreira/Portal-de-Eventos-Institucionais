@@ -25,15 +25,15 @@ class Evento extends Model {
 	/*Função que representa o relacionamento de muitos para muitos*/
 	 public function users(){
         return $this->belongsToMany(User::class);
-    }	
+    }
     /*Função que representa o relacionamento de um para muitos*/
 	 public function user(){
         return $this->belongsTo(User::class);
     }    
-    /*Função que representa o relacionamento de um para muitos*/
+     /*Função que representa o relacionamento de muitos para muitos*/
 	 public function palestra(){
-        return $this->hasMany(Palestrante::class);
-    }
+        return $this->belongsToMany(Palestrante::class);
+    }	
 
     /*
     public function jaParticipa(id_evento,id_usser){
