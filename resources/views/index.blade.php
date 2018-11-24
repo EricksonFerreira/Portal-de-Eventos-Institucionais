@@ -59,9 +59,8 @@ $created 	= date_create();?>
  	$fimDt=date('d-m-Y',strtotime($evento->fim_evento));
  	$HrFim=date('H:i', 	strtotime($evento->hora_fim));
 ?>		
-		@if($date < $iniDt) 
 		<div style="float: left">
-			<a href="{{route('evento.show', $evento->id)}}">
+ 			<a href="{{route('evento.show', $evento->id)}}">
 				<div class="ui link cards">
 					<div class="green card" style="">
 						<div class="ui fluid image">
@@ -95,8 +94,7 @@ $created 	= date_create();?>
 				</div> 
 			</a>
 		</div>	
-		@endif
-	@endforeach
+		@endforeach
    @endif
 </div></center>
 

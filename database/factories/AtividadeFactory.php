@@ -13,6 +13,7 @@ $factory->define(App\Atividade::class, function (Faker $faker) {
         'palestrante_id' => Palestrante::get()->random()->id,
         'titulo' => $faker->word,
         'descricao' => $faker->paragraph,
+        'confirmacao' => $faker->boolean,
         'data' => $date,
         'hora_inicio' => '08:00',
         'hora_fim' => '16:00'

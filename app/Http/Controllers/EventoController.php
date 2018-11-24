@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Evento;
 use App\ParticiparEvento;
+use App\Atividade;
 use App\Palestrante;
 use App\User;
 use Illuminate\Http\Request;
@@ -107,12 +108,14 @@ class EventoController extends Controller {
 
 		$eventos = Evento::find($id);
 		$palestrante = Palestrante::where('evento_id', '=', $id)->get();
+		$atividade = Atividade::where('evento_id', '=', $id)->get();
 		$user = User::where('id', '=', $palestrante);
 		$participantes = count(ParticiparEvento::where('evento_id', '=', $id)->get());
 		$participa = ParticiparEvento::where('evento_id', '=', $id)->get();
 		$QuantVagas = $eventos->vagas - $participantes;
 		$c = 0;
-		return view('show', compact('eventos', 'participantes', 'QuantVagas', 'participa', 'c', 'palestrante'));
+
+		return view('show', compact('eventos', 'participantes', 'QuantVagas', 'participa', 'c', 'palestrante', 'atividade'));
 	}
 
 	public function edit($id) {

@@ -38,22 +38,20 @@ $teste = ucwords(strtolower($teste));
 						</tr>
 					</thead>
 					<tbody>
+						@foreach($atividade as $atividades)
 						<tr>
-							<td>XXXXXX XXXXX</td>
-						@if($palestrante == null)
-							<td>{{$palestrante}}</td>
-						@else
-							<td>Não há palestrante no momento</td>
-						@endif
-							<td>00-00-00 Ás 00-00-00</td>
-							<td class="right aligned">Confirmada</td>
+							<td>{{$atividades->titulo}}</td>
+							<td>{{$atividades->palestrante_id}}</td>
+							<td>{{$atividades->hora_inicio}} Ás {{$atividades->hora_fim}}</td>
+								
+								@if($atividades->confirmacao == true)
+									<td class="right aligned">Confirmada</td>
+								@else
+									<td class="right aligned">Não Confirmada</td>
+								@endif
 						</tr>
-						<tr>
-							<td>XXXXXXXXXXXXXX</td>
-							<td>XXXXXX XXXXX</td>
-							<td>00-00-00 Ás 00-00-00</td>
-							<td class="right aligned">Não Confirmada</td>
-						</tr>
+						@endforeach
+						
 					</tbody>
 				</table>
 				

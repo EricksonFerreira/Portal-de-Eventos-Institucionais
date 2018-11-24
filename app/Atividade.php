@@ -10,7 +10,7 @@ class Atividade extends Model
 	protected $table 	= 	"atividades";
 
 	/*nome dos atributos que poderão ser alterados*/
-	protected $fillable = ['titulo', 'descricao'];
+	protected $fillable = ['titulo', 'descricao', 'confirmacao'];
 
 	/*nome dos atributos que representam as horas*/
 	protected $date 	= ['created_at','update_at','data','hora_inicio','hora_fim'];

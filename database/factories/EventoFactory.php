@@ -7,7 +7,7 @@ $factory->define(App\Evento::class, function (Faker $faker) {
     $date = $faker->date('Y-m-d');
     return [
         'user_id' => User::where(['role' => 'manager'])->get()->random()->id,
-        'nome' => 'joao',
+        'nome' => $faker->word,
         'descricao' => $faker->paragraph,
         'campus' => $faker->randomElement(['abreu', 'afogados', 'barreiros', 'belojardim', 'igarassu', 'recife']),
         'email' => $faker->email,
