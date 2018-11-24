@@ -22,8 +22,8 @@ class CreateAtividadesTable extends Migration
             $table->foreign('evento_id')->references('id')->on('eventos')->onDelete('cascade');
 
             /* Chave Estrangeira do banco eventos*/
-            $table->Integer('palestraste_id')->unsigned();
-            $table->foreign('palestraste_id')->references('id')->on('palestrantes')->onDelete('cascade');
+            $table->Integer('palestrante_id')->unsigned();
+            $table->foreign('palestrante_id')->references('id')->on('palestrantes')->onDelete('cascade');
             
             $table->string('titulo');
             $table->text('descricao');

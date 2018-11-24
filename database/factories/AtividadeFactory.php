@@ -10,7 +10,7 @@ $factory->define(App\Atividade::class, function (Faker $faker) {
 	return [
         'evento_id' => Evento::where(['campus' => 'igarassu'])->get()->random()->id,
 
-        'palestraste_id' => Palestrante::get()->random()->id,
+        'palestrante_id' => Palestrante::get()->random()->id,
         'titulo' => $faker->word,
         'descricao' => $faker->paragraph,
         'data' => $date,

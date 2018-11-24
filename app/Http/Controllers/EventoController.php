@@ -112,7 +112,7 @@ class EventoController extends Controller {
 		$participa = ParticiparEvento::where('evento_id', '=', $id)->get();
 		$QuantVagas = $eventos->vagas - $participantes;
 		$c = 0;
-		return view('show', compact('eventos', 'participantes', 'QuantVagas', 'participa', 'c', 'user'));
+		return view('show', compact('eventos', 'participantes', 'QuantVagas', 'participa', 'c', 'palestrante'));
 	}
 
 	public function edit($id) {

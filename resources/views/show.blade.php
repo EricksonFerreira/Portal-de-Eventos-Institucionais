@@ -39,12 +39,12 @@ $teste = ucwords(strtolower($teste));
 					</thead>
 					<tbody>
 						<tr>
-						@isset($user)
-							<td>{{$user}}</td>
+							<td>XXXXXX XXXXX</td>
+						@if($palestrante == null)
+							<td>{{$palestrante}}</td>
 						@else
 							<td>Não há palestrante no momento</td>
-						@endisset
-							<td>XXXXXX XXXXX</td>
+						@endif
 							<td>00-00-00 Ás 00-00-00</td>
 							<td class="right aligned">Confirmada</td>
 						</tr>

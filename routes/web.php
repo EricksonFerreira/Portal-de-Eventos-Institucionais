@@ -9,6 +9,9 @@ Route::get('many-to-many', 'EventoController@participar');
 /*Resource que facilita chamar uma função do Controller*/
 Route::resource('evento', 'EventoController');
 
+/*Resource que facilita chamar uma função do Controller*/
+Route::resource('atividade', 'AtividadeController');
+
 /* rota tradicional do método Auth*/
 Auth::routes();
 
