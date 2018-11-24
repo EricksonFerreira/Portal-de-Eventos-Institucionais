@@ -1,0 +1,173 @@
+[33mcommit b9edc97ae686acac481bbad59fc794b80be1313e[m
+Author: Erickson <erickson.rinho@hotmail.com>
+Date:   Sat Nov 24 11:11:17 2018 -0300
+
+    listando as informacoes das atividades no Show
+
+[33mcommit 9aec3dc7ee61e3494972699b02c6490e1f46845c[m
+Author: alinevenceslau <alineepecris79@gmail.com>
+Date:   Sat Nov 24 09:41:28 2018 -0300
+
+    Corrigindo o Seed e criando o Controller AtividadeController
+
+[33mcommit 73f52581f72a03966a3f9003f09fcb9b2a97b73c[m
+Author: alinevenceslau <alineepecris79@gmail.com>
+Date:   Fri Nov 23 16:51:36 2018 -0300
+
+    corrigindo erros do Seed da tabela Atividades
+
+[33mcommit faa86b66a892495508bae41a56be295295fbce04[m
+Author: naadabefarias <naadabefarias@gmail.com>
+Date:   Fri Nov 23 09:25:56 2018 -0300
+
+    Adicionando tabela atividades e tentando criar um seeder para ela
+
+[33mcommit 271d3d582dca6884608ef464aeaab446712cbc9a[m
+Author: ericksonferreira <erickson.rinho@hotmail.com>
+Date:   Thu Nov 22 12:14:08 2018 -0300
+
+    implementando algumas modificacoes
+
+[33mcommit 86bbee4f1b205c89bcb45a92a42b9c6712521427[m
+Author: eduardobispof <eduardobispof@gmail.com>
+Date:   Wed Nov 21 17:31:01 2018 -0300
+
+    Fazendo a implementação
+
+[33mcommit a0b619b22078feb10062b9eb5ae042c6e1dca636[m
+Author: Ranieri Valença <ranierivalenca@gmail.com>
+Date:   Wed Nov 21 12:05:09 2018 -0300
+
+    Adicionando o migrate com seeds ao Makefile
+
+[33mcommit 3969fb8388023e04919345419c2e5c64f85ef1a3[m
+Author: Ranieri Valença <ranierivalenca@gmail.com>
+Date:   Wed Nov 21 12:04:23 2018 -0300
+
+    Adicionando seeders para Eventos e Usuarios
+
+[33mcommit 3673a8a9413e275059ad3ff91bb7e820ac24c9d8[m
+Author: Ranieri Valença <ranierivalenca@gmail.com>
+Date:   Wed Nov 21 12:03:01 2018 -0300
+
+    Adicionando a coluna 'role' a tabela de participacao em eventos
+
+[33mcommit 575da160d8ca0a925a5eb61e801e9b165a6d90bb[m
+Author: Ranieri Valença <ranierivalenca@gmail.com>
+Date:   Wed Nov 21 12:02:11 2018 -0300
+
+    Alterando método de envio do FORM
+
+[33mcommit 657339503d3468f84e8a0dd31de451ba7a3d7521[m
+Author: Ranieri Valença <ranierivalenca@gmail.com>
+Date:   Wed Nov 21 12:00:23 2018 -0300
+
+    Trocando descricao para tipo text na tabela eventos
+
+[33mcommit 12815856e4fe670d6c5b62b281b70daa34f60fed[m
+Author: Ranieri Valença <ranierivalenca@gmail.com>
+Date:   Wed Nov 21 11:59:32 2018 -0300
+
+    Melhorando redirecionamento
+
+[33mcommit 900214165dd7c0956fda445f5033f82088cdb6ce[m
+Author: Ranieri Valença <ranierivalenca@gmail.com>
+Date:   Wed Nov 21 10:57:19 2018 -0300
+
+    Atualizando tabela eventos para imagem não ser obrigatória
+
+[33mcommit f73a0f882b606b86aed9cf02ed16f747b52dde59[m
+Author: Ranieri Valença <ranierivalenca@gmail.com>
+Date:   Wed Nov 21 10:25:55 2018 -0300
+
+    Renomeando de volta o .env.example
+
+[33mcommit 17862712ee27f28bc3d8a7a58b5a2592687c721f[m
+Author: Ranieri Valença <ranierivalenca@gmail.com>
+Date:   Wed Nov 21 10:23:47 2018 -0300
+
+    Adicionando php-xml no makefile
+
+[33mcommit 57d9394d2d7ed40aa4203e990ee7f9e1bf183e44[m
+Author: Erickson Ferreira <erickson.rinho@hotmail.com>
+Date:   Wed Nov 21 08:35:19 2018 -0300
+
+    Corrigindo alguns erros
+
+[33mcommit 0eef4c555821b0699c8c66dbfe6996467e469e20[m
+Author: Erickson Ferreira <erickson.rinho@hotmail.com>
+Date:   Wed Nov 21 00:41:34 2018 -0300
+
+    fazendo algumas melhorias
+
+[33mcommit 5ca5f591db8906502660e746f96859bc6e8b07b0[m
+Author: Erickson Ferreira <erickson.rinho@hotmail.com>
+Date:   Wed Nov 21 00:33:57 2018 -0300
+
+    apagando as imagens
+
+[33mcommit 9ad4069265806bd7185ddb7117779045e9996a79[m
+Author: Erickson Ferreira <erickson.rinho@hotmail.com>
+Date:   Wed Nov 21 00:32:59 2018 -0300
+
+    Implementando algumas melhorias
+
+[33mcommit 02719da7a17605602e960d516028aa818038d170[m
+Author: Erickson <erickson.rinho@hotmail.com>
+Date:   Mon Nov 19 18:27:21 2018 -0300
+
+    Modificando Editar eventos
+
+[33mcommit cd66a06c336807131957af9b01a1c1d25cb2581d[m
+Author: AndersonAslap <anderson.adolfo1998@gmail.com>
+Date:   Mon Nov 19 17:45:54 2018 -0300
+
+    Só pode Criar Evento quem for manager
+
+[33mcommit d83ce08e4f437b5aad223ba99e14327b89723c62[m
+Author: eduardobispof <eduardobispof@gmail.com>
+Date:   Mon Nov 19 11:38:48 2018 -0300
+
+    contador de participantes inscritos e salvar campus escolhido no cadastro de eventos
+
+[33mcommit afd67bb4ef8c6e551b8ff961d9faf5ef7fc53f8b[m
+Author: Erickson Ferreira <erickson.rinho@hotmail.com>
+Date:   Mon Nov 19 09:34:25 2018 -0300
+
+    Adicionando o método Show e coloquei a imagem IFPE.png
+
+[33mcommit 4fbdfb7d58b9e2b88bf1fbb17735600e7091b5d1[m
+Author: Erickson Ferreira <erickson.rinho@hotmail.com>
+Date:   Mon Nov 19 00:37:53 2018 -0300
+
+    Terminando a a uniao do Back e o Front
+
+[33mcommit 4045059e83c5d00b584d739d7e317c56a47d7d8e[m
+Author: Erickson Ferreira <erickson.rinho@hotmail.com>
+Date:   Sun Nov 18 23:13:16 2018 -0300
+
+    Tentando corrigir a hora da Index
+
+[33mcommit cc07a50854257e6d5dd1be6493ca827417dc6af5[m
+Author: Erickson Ferreira <erickson.rinho@hotmail.com>
+Date:   Sun Nov 18 23:07:20 2018 -0300
+
+    complementando a interação
+
+[33mcommit fff149d25b886ab5ac84354e8053b31be69d6762[m
+Author: Erickson Ferreira <erickson.rinho@hotmail.com>
+Date:   Thu Nov 15 07:06:17 2018 -0300
+
+    Implementando Criar Evento, Editar Evento e Registrar User
+
+[33mcommit ac9b2f2cde890330924f78494cce44fc0a730c8f[m
+Author: Tuanno <tuannodanyllo26@gmail.com>
+Date:   Wed Nov 14 17:18:30 2018 -0300
+
+    Comecando a integracao
+
+[33mcommit b205785d0b7f099d495528ffa051f70d5a89131d[m
+Author: libna <libnarodrigues723@gmail.com>
+Date:   Thu Nov 8 14:15:56 2018 -0300
+
+    Adicionando imagens no banco

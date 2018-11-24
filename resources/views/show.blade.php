@@ -35,6 +35,10 @@ $teste = ucwords(strtolower($teste));
 							<th>Palestrante</th>
 							<th>Horário</th>
 							<th class="right aligned">Status</th>
+							@can('update-evento', $eventos)
+							<th>Editar Atividade</th>
+							<th>Apagar Atividade</tr>
+					@endcan
 						</tr>
 					</thead>
 					<tbody>
@@ -49,9 +53,29 @@ $teste = ucwords(strtolower($teste));
 								@else
 									<td class="right aligned">Não Confirmada</td>
 								@endif
+					
+					@can('update-evento', $eventos)
+							<td>
+								<a href="{{url("/atividade/{$atividades->id}/update")}}">
+									<button class="ui green inverted button ">
+										<i class="edit icon"></i>Editar Atividade
+									</button>
+								</a>
+							</td>
+							<td>
+								<form method="POST" action="{{route('atividade.destroy', $atividades->id)}}">
+									<input type="hidden" name="_method" value="DELETE">
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+									<button class="ui green inverted button" type="submit">
+										<i class="delete icon"></i>Deletar Atividade
+									</button>
+									</a>
+								</form>
+							</td>
+					@endcan
 						</tr>
+
 						@endforeach
-						
 					</tbody>
 				</table>
 				
@@ -102,4 +126,27 @@ $teste = ucwords(strtolower($teste));
 			</div>
 		</div>
 		<br>
+				@can('update-evento', $eventos)
+			<div class="ui segment">
+				<center><span><h1>Editar ou Excluir Evento</h1></span><br>
+	<!-- Pega a função de app\Providers\AuthServiceProvider.php
+					 Caso esteja de acordo com o provider ele vai fazer aparecer o que está dentro-->
+							
+				<!-- O Usuario manager pode editar ou excluir qualquer evento -->
+						<a href="{{url("/evento/{$eventos->id}/update")}}">
+							<button class="ui green inverted button ">
+								<i class="edit icon"></i>Editar Evento
+							</button>
+						</a>
+				
+						<form method="POST" action="{{route('evento.destroy', $eventos->id)}}">
+							<input type="hidden" name="_method" value="DELETE">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
+							<button class="ui green inverted button" type="submit">
+								<i class="delete icon"></i>Deletar
+							</button>
+							</a>
+						</form>
+			</div>
+				@endcan
 @endsection
