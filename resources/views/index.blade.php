@@ -67,7 +67,7 @@ $created 	= date_create();?>
 							<label class="ui green ribbon label">{{$iniDt}} - {{$HrIni}} às {{$fimDt}} - {{$HrFim}}</label>		
 							<div class="image">
 								@isset($evento->imagem)
-									<img class="ui massive image" src="/../img/evento/{{$evento->imagem}}">
+									<img class="ui massive image" src="/img/evento/{{$evento->imagem}}">
 									<p>oi</p>
 								@else
 									<img class="ui massive image" src="/B.jpg">
