@@ -94,7 +94,7 @@
                     <label for="">Nome*</label>
                     <div class="ui left icon input">
                         <i class="user green icon"></i>
-                        <input id="name" type="text" name="name" placeholder="Nome" required autofocus>
+                        <input id="name" type="text" name="name" placeholder="Nome" value="{{ old('name') }}" required autofocus>
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('name') }}</strong>
@@ -106,7 +106,7 @@
                     <label for="">CPF*</label>
                     <div class="ui left icon input">
                         <i class="key green icon"></i>
-                        <input type="text" name="cpf" placeholder="CPF" required autofocus>
+                        <input type="text" name="cpf" placeholder="CPF" value="{{ old('cpf') }}"required autofocus>
                          @if ($errors->has('cpf'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('cpf') }}</strong>
@@ -131,7 +131,7 @@
                         <label for="">Telefone*</label>
                         <div class="ui left icon input">
                             <i class="phone  green icon"></i>
-                            <input id="telefone" type="text" name="telefone" placeholder="Telefone" required>
+                            <input id="telefone" type="text" name="telefone" placeholder="Telefone" value="{{ old('telefone') }}"required>
                              @if ($errors->has('telefone'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('telefone') }}</strong>
