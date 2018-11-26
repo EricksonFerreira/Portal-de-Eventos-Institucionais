@@ -23,9 +23,9 @@ class AtividadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $id)
+    public function create($id)
     {
-    	$evento = Evento::find($id);
+        $evento = Evento::find($id);
         return view('criar-editar-atividade', compact('evento'));
     }
 
@@ -41,8 +41,8 @@ class AtividadeController extends Controller
         $dataForm = ( $dataForm['confirmacao'] == '') ? 0 : 1;
 
        	$atividade	 				= new Atividade;
-		$atividade->palestrante_id 	= $request->user()->id;
-		$atividade->evento_id 		=  8;
+		$atividade->palestrante_id 	=  1;
+		$atividade->evento_id 		= $request->id;
 		$atividade->titulo 			= $request->titulo;
 		$atividade->descricao 		= $request->descricao;
 		$atividade->confirmacao 	= $dataForm;
