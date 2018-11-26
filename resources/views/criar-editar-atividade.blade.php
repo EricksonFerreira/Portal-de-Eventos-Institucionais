@@ -27,7 +27,17 @@
 								</label>
 							</div>		
 							<label>Palestrante*
-								<input type="text" name="palestrante" placeholder="Nome do evento" value="{{old('titulo',$atividade->titulo ?? '')}}" required>
+								<!-- <div class="ui search">
+									<input class="prompt" type="text" name="palestrante" placeholder="Nome do palestrante ou usuário" value="{{old('titulo',$atividade->titulo ?? '')}}" required>
+									<div class="results"></div>
+								</div> -->
+<div class="ui search">
+  <div class="ui icon input">
+    <input class="prompt" type="text" placeholder="Search countries...">
+    <i class="search icon"></i>
+  </div>
+  <div class="results"></div>
+</div>
 							</label>					
 								<div class="field">
 									<br><label>Confirmação:
@@ -69,4 +79,22 @@
 	</div>
 </div>
 </div>	
+<script src="{{ asset('js/search.min.js') }}"></script>
+<script>
+// 	$('.ui.search')
+//   .search({
+//     apiSettings: {
+//       url: '//api.github.com/search/repositories?q={query}'
+//     },
+//     fields: {
+//       results : 'items',
+//       title   : 'name',
+//       url     : 'html_url'
+//     },
+//     minCharacters : 3
+//   })
+// ;
+//   console.log('oi');
+
+</script>
 @endsection
