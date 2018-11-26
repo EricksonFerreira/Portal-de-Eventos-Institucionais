@@ -55,8 +55,8 @@
 								</div>
 								<div class="field">
 									<br><br><label for="file" class="ui icon green inverted button"><i class="file image icon"></i> Adicionar-Imagem
-										<input type="file" name="imagem" placeholder="Telefone para contato"   class="" value="img/evento/	{{ old('imagem',$evento->imagem ?? '') }}" style="display: none;" id="file" >
-									</label>{{var_dump( old('imagem',$evento->imagem ?? ''))}}
+										<input type="file" name="imagem" placeholder="Telefone para contato"   class="" value="img/evento/	{{ old('imagem',$eventos->imagem ?? '') }}" style="display: none;" id="file" >
+									</label>{{var_dump( old('imagem',$eventos->imagem ?? ''))}}
 								</div>
 							</div>
 							<br><strong><h3 class="ui dividing header">Data e hora do evento</h3></strong>
@@ -68,7 +68,7 @@
 								</div>
 								<div class="field">
 									<br><label>Hora de Inicio*
-										<input type="time" name="hora_inicio" value="{{ old('hora_inicio',$evento->hora_inicio ?? '') }}">
+										<input type="time" name="hora_inicio" value="{{ old('hora_inicio',$eventos->hora_inicio ?? '') }}">
 									</label>
 								</div> 
 								<div class="field">
@@ -81,7 +81,7 @@
 								</div>
 								<div class="field">
 									<br><label>Hora de Finalização*
-										<input type="time" name="hora_fim" value="{{ old('hora_fim',$evento->hora_fim ?? '') }}" >
+										<input type="time" name="hora_fim" value="{{ old('hora_fim',$eventos->hora_fim ?? '') }}" >
 									</label>
 								</div>
 							</div>
@@ -91,7 +91,7 @@
 								<select name="campus" class="ui fluid dropdown" value="{{ old('campus',$evento->campus ?? '') }}" >
 						@foreach ($campi as $campusValue => $campusNome)
 							<option value="{{$campusValue}}"	
-							@if( isset($eventos) && $eventos->campus == $campusValue) 
+							@if( isset($eventos) && $eventos->campus == $campusNome) 
 								Select 
 							@endif> 
 							</option>

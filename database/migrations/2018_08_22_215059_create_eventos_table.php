@@ -17,7 +17,7 @@ class CreateEventosTable extends Migration {
 
  			/* Chave Estrangeira do banco eventos*/			
  			$table->Integer('user_id')->unsigned();
-    		$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    	$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
     		
 			$table->string('nome');
 			$table->text('descricao');
