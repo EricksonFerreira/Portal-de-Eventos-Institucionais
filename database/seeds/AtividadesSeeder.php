@@ -11,7 +11,7 @@ class AtividadesSeeder extends Seeder
      */
     public function run()
     {
-         factory(App\Atividade::class, 5)->create()->each(function ($user) {
+         factory(App\Atividade::class, 25)->create()->each(function ($user) {
             // $user->posts()->save(factory(App\Post::class)->make());
         });
     }
