@@ -63,7 +63,7 @@ $teste = ucwords(strtolower($teste));
 					
 					@can('update-evento', $eventos)
 							<td>
-								<a href="{{url("/evento/atividade/{$atividades->id}/edit")}}">
+								<a href="{{route('atividade.edit', $atividades->id)}}">
 									<button class="ui green inverted button ">
 										<i class="edit icon"></i>Editar Atividade
 									</button>
@@ -83,11 +83,14 @@ $teste = ucwords(strtolower($teste));
 						</tr>
 
 						@endforeach
-						<a href="{{route('atividade.create', $atividades->evento_id)}}">
+
+					@can('update-evento', $eventos)
+						<a href="{{route('atividade.create', $eventos->id)}}">
 							<button class="ui green inverted button ">
 								<i class="edit icon"></i>Criar Atividade
 							</button>
 						</a>
+					@endcan
 					</tbody>
 				</table>
 				
