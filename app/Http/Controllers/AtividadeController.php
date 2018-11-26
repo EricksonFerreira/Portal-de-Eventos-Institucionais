@@ -105,6 +105,6 @@ class AtividadeController extends Controller
         /*Pega o item pelo id e destroi*/
         $atividade = Atividade::find($id);
         $atividade->delete();
-        return redirect('/');  
+        return redirect(route('evento.show', ['id' => $atividade->evento_id]));  
     }
 }
