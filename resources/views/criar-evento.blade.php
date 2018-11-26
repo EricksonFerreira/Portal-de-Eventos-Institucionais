@@ -29,7 +29,7 @@
 			<div class="ui vertically divided grid">
 				<div class="column">
 				@isset($atividade)
-				<form action="{{route('evento.update', $eventos->id)}}" class="ui form" id="cadastro" method="post" enctype="multipart/form-data">{{ csrf_field() }}{{method_field('PUT')}}
+					<form action="{{route('evento.update', $eventos->id)}}" class="ui form" id="cadastro" method="post" enctype="multipart/form-data">{{ csrf_field() }}{{method_field('PUT')}}
 				@else
 					<form action="{{route('evento.store')}}" class="ui form" id="cadastro" method="post" enctype="multipart/form-data">
 				@endisset
@@ -40,7 +40,7 @@
 						<strong><h3 class="ui dividing header">Sobre o evento</h3></strong>
 						<div class="field">
 							<br><label>Nome*
-								<input type="text" name="nome" placeholder="Nome do evento" value="{{old('nome',$eventos->nome ?? '')}}"">
+								<input type="text" name="nome" placeholder="Nome do evento" value="{{old('nome',$eventos->nome ?? '')}}">
 							</label>
 							<div class="field">
 								<br><label>Descrição*
