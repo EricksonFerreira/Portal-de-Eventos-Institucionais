@@ -131,10 +131,10 @@ class EventoController extends Controller {
 		com os indices e o que eu quero que seja validado*/
 		$validar 			= 	$request->validate([
 			'nome' 			=> 'required',
-			'descricao'		=> 'required',
-			'email' 		=> 'required|email',
-			'telefone' 		=> 'required',
-			'imagem' 		=> 'required',
+			'descricao'	=> 'required',
+			'email' 		=> 'email',
+			'telefone' 	=> 'required',
+			//'imagem' 	=> 'required',
 			'vagas' 		=> 'required',
 			'campus' 		=> 'required',
 		],
@@ -144,10 +144,10 @@ class EventoController extends Controller {
 			[
 			'nome.required' 		=> 'preenche o seu nome',
 			'descricao.required' 	=> 'coloque uma descrição',
-			'email.required' 		=> 'coloque um email',
+			//'email.required' 		=> 'coloque um email',
 			'email.email'			=> 'coloque um email válido',
 			'telefone.required' 	=> 'coloque o seu telefone',
-			'imagem.required' 		=> 'coloque uma imagem',
+			//'imagem.required' 		=> 'coloque uma imagem',
 			'vagas.required' 		=> 'coloque o numero de vagas',
 			'Campus.required' 		=> 'Coloque um campus',
 			]);

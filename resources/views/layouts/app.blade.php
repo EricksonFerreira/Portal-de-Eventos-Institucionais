@@ -27,7 +27,7 @@
     <div id="app">
         <div class="ui large fixed stackable menu">
             <a href="{{ url('/') }}" class="item">
-                <img src="/../img/icone/ifpe.png" alt="">
+                <img src="/img/icone/ifpe.png" alt="">
             </a>
              <a href="{{ url('/') }}" class="item">
                 <i class="calendar green icon"></i><span style="color: green">Ver Eventos</span>

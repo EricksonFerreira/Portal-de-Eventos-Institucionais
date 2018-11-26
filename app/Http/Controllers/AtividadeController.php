@@ -37,9 +37,13 @@ class AtividadeController extends Controller
      */
     public function store(Request $request)
     {
-    	$dataForm = $request->confirmacao;
-        $dataForm = ( $dataForm['confirmacao'] == '') ? 0 : 1;
+        //Falta adicionar o palestrante
 
+        if($request->confirmacao == ''){
+            $dataForm = 0;
+        }else{
+            $dataForm = 1;
+        }
        	$atividade	 				= new Atividade;
 		$atividade->palestrante_id 	=  1;
 		$atividade->evento_id 		= $request->id;
@@ -49,6 +53,8 @@ class AtividadeController extends Controller
 		$atividade->hora_inicio		= $request->hora_inicio;
 		$atividade->hora_fim		= $request->hora_fim;
 		$atividade->save();
+
+        var_dump($request);
 		$request->session()->flash('alert-success', 'Evento cadastrado com sucesso!');
     	return redirect(route('evento.show', ['id' => 8]));
     }
@@ -87,11 +93,24 @@ class AtividadeController extends Controller
      */
     public function update(Request $request, $id)
     {
-    	$atividade = Atividade::find($id);
-		Atividade::find($id)->update($request->all());
+        if($request->confirmacao    == ''){
+            $dataForm = 0;
+        }else{
+            $dataForm = 1;
+        }
+        $atividade                    = Atividade::find($id);
+        $atividade->palestrante_id    = 2;
+        $atividade->evento_id         = $id;
+        $atividade->titulo            = $request->user()->id;
+        $atividade->descricao         = $request->descricao;
+        $atividade->confirmacao       = $dataForm;
+        $atividade->hora_inicio       = $request->hora_inicio;
+        $atividade->hora_fim          = $request->hora_fim;
+        $atividade->save();
+        $idEvento = $id;
 
-		$evento = $atividade->evento_id;
-		return redirect(route('evento.show', ['id' => $evento]));
+        $request->session()->flash('alert-update', 'Atividade Atualizado com sucesso!');
+		return redirect(route('evento.show', ['id' => $idEvento]));
     }
 
     /**

@@ -148,7 +148,7 @@ $teste = ucwords(strtolower($teste));
 					 Caso esteja de acordo com o provider ele vai fazer aparecer o que está dentro-->
 							
 				<!-- O Usuario manager pode editar ou excluir qualquer evento -->
-						<a href="{{url("/evento/{$eventos->id}/edit")}}">
+						<a href="{{route('evento.edit', $eventos->id)}}">
 							<button class="ui green inverted button ">
 								<i class="edit icon"></i>Editar Evento
 							</button>

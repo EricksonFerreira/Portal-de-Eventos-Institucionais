@@ -11,6 +11,8 @@ Route::resource('evento', 'EventoController');
 
 /*Resource que facilita chamar uma função do Controller*/
 Route::resource('atividade', 'AtividadeController');
+
+/* Criar Atividade*/
 Route::get('/atividade/create/{id}', 'AtividadeController@create')->name('atividade.create');
 
 /* rota tradicional do método Auth*/
