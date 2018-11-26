@@ -88,12 +88,14 @@
 							<br><strong><h3 class="ui dividing header">Endereço do evento</h3></strong>
 							<div class="field">
 								<br><label>Campus do evento*</label>
-								<select name="campus" class="ui fluid dropdown" value="{{ old('campus',$evento->campus ?? '') }}" >
+								<select name="campus" class="ui fluid dropdown" >
 						@foreach ($campi as $campusValue => $campusNome)
 							<option value="{{$campusValue}}"	
 							@if( isset($eventos) && $eventos->campus == $campusNome) 
 								Select 
-							@endif> 
+							@endif
+							> 
+							{{ $campusNome }}
 							</option>
 						@endforeach
 								</select>
