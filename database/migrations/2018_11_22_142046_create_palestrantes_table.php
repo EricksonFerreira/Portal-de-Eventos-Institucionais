@@ -24,6 +24,7 @@ class CreatePalestrantesTable extends Migration
             $table->Integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
+            $table->string('nome');
             $table->string('imagem')->nullable();
             $table->text('descricao');
             $table->timestamps();
