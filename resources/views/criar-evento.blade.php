@@ -101,7 +101,7 @@
 								<select name="campus" class="ui fluid dropdown" value="Escolha um campus"   >
 									<option value=""></option>
 						@foreach ($campi as $campusValue => $campusNome)
-							<option value="{{$campusValue}}" {{old('campus') == $campusValue ? 'selected' : ''}}>{{ $campusNome }}</option>
+							<option value="{{$campusValue}}" {{old('campus') ==	 $campusValue ? 'selected' : ''}}>{{ $campusNome }}</option>
 						@endforeach
 								</select>
 							</div>

@@ -11,6 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script> -->
+    <!-- <script src="{{ asset('js/semantic.min.js') }}"></script> -->
     <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
