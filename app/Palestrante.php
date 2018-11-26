@@ -16,7 +16,7 @@ class Palestrante extends Model
 	protected $guarded	= ['id','user_id','evento_id'];
 
 	/*nome dos atributos que poderão ser alterados*/
-	protected $fillable = ['descricao', 'imagem'];
+	protected $fillable = ['descricao', 'imagem', 'nome'];
 
     /*Função que representa o relacionamento de um para muitos*/
      public function userPalestra(){
