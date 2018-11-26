@@ -1,0 +1,12 @@
+Integrar Criar e Editar eventos na mesma View
+Sair da Inscrição bugado
+Criar atividade
+Editar atividade
+Nome do palestrante
+Listar por data
+	Se já expirou aparacer numa View
+Criar perfil do participante
+Criar atividade com data
+	Não aceitar data menor ou menor que o projeto
+
+
