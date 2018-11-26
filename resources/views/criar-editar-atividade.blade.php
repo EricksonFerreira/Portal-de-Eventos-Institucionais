@@ -7,7 +7,7 @@
 				<div class="column">
 
 					@isset($atividade)
-					<form action="{{route('atividade.update', $atividade->id)}}" class="ui form" id="cadastro" method="post" enctype="multipart/form-data">{{ csrf_field() }}{{method_field('PUT')}}
+						<form action="{{route('atividade.update', $atividade->id)}}" class="ui form" id="cadastro" method="post" enctype="multipart/form-data">{{ csrf_field() }}{{method_field('PUT')}}
 					@else
 					<?php $eventos = 8;?>
 						<form action="{{route('atividade.store', $eventos)}}" class="ui form" id="cadastro" method="post">{{ csrf_field() }}
@@ -57,7 +57,9 @@
 							</div>
 							<div class="ui dividing header"></div>
 									<input type="hidden" name="user_id" value="{{auth()->user()->id}}">
-									<input type="hidden" name="evento" value="{{$evento}}">
+									@isset($evento)
+										<input type="hidden" name="evento" value="{{$evento->id}}">
+									@endisset
 							<center><input type="submit" value="Cadastrar Evento" class="ui green inverted button submit"></center>
 						</div>
 					</div>
