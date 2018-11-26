@@ -52,13 +52,13 @@ $created 	= date_create();?>
 		<!-- Listar todos os atributos dos itens já cadastrados na tabela-->
 		<center><div style="width: 100%;">			
 		 @foreach($eventos as  $evento)
-<?php 
-	$date 		= date_format($created, 'd-m-Y');
-	$iniDt=date('d-m-Y',strtotime($evento->inicio_evento));
- 	$HrIni=date('H:i', 	strtotime($evento->hora_inicio));
- 	$fimDt=date('d-m-Y',strtotime($evento->fim_evento));
- 	$HrFim=date('H:i', 	strtotime($evento->hora_fim));
-?>		
+		<?php 
+			$date 		= date_format($created, 'd-m-Y');
+			$iniDt=date('d-m-Y',strtotime($evento->inicio_evento));
+		 	$HrIni=date('H:i', 	strtotime($evento->hora_inicio));
+		 	$fimDt=date('d-m-Y',strtotime($evento->fim_evento));
+		 	$HrFim=date('H:i', 	strtotime($evento->hora_fim));
+		?>		
 		<div style="float: left">
  			<a href="{{route('evento.show', $evento->id)}}">
 				<div class="ui link cards">
@@ -70,7 +70,7 @@ $created 	= date_create();?>
 									<img class="ui massive image" src="/../img/evento/{{$evento->imagem}}">
 									<p>oi</p>
 								@else
-									<img class="ui massive image" src="B.jpg">
+									<img class="ui massive image" src="/B.jpg">
 								@endisset
 							</div>
 						</div>
