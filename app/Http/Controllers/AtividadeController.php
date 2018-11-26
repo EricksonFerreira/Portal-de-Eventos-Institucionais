@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Atividade;
+use App\Evento;
 use Illuminate\Http\Request;
 
 class AtividadeController extends Controller
@@ -22,9 +23,10 @@ class AtividadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $id)
     {
-        //
+    	$evento = Evento::find($id);
+        return view('criar-editar-atividade', compact('evento'));
     }
 
     /**
@@ -35,7 +37,20 @@ class AtividadeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    	$dataForm = $request->confirmacao;
+        $dataForm = ( $dataForm['confirmacao'] == '') ? 0 : 1;
+
+       	$atividade	 				= new Atividade;
+		$atividade->palestrante_id 	= $request->user()->id;
+		$atividade->evento_id 		=  8;
+		$atividade->titulo 			= $request->titulo;
+		$atividade->descricao 		= $request->descricao;
+		$atividade->confirmacao 	= $dataForm;
+		$atividade->hora_inicio		= $request->hora_inicio;
+		$atividade->hora_fim		= $request->hora_fim;
+		$atividade->save();
+		$request->session()->flash('alert-success', 'Evento cadastrado com sucesso!');
+    	return redirect(route('evento.show', ['id' => 8]));
     }
 
     /**
@@ -57,7 +72,10 @@ class AtividadeController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Pega a model pelo id e coloca tudo que vem pelo request.
+		$atividade = Atividade::find($id);
+
+        return view('criar-editar-atividade', compact('atividade'));
     }
 
     /**
@@ -69,20 +87,11 @@ class AtividadeController extends Controller
      */
     public function update(Request $request, $id)
     {
-       //Pega a model pelo id e coloca tudo que vem pelo request.
-        $atividade = Atividade::find($id);
-        /* Chamando o Provider AuthService*/
-        /* Caso o dê erro na autorização da um break aki*/
-        $this ->authorize('update-evento', $atividade);
+    	$atividade = Atividade::find($id);
+		Atividade::find($id)->update($request->all());
 
-       /*Teste:
-        if(Gate::denies('update-post', $evento) )
-            abort( 403, 'Unauthorized');
-        */
-
-        /*Pega a model pelo id e coloca tudo que vem pelo request.*/
-        Atividade::find($id)->update($request->all());
-        return view('editar-atividade', compact('atividade'));
+		$evento = $atividade->evento_id;
+		return redirect(route('evento.show', ['id' => $evento]));
     }
 
     /**

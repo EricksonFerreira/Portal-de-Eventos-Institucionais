@@ -2,6 +2,13 @@
 
 @section('content')
 <head><link href="{{ asset('css/background.css') }}" rel="stylesheet"></head>
+ 
+ @foreach (['danger', 'warning', 'success', 'info', 'update'] as $msg)
+      @if(Session::has('alert-' . $msg))
+
+      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+      @endif
+    @endforeach
 <?php 
 	$iniDt=date('d-m-Y',strtotime($eventos->inicio_evento));
  	$HrIni=date('H:i', 	strtotime($eventos->hora_inicio));
@@ -56,7 +63,7 @@ $teste = ucwords(strtolower($teste));
 					
 					@can('update-evento', $eventos)
 							<td>
-								<a href="{{url("/atividade/{$atividades->id}/update")}}">
+								<a href="{{url("/evento/atividade/{$atividades->id}/edit")}}">
 									<button class="ui green inverted button ">
 										<i class="edit icon"></i>Editar Atividade
 									</button>
@@ -76,6 +83,11 @@ $teste = ucwords(strtolower($teste));
 						</tr>
 
 						@endforeach
+						<a href="{{route('atividade.create', $atividades->evento_id)}}">
+							<button class="ui green inverted button ">
+								<i class="edit icon"></i>Criar Atividade
+							</button>
+						</a>
 					</tbody>
 				</table>
 				
@@ -133,7 +145,7 @@ $teste = ucwords(strtolower($teste));
 					 Caso esteja de acordo com o provider ele vai fazer aparecer o que está dentro-->
 							
 				<!-- O Usuario manager pode editar ou excluir qualquer evento -->
-						<a href="{{url("/evento/{$eventos->id}/update")}}">
+						<a href="{{url("/evento/{$eventos->id}/edit")}}">
 							<button class="ui green inverted button ">
 								<i class="edit icon"></i>Editar Evento
 							</button>

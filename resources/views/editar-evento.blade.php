@@ -21,8 +21,8 @@
 		<div class="ui segment">
 			<div class="ui vertically divided grid">
 				<div class="column">
-					{{var_dump($evento->campus)}}
-					<form action="{{route('evento.update', $evento->id)}}" class="ui form" id="cadastro" method="post" enctype="multipart/form-data">{{ csrf_field() }}{{method_field('PUT')}}
+					{{var_dump($eventos->campus)}}
+					<form action="{{route('evento.update', $eventos->id)}}" class="ui form" id="cadastro" method="post" enctype="multipart/form-data">{{ csrf_field() }}{{method_field('PUT')}}
 						<center>
 							<h2 class="ui  header">Editar Evento</h2>
 						</center>
@@ -30,27 +30,27 @@
 						<strong><h3 class="ui dividing header">Sobre o evento</h3></strong>
 						<div class="field">
 							<br><label>Nome*
-								<input type="text" name="nome" placeholder="Nome do evento" value="{{old('nome',$evento->nome ?? '')}}">
+								<input type="text" name="nome" placeholder="Nome do evento" value="{{old('nome',$eventos->nome ?? '')}}">
 							</label>
 							<div class="field">
 								<br><label>Descrição*
-									<textarea placeholder="Descrição do Evento" name="descricao" value="">{{old('descricao',$evento->descricao ?? '')}}</textarea>
+									<textarea placeholder="Descrição do Evento" name="descricao" value="">{{old('descricao',$eventos->descricao ?? '')}}</textarea>
 								</label>
 							</div>
 							<div class="three fields">
 								<div class="field">
 									<br><label>Email*
-										<input type="text" name="email" placeholder="Email para contato"  value="{{ old('email',$evento->email ?? '') }}">
+										<input type="text" name="email" placeholder="Email para contato"  value="{{ old('email',$eventos->email ?? '') }}">
 									</label>
 								</div>
 								<div class="field">
 									<br><label>Telefone*
-										<input type="text" name="telefone" placeholder="Telefone para contato" value="{{ old('telefone',$evento->telefone ?? '') }}">
+										<input type="text" name="telefone" placeholder="Telefone para contato" value="{{ old('telefone',$eventos->telefone ?? '') }}">
 									</label>
 								</div>								
 								<div class="field">
 									<br><label>Vagas*
-										<input type="number" name="vagas" value="{{ old('vagas',$evento->vagas ?? '') }}">
+										<input type="number" name="vagas" value="{{ old('vagas',$eventos->vagas ?? '') }}">
 									</label>
 								</div>
 								<div class="field">
@@ -90,7 +90,11 @@
 								<br><label>Campus do evento*</label>
 								<select name="campus" class="ui fluid dropdown" value="{{ old('campus',$evento->campus ?? '') }}" >
 						@foreach ($campi as $campusValue => $campusNome)
-							<option value="{{$campusValue}}" {{old('campus') == $campusValue ? 'selected' : ''}}>{{ $campusNome }}</option>
+							<option value="{{$campusValue}}"	
+							@if( isset($eventos) && $eventos->campus == $campusValue) 
+								Select 
+							@endif> 
+							</option>
 						@endforeach
 								</select>
 							</div>

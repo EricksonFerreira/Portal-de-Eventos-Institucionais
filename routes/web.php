@@ -19,7 +19,7 @@ Auth::routes();
 Route::get('/evento/{id}/update', 'HomeController@update');
 
 /* Chamar  a função update*/
-Route::get('/atividade/{id}/update', 'AtividadeController@update');
+Route::get('/evento/atividade/{id}/edit', 'AtividadeController@edit')->name('atividade');;
 
 /* Chamar a função upando*/
 Route::get('/evento/{id}/participar', 'HomeController@participar');

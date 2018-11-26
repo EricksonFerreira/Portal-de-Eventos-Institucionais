@@ -205,7 +205,7 @@ class EventoController extends Controller {
 	}
 
 	public function myEvent($id) {
-		/*Pega o item pelo id e destroi*/
+		/*Pega o item pelo id */
 		// $eventos = User::find($id);
 		$eventos = Evento::where('user_id', '=', $id)->get();
 		return view('index', compact('eventos'));

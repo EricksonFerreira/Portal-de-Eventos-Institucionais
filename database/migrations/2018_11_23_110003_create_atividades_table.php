@@ -27,7 +27,6 @@ class CreateAtividadesTable extends Migration
             
             $table->string('titulo');
             $table->text('descricao');
-            $table->date('data');
             $table->boolean('confirmacao');
             $table->time('hora_inicio');
             $table->time('hora_fim');
