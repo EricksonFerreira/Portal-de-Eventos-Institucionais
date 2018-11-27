@@ -62,6 +62,8 @@ class HomeController extends Controller
     public function destroyParticipante($id) {
         /*Pega o item pelo id e destroi*/
         $participante = ParticiparEvento::find($id);
+        $idEvento = $participante->evento_id;
         $participante->delete();
-        return redirect(route('evento.show', ['id' => $id]));    }
+
+        return redirect(route('evento.show', ['id' => $idEvento]));    }
 }
