@@ -106,36 +106,38 @@ $teste = ucwords(strtolower($teste));
 			</div>
 			<div class="ui segment">
 	@if(Auth::check())
-				<center><span><h1>Inscreva-se</h1></span></center>
-		@if($QuantVagas > 0)
-			@foreach($participa as $participar)
-				@if(Auth::user()->id == $participar->user_id)
-						<form method="GET" action="{{url("/evento/{$participar->id}/destroy")}}">
-							<input type="hidden" name="_method" value="DELETE">
-							<input type="hidden" name="_token" value="{{ csrf_token() }}">
-								<br>
-									<center>	
-										<button class="ui green  button" type="submit">
-											<i class="delete icon"></i>Deixar de participar
-										</button>
-									</center>	
-								</br>
-						</form>
-					<?php $c = 1;?>
-				@endif
-			@endforeach
-				@unless($c == 1)
-				<div class="ui green divider"></div>
-					<br>
-						<center>
-							<a href="{{url("/evento/{$eventos->id}/participar")}}">
-								<button class="ui green button">Fazer inscrição</button>
-							</a>
-						</center>
-					<br>
-				@endunless
-		@else
-			<a href="#">Não há vagas</a><br>
+		@if($eventos->fim_evento > date('Y-m-d'))
+					<center><span><h1>Inscreva-se</h1></span></center>
+			@if($QuantVagas > 0)
+				@foreach($participa as $participar)
+					@if(Auth::user()->id == $participar->user_id)
+							<form method="GET" action="{{url("/evento/{$participar->id}/destroy")}}">
+								<input type="hidden" name="_method" value="DELETE">
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+									<br>
+										<center>	
+											<button class="ui green  button" type="submit">
+												<i class="delete icon"></i>Deixar de participar
+											</button>
+										</center>	
+									</br>
+							</form>
+						<?php $c = 1;?>
+					@endif
+				@endforeach
+					@unless($c == 1)
+					<div class="ui green divider"></div>
+						<br>
+							<center>
+								<a href="{{url("/evento/{$eventos->id}/participar")}}">
+									<button class="ui green button">Fazer inscrição</button>
+								</a>
+							</center>
+						<br>
+					@endunless
+			@else
+				<a href="#">Não há vagas</a><br>
+			@endif
 		@endif
 	@endif
 			</div>
