@@ -21,10 +21,11 @@ class EventoController extends Controller {
 	public function index() {
 		/*Pega todos os itens da model Evento e leva para a index*/
 		//$eventos 	= Evento::all();
-		$eventos 	= Evento::all();
+		$eventos 	= Evento::where('fim_evento', '>=', date('Y-m-d'))->orderBy('inicio_evento', 'asc')->get();
+		$past 	  = Evento::where('fim_evento', '<', date('Y-m-d'))->orderBy('inicio_evento', 'desc')->get();
 		$users 		= User::all();
 		$total 		= Evento::all()->count();
-		return view('index', compact('eventos', 'total', 'users'));
+		return view('index', compact('eventos', 'total', 'users', 'past'));
 	}
 	public function create() {
 		/*Redireciona para a View de criar evento*/
@@ -115,7 +116,7 @@ class EventoController extends Controller {
 		$QuantVagas = $eventos->vagas - $participantes;
 		$c = 0;
 
-		return view('show', compact('eventos', 'participantes', 'QuantVagas', 'participa', 'c', 'palestrante', 'atividade'));
+		return view('show', compact('eventos', 'participantes', 'QuantVagas', 'participa', 'c', 'palestrante', 'atividade', 'past'));
 	}
 
 	public function edit($id) {
