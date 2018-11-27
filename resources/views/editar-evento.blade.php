@@ -102,7 +102,7 @@
 							</div>
 							<div class="ui dividing header"></div>
 									<input type="hidden" name="user_id" value="{{auth()->user()->id}}">
-							<center><input type="submit" value="Cadastrar Evento" class="ui green inverted button submit"></center>
+							<center><input type="submit" value="Editar Evento" class="ui green inverted button submit"></center>
 						</div>
 					</div>
 				</div>
