@@ -207,8 +207,11 @@ class EventoController extends Controller {
 	public function myEvent($id) {
 		/*Pega o item pelo id */
 		// $eventos = User::find($id);
-		$eventos = Evento::where('user_id', '=', $id)->get();
-		return view('index', compact('eventos'));
+		
+		// $eventos = Evento::where('user_id', '=', $id)->get();
+		$eventos 	= Evento::where('fim_evento', '>=', date('Y-m-d'))->where('user_id', '=', $id)->orderBy('inicio_evento', 'asc')->get();
+		$past 	  = Evento::where('fim_evento', '<', date('Y-m-d'))->orderBy('inicio_evento', 'desc')->get();
+		return view('index', compact('eventos','past'));
 	}
 
 	/*Treinamento*/
