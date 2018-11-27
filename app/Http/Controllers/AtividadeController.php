@@ -45,18 +45,18 @@ class AtividadeController extends Controller
             $dataForm = 1;
         }
        	$atividade	 				= new Atividade;
-		$atividade->palestrante_id 	=  1;
-		$atividade->evento_id 		= $request->id;
-		$atividade->titulo 			= $request->titulo;
-		$atividade->descricao 		= $request->descricao;
-		$atividade->confirmacao 	= $dataForm;
-		$atividade->hora_inicio		= $request->hora_inicio;
-		$atividade->hora_fim		= $request->hora_fim;
-		$atividade->save();
+        $atividade->palestrante_id    = 2;
+        $atividade->evento_id         = $request->evento;
+        $atividade->titulo            = $request->titulo;
+        $atividade->descricao         = $request->descricao;
+        $atividade->confirmacao       = $dataForm;
+        $atividade->hora_inicio       = $request->hora_inicio;
+        $atividade->hora_fim          = $request->hora_fim;
+        $atividade->save();
+        $idEvento = $request->evento;
 
-        var_dump($request);
-		$request->session()->flash('alert-success', 'Evento cadastrado com sucesso!');
-    	return redirect(route('evento.show', ['id' => 8]));
+		$request->session()->flash('alert-success', 'Atividade cadastrada com sucesso!');
+    	return redirect(route('evento.show', ['id' => $idEvento]));
     }
 
     /**
@@ -100,14 +100,14 @@ class AtividadeController extends Controller
         }
         $atividade                    = Atividade::find($id);
         $atividade->palestrante_id    = 2;
-        $atividade->evento_id         = $id;
-        $atividade->titulo            = $request->user()->id;
+        $atividade->evento_id         = $atividade->evento_id;
+        $atividade->titulo            = $request->titulo;
         $atividade->descricao         = $request->descricao;
         $atividade->confirmacao       = $dataForm;
         $atividade->hora_inicio       = $request->hora_inicio;
         $atividade->hora_fim          = $request->hora_fim;
         $atividade->save();
-        $idEvento = $id;
+        $idEvento = $atividade->evento_id;
 
         $request->session()->flash('alert-update', 'Atividade Atualizado com sucesso!');
 		return redirect(route('evento.show', ['id' => $idEvento]));
