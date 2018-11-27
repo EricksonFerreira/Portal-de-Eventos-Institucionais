@@ -172,29 +172,28 @@ class EventoController extends Controller {
     		$nomeImagem = "imagem_".$numero.".".$ex;
     		$imagem->move($dir,$nomeImagem);
     		$dados['imagem'] = $dir."/".$nomeImagem;
-    	}else{
-    		$request->session()->flash('alert-success', 'Não existe imagem!');
-			return redirect('/evento');
     	}
 
 		/* Pega tudo pelo id do ityem no Evento e altera*/
-	   	$eventos	 				= Evento::find($id);
+	  $eventos		 						= Evento::find($id);
 		$eventos->user_id 			= $request->user()->id;
-		$eventos->nome 				= $request->nome;
+		$eventos->nome 					= $request->nome;
 		$eventos->descricao 		= $request->descricao;
-		$eventos->campus 			= $request->campus;
-		$eventos->email 			= $request->email;
+		$eventos->campus 				= $request->campus;
+		$eventos->email 				= $request->email;
 		$eventos->telefone 			= $request->telefone;
-		$eventos->imagem 			= $nomeImagem;
-		$eventos->vagas 			= $request->vagas;
-		$eventos->inicio_evento		= $request->inicio_evento;
+			if(isset($nomeImagem)){
+				$eventos->imagem 				= $nomeImagem;
+			}
+		$eventos->vagas 				= $request->vagas;
+		$eventos->inicio_evento	= $request->inicio_evento;
 		$eventos->hora_inicio		= $request->hora_inicio;
 		$eventos->fim_evento		= $request->fim_evento;
 		$eventos->hora_fim			= $request->hora_fim;
 		$eventos->save();
 
 		$request->session()->flash('alert-update', 'Evento Atualizado com sucesso!');
-		return redirect('/evento');
+		return redirect(route('evento.show', ['id' => $id]));
 	}
 
 	public function destroy($id) {
