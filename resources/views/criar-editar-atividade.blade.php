@@ -11,7 +11,7 @@
 					@else
 					<?php $eventos = 8;?>
 						<form action="{{route('atividade.store', $eventos)}}" class="ui form" id="cadastro" method="post">{{ csrf_field() }}
-					@endisset	
+					@endisset
 						<center>
 							<h2 class="ui  header">Editar Atividade</h2>
 						</center>
@@ -25,7 +25,7 @@
 								<br><label>Descrição*
 									<textarea placeholder="Descrição do Evento" name="descricao" value="" required>{{old('descricao',$atividade->descricao ?? '')}}</textarea>
 								</label>
-							</div>		
+							</div>
 							<label>Palestrante*
 								<!-- <div class="ui search">
 									<input class="prompt" type="text" name="palestrante" placeholder="Nome do palestrante ou usuário" value="{{old('titulo',$atividade->titulo ?? '')}}" required>
@@ -38,10 +38,10 @@
   </div>
   <div class="results"></div>
 </div>
-							</label>					
+							</label>
 								<div class="field">
 									<br><label>Confirmação:
-										<input type="checkbox" name="confirmacao"  
+										<input type="checkbox" name="confirmacao"
 											@if(isset($atividade) && $atividade->confirmacao == '1')
 											 checked
 											 @endif
@@ -53,9 +53,9 @@
 
 								<div class="field">
 									<br><label>Hora de Inicio*
-										<input type="time" name="hora_inicio" value="{{ old('hora_inicio',$atividade->hora_inicio ?? '08:00') }}">
+										<input type="datetime-local" name="hora_inicio" value="{{ old('hora_inicio',$atividade->hora_inicio ?? '08:00') }}" min="{{$evento->inicio_evento}}T{{$evento->hora_inicio}}" max="{{$evento->fim_evento}}T{{$evento->hora_fim}}">
 									</label>
-								</div> 
+								</div>
 								<div class="field">
 									<input type="hidden" name="">
 								</div>
@@ -78,7 +78,7 @@
 		</div>
 	</div>
 </div>
-</div>	
+</div>
 <script src="{{ asset('js/search.min.js') }}"></script>
 <script>
 // 	$('.ui.search')
