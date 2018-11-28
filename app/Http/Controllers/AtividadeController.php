@@ -45,7 +45,7 @@ class AtividadeController extends Controller
             $dataForm = 1;
         }
        	$atividade	 				= new Atividade;
-        $atividade->palestrante_id    = 2;
+        $atividade->palestrante_id    = $request->palestrante;
         $atividade->evento_id         = $request->evento;
         $atividade->titulo            = $request->titulo;
         $atividade->descricao         = $request->descricao;
@@ -80,8 +80,9 @@ class AtividadeController extends Controller
     {
         //Pega a model pelo id e coloca tudo que vem pelo request.
 		$atividade = Atividade::find($id);
-
-        return view('criar-editar-atividade', compact('atividade'));
+        $idEvento = $atividade->evento_id;
+        $evento = Evento::find($idEvento);
+        return view('criar-editar-atividade', compact('atividade', 'evento'));
     }
 
     /**
@@ -99,7 +100,7 @@ class AtividadeController extends Controller
             $dataForm = 1;
         }
         $atividade                    = Atividade::find($id);
-        $atividade->palestrante_id    = 2;
+        $atividade->palestrante_id    = $request->palestrante;
         $atividade->evento_id         = $atividade->evento_id;
         $atividade->titulo            = $request->titulo;
         $atividade->descricao         = $request->descricao;
