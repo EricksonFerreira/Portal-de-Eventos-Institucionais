@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Palestrante;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\belongsTo;
 
 class Atividade extends Model
 {
@@ -17,4 +19,8 @@ class Atividade extends Model
 
 	/*nome dos atributos que poderão ser não alterados*/
 	protected $guarded	= ['id','evento_id', 'palestrante_id'];
+
+    public function palestrante() {
+        return $this->belongsTo(Palestrante::class);
+    }
 }

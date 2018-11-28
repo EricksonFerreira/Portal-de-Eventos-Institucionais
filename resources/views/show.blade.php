@@ -2,14 +2,14 @@
 
 @section('content')
 <head><link href="{{ asset('css/background.css') }}" rel="stylesheet"></head>
- 
+
  @foreach (['danger', 'warning', 'success', 'info', 'update'] as $msg)
       @if(Session::has('alert-' . $msg))
 
       <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
       @endif
     @endforeach
-<?php 
+<?php
 	$iniDt=date('d-m-Y',strtotime($eventos->inicio_evento));
  	$HrIni=date('H:i', 	strtotime($eventos->hora_inicio));
  	$fimDt=date('d-m-Y',strtotime($eventos->fim_evento));
@@ -49,28 +49,28 @@ $teste = ucwords(strtolower($teste));
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($atividade as $atividades)
+						@foreach($atividades as $atividade)
 						<tr>
-							<td>{{$atividades->titulo}}</td>
-							<td>{{$atividades->palestrante_id}}</td>
-							<td>{{$atividades->hora_inicio}} Ás {{$atividades->hora_fim}}</td>
-								
-								@if($atividades->confirmacao == true)
+							<td>{{$atividade->titulo}}</td>
+							<td>{{$atividade->palestrante->nome}}</td>
+							<td>{{$atividade->hora_inicio}} Ás {{$atividade->hora_fim}}</td>
+
+								@if($atividade->confirmacao == true)
 									<td class="right aligned">Confirmada</td>
 								@else
 									<td class="right aligned">Não Confirmada</td>
 								@endif
-					
+
 					@can('update-evento', $eventos)
 							<td>
-								<a href="{{route('atividade.edit', $atividades->id)}}">
+								<a href="{{route('atividade.edit', $atividade->id)}}">
 									<button class="ui green inverted button ">
 										<i class="edit icon"></i>Editar Atividade
 									</button>
 								</a>
 							</td>
 							<td>
-								<form method="POST" action="{{route('atividade.destroy', $atividades->id)}}">
+								<form method="POST" action="{{route('atividade.destroy', $atividade->id)}}">
 									<input type="hidden" name="_method" value="DELETE">
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 									<button class="ui green inverted button" type="submit">
@@ -93,7 +93,7 @@ $teste = ucwords(strtolower($teste));
 					@endcan
 					</tbody>
 				</table>
-				
+
 			</div>
 			<div class="ui segment">
 				<center><span><h1>Descrição do evento</h1></span></center>
@@ -115,11 +115,11 @@ $teste = ucwords(strtolower($teste));
 								<input type="hidden" name="_method" value="DELETE">
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 									<br>
-										<center>	
+										<center>
 											<button class="ui green  button" type="submit">
 												<i class="delete icon"></i>Deixar de participar
 											</button>
-										</center>	
+										</center>
 									</br>
 							</form>
 						<?php $c = 1;?>
@@ -148,14 +148,14 @@ $teste = ucwords(strtolower($teste));
 				<center><span><h1>Editar ou Excluir Evento</h1></span><br>
 	<!-- Pega a função de app\Providers\AuthServiceProvider.php
 					 Caso esteja de acordo com o provider ele vai fazer aparecer o que está dentro-->
-							
+
 				<!-- O Usuario manager pode editar ou excluir qualquer evento -->
 						<a href="{{route('evento.edit', $eventos->id)}}">
 							<button class="ui green inverted button ">
 								<i class="edit icon"></i>Editar Evento
 							</button>
 						</a>
-				
+
 						<form method="POST" action="{{route('evento.destroy', $eventos->id)}}">
 							<input type="hidden" name="_method" value="DELETE">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">

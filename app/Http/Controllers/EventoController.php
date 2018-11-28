@@ -109,14 +109,14 @@ class EventoController extends Controller {
 
 		$eventos = Evento::find($id);
 		$palestrante = Palestrante::where('evento_id', '=', $id)->get();
-		$atividade = Atividade::where('evento_id', '=', $id)->get();
+		$atividades = Atividade::with('palestrante')->where('evento_id', '=', $id)->get();
 		$user = User::where('id', '=', $palestrante);
 		$participantes = count(ParticiparEvento::where('evento_id', '=', $id)->get());
 		$participa = ParticiparEvento::where('evento_id', '=', $id)->get();
 		$QuantVagas = $eventos->vagas - $participantes;
 		$c = 0;
 
-		return view('show', compact('eventos', 'participantes', 'QuantVagas', 'participa', 'c', 'palestrante', 'atividade', 'past'));
+		return view('show', compact('eventos', 'participantes', 'QuantVagas', 'participa', 'c', 'palestrante', 'atividades', 'past'));
 	}
 
 	public function edit($id) {
@@ -207,7 +207,7 @@ class EventoController extends Controller {
 	public function myEvent($id) {
 		/*Pega o item pelo id */
 		// $eventos = User::find($id);
-		
+
 		// $eventos = Evento::where('user_id', '=', $id)->get();
 		$eventos 	= Evento::where('fim_evento', '>=', date('Y-m-d'))->where('user_id', '=', $id)->orderBy('inicio_evento', 'asc')->get();
 		$past 	  = Evento::where('fim_evento', '<', date('Y-m-d'))->orderBy('inicio_evento', 'desc')->get();
