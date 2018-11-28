@@ -165,8 +165,5 @@ $teste = ucwords(strtolower($teste));
 							</a>
 						</form>
 			</div>
-			<div>
-				opa
-			</div>
 				@endcan
 @endsection

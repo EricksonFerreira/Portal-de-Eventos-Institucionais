@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        @els
+        @else
         <?php $id = Auth::user()->id;?>
         
                 <a href="{{url("/evento/{$id}/meuseventos")}}" class="item">
