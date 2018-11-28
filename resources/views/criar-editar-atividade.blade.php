@@ -19,7 +19,9 @@
 						<strong><h3 class="ui dividing header">Sobre a Atividade</h3></strong>
 						<div class="field">
 							<br><label>Titulo*
+
 								<input type="text" name="titulo" placeholder="Nome do evento" value="{{old('titulo',$atividade->titulo ?? '')}}" required>
+							
 							</label>
 							<div class="field">
 								<br><label>Descrição*
@@ -27,17 +29,10 @@
 								</label>
 							</div>
 							<label>Palestrante*
-								<!-- <div class="ui search">
-									<input class="prompt" type="text" name="palestrante" placeholder="Nome do palestrante ou usuário" value="{{old('titulo',$atividade->titulo ?? '')}}" required>
+								<div class="ui search">
+									<input class="prompt" type="text" name="palestrante" placeholder="Nome do palestrante ou usuário" value="{{old('titulo',$atividade->palestrante->nome ?? '')}}" required>
 									<div class="results"></div>
-								</div> -->
-<div class="ui search">
-  <div class="ui icon input">
-    <input class="prompt" type="text" placeholder="Search countries...">
-    <i class="search icon"></i>
-  </div>
-  <div class="results"></div>
-</div>
+								</div> 
 							</label>
 								<div class="field">
 									<br><label>Confirmação:
@@ -53,7 +48,7 @@
 
 								<div class="field">
 									<br><label>Hora de Inicio*
-										<input type="datetime-local" name="hora_inicio" value="{{ old('hora_inicio',$atividade->hora_inicio ?? '08:00') }}" min="{{$evento->inicio_evento}}T{{$evento->hora_inicio}}" max="{{$evento->fim_evento}}T{{$evento->hora_fim}}">
+										<input type="datetime-local" name="hora_inicio" value="{{ old('hora_inicio',$atividade->hora_inicio ?? '') }}" min="{{$evento->inicio_evento}}T{{$evento->hora_inicio}}" max="{{$evento->fim_evento}}T{{$evento->hora_fim}}">
 									</label>
 								</div>
 								<div class="field">
@@ -61,7 +56,7 @@
 								</div>
 								<div class="field">
 									<br><label>Hora de Finalização*
-										<input type="time" name="hora_fim" value="{{ old('hora_fim',$atividade->hora_fim ?? '17:30') }}" >
+										<input type="datetime-local" name="hora_fim" value="{{ old('hora_fim',$atividade->hora_fim ?? '') }}" min="{{$evento->inicio_evento}}T{{$evento->hora_inicio}}" max="{{$evento->fim_evento}}T{{$evento->hora_fim}}">
 									</label>
 								</div>
 							</div>
