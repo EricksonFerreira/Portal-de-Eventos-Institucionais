@@ -9,6 +9,6 @@ $factory->define(App\Palestrante::class, function (Faker $faker) {
     	'user_id' 	=> User::where(['role' => 'participante'])->get()->random()->id,
     	'evento_id' => Evento::get()->random()->id,
     	'nome' => $faker->name,
-			'descricao' => $faker->paragraph
+		'descricao' => $faker->paragraph
     ];
 });

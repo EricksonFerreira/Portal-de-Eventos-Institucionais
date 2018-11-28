@@ -9,7 +9,6 @@ $factory->define(App\Atividade::class, function (Faker $faker) {
     $date = $faker->date('Y-m-d');
 	return [
         'evento_id' => Evento::get()->random()->id,
-
         'palestrante_id' => Palestrante::get()->random()->id,
         'titulo' => $faker->word,
         'descricao' => $faker->paragraph,
