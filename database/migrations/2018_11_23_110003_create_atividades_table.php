@@ -28,8 +28,8 @@ class CreateAtividadesTable extends Migration
             $table->string('titulo');
             $table->text('descricao');
             $table->boolean('confirmacao');
-            $table->time('hora_inicio');
-            $table->time('hora_fim');
+            $table->datetime('hora_inicio');
+            $table->datetime('hora_fim');
             $table->timestamps();
 
         });
