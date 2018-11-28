@@ -6,14 +6,17 @@ use App\Evento;
 use App\Palestrante;
 
 $factory->define(App\Atividade::class, function (Faker $faker) {
-    $date = $faker->date('Y-m-d');
+// $date = $faker->date('Y-m-d');
+    $event = Evento::get()->random();
+    $date = $faker->dateTimeBetween($event->inicio_evento, $event->fim_evento);
 	return [
-        'evento_id' => Evento::get()->random()->id,
+        'evento_id' => $event->id,
         'palestrante_id' => Palestrante::get()->random()->id,
         'titulo' => $faker->word,
         'descricao' => $faker->paragraph,
         'confirmacao' => $faker->boolean,
-        'hora_inicio' => '08:00',
-        'hora_fim' => '16:00'
+        // 'hora_inicio' => '08:00',
+        'hora_inicio' => $date,
+        'hora_fim' => $faker->dateTimeBetween($date, strtotime($date) + 24*60*60)
     ];
 });
