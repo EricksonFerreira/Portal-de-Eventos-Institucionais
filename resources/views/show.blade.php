@@ -51,9 +51,11 @@ $teste = ucwords(strtolower($teste));
 					<tbody>
 						@foreach($atividades as $atividade)
 						<tr>
+						<?php  	$AtvIni = date('d-m-Y H:i', 	strtotime($atividade->hora_inicio)); ?>
+						<?php  	$AtvFim = date('d-m-Y H:i', 	strtotime($atividade->hora_fim)); ?>
 							<td>{{$atividade->titulo}}</td>
 							<td>{{$atividade->palestrante->nome}}</td>
-							<td>{{$atividade->hora_inicio}} Ás {{$atividade->hora_fim}}</td>
+							<td>{{$AtvIni}} Ás {{$AtvFim}}</td>
 
 								@if($atividade->confirmacao == true)
 									<td class="right aligned">Confirmada</td>
