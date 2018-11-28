@@ -175,7 +175,7 @@ class EventoController extends Controller {
     		$dados['imagem'] = $dir."/".$nomeImagem;
     	}
 
-		/* Pega tudo pelo id do ityem no Evento e altera*/
+		/* Pega tudo pelo id do item no Evento e altera*/
 	  $eventos		 						= Evento::find($id);
 		$eventos->user_id 			= $request->user()->id;
 		$eventos->nome 					= $request->nome;
