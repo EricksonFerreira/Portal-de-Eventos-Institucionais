@@ -41,10 +41,12 @@ $teste = ucwords(strtolower($teste));
 							<th>Palestrante</th>
 							<th>Horário</th>
 							<th class="right aligned">Status</th>
+				@if($eventos->fim_evento > date('Y-m-d'))
 					@can('update-evento', $eventos)
 							<th>Editar Atividade</th>
 							<th>Apagar Atividade</tr>
 					@endcan
+				@endif
 						</tr>
 					</thead>
 					<tbody>
@@ -61,7 +63,7 @@ $teste = ucwords(strtolower($teste));
 								@else
 									<td class="right aligned">Não Confirmada</td>
 								@endif
-
+				@if($eventos->fim_evento > date('Y-m-d'))
 					@can('update-evento', $eventos)
 							<td>
 								<a href="{{route('atividade.edit', $atividade->id)}}">
@@ -81,10 +83,11 @@ $teste = ucwords(strtolower($teste));
 								</form>
 							</td>
 					@endcan
+				@endif
 						</tr>
 
 						@endforeach
-
+				@if($eventos->fim_evento > date('Y-m-d'))
 					@can('update-evento', $eventos)
 						<a href="{{route('atividade.create', $eventos->id)}}">
 							<button class="ui green inverted button ">
@@ -98,6 +101,7 @@ $teste = ucwords(strtolower($teste));
 						</a>
 
 					@endcan
+				@endif
 					</tbody>
 				</table>
 
