@@ -6,6 +6,7 @@ use App\Evento;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\belongsTo;
 use Illuminate\Database\Eloquent\Relations\belongsToMany;
+use Illuminate\Database\Eloquent\Relations\hasMany;
 
 class Palestrante extends Model
 {
@@ -26,5 +27,9 @@ class Palestrante extends Model
      public function palestra(){
         return $this->belongsToMany(Evento::class);
     }   
+    /*Função que representa o relacionamento de um para muitos*/
+     public function palestrante(){
+        return $this->hasMany(Atividade::class);
+    }
 
 }
