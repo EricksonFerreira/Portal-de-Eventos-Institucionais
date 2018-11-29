@@ -17,6 +17,6 @@ $factory->define(App\Atividade::class, function (Faker $faker) {
         'confirmacao' => $faker->boolean,
         // 'hora_inicio' => '08:00',
         'hora_inicio' => $date,
-        'hora_fim' => $faker->dateTimeBetween($date, strtotime($date) + 24*60*60)
+        'hora_fim' => $faker->dateTimeBetween($date, $event->fim_evento)
     ];
 });
