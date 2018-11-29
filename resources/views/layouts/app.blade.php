@@ -10,7 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.js') }}" defer></script>
+    <script src="{{ asset('js/semantic.js') }}" defer></script>
     <!-- <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script> -->
     <!-- <script src="{{ asset('js/semantic.min.js') }}"></script> -->
     <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css') }}" rel="stylesheet">
@@ -34,13 +35,13 @@
             </a>
             <div class=" right menu">
                 <!-- <div class="item">
-                    <div class="ui action input"> 
+                    <div class="ui action input">
                         <input type="text" placeholder="Procurar evento">
                         <button class="ui icon green button"><i class="search icon"></i></button>
                     </div>
                 </div>
                  -->
-        @guest      
+        @guest
                 <a href="{{ route('login') }}"class="item">
                     <button class="ui green inverted button">
                         <i class="user icon"></i>{{ __('Login') }}
@@ -59,22 +60,22 @@
 
         @else
         <?php $id = Auth::user()->id;?>
-        
+
                 <a href="{{url("/evento/{$id}/meuseventos")}}" class="item">
                 <i class="calendar green icon"></i><span style="color: green">Meus Eventos</span>
             </a>
-        <div class="item">  
+        <div class="item">
             <button class="ui green inverted button">
                 <i class="user icon"></i>{{ Auth::user()->name }}
             </button>
-        </div>                            
+        </div>
 
         <a href="{{ route('logout') }}"class="item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <button class="ui green inverted button">
                 {{ __('Logout') }}
                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
-                </form> 
+                </form>
 
             </button>
         </a>
