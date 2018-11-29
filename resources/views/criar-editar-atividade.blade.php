@@ -74,21 +74,21 @@
 	</div>
 </div>
 </div>
-
 <script>
-// 	$('.ui.search')
-//   .search({
-//     apiSettings: {
-//       url: '//api.github.com/search/repositories?q={query}'
-//     },
-//     fields: {
-//       results : 'items',
-//       title   : 'name',
-//       url     : 'html_url'
-//     },
-//     minCharacters : 3
-//   })
-// ;
+	$('.ui.search')
+  .search({
+    apiSettings: {
+      // url: '//api.github.com/search/repositories?q={query}'
+      url: "{{ route('palestrante.search', [$evento->id, '']) }}/{query}"
+    },
+    fields: {
+      results : 'items',
+      title   : 'nome'
+      // url     : 'html_url'
+    },
+    minCharacters : 3
+  })
+;
 //   console.log('oi');
 
 </script>

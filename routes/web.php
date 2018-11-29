@@ -12,6 +12,9 @@ Route::resource('evento', 'EventoController');
 /*Resource que facilita chamar uma função do Controller*/
 Route::resource('atividade', 'AtividadeController');
 
+/*Resource que facilita chamar uma função do Controller*/
+Route::resource('palestrante', 'PalestranteController');
+
 /* Criar Atividade*/
 Route::get('/atividade/create/{id}', 'AtividadeController@create')->name('atividade.create');
 
@@ -35,3 +38,5 @@ Route::get('/evento/{id}/destroy', 'HomeController@destroyParticipante');
 
 /* Vai para a função index quando for para o home*/
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/palestrante/{id}/search/{query}', 'PalestranteController@search')->name('palestrante.search');

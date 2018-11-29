@@ -10,8 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/jquery.js') }}" defer></script>
-    <script src="{{ asset('js/semantic.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/semantic.js') }}"></script>
     @yield('scripts')
     <!-- <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script> -->
     <!-- <script src="{{ asset('js/semantic.min.js') }}"></script> -->
