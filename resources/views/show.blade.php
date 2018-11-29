@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<head><link href="{{ asset('css/background.css') }}" rel="stylesheet"></head>
 
  @foreach (['danger', 'warning', 'success', 'info', 'update'] as $msg)
       @if(Session::has('alert-' . $msg))

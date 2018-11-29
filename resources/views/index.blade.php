@@ -1,17 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Index</title>
-    <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
-
-</head>
-<body>
-<br>
-<br>
 
 <div class="ui container">
 	 <div class="flash-message">
@@ -23,7 +12,7 @@
     @endforeach
   </div> <!-- end .flash-message -->
   <div class="ui three column grid">
-			
+
 
 <!-- Condição para saber se existe a variavel que lista -->
   @if (empty($eventos))
@@ -33,7 +22,7 @@
         <?php date_default_timezone_set("America/Recife");
 setlocale(LC_ALL, 'pt_BR');
 ?>
-		<!-- Se ela existir vai aparecer isso-->			
+		<!-- Se ela existir vai aparecer isso-->
 		@can('criar-evento')
 			<div class="column">
 				<div class="ui segment">
@@ -45,23 +34,23 @@ setlocale(LC_ALL, 'pt_BR');
 								</h1>
 							</button>
 						</a>
-					</center>	
+					</center>
 				</div>
 			</div>
 		@endcan
 		<!-- Listar todos os atributos dos itens já cadastrados na tabela-->
-		<center><div style="width: 100%;">			
+		<center><div style="width: 100%;">
 		@foreach($eventos as  $evento)
-				
+
 			@component('card-evento', ['evento' => $evento, 'past' => false])
 			@endcomponent
-		
+
 		@endforeach
 		@foreach($past as  $evento)
-				
+
 			@component('card-evento', ['evento' => $evento, 'past' => true])
 			@endcomponent
-		
+
 		@endforeach
    @endif
 </div></center>

@@ -12,17 +12,20 @@
     <!-- Scripts -->
     <script src="{{ asset('js/jquery.js') }}" defer></script>
     <script src="{{ asset('js/semantic.js') }}" defer></script>
+    @yield('scripts')
     <!-- <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script> -->
     <!-- <script src="{{ asset('js/semantic.min.js') }}"></script> -->
-    <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css') }}" rel="stylesheet"> -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css"> -->
 
     <!-- Styles -->
-    <link href="{{ asset('css/icon.min.css') }}"     rel="stylesheet">
     <link href="{{ asset('css/semantic.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/cards.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/background.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 <body>
     <div id="app">

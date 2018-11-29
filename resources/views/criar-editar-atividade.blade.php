@@ -21,7 +21,7 @@
 							<br><label>Titulo*
 
 								<input type="text" name="titulo" placeholder="Nome do evento" value="{{old('titulo',$atividade->titulo ?? '')}}" required>
-							
+
 							</label>
 							<div class="field">
 								<br><label>Descrição*
@@ -32,7 +32,7 @@
 								<div class="ui search">
 									<input class="prompt" type="text" name="palestrante" placeholder="Nome do palestrante ou usuário" value="{{old('titulo',$atividade->palestrante->nome ?? '')}}" required>
 									<div class="results"></div>
-								</div> 
+								</div>
 							</label>
 								<div class="field">
 									<br><label>Confirmação:
@@ -74,7 +74,7 @@
 	</div>
 </div>
 </div>
-<script src="{{ asset('js/search.min.js') }}"></script>
+
 <script>
 // 	$('.ui.search')
 //   .search({

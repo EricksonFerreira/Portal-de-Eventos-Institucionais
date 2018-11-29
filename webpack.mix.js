@@ -14,4 +14,6 @@ let mix = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
    .copy('node_modules/jquery/dist/jquery.js', 'public/js')
-   .copy('node_modules/semantic-ui/dist/semantic.js', 'public/js');
+   .copy('node_modules/semantic-ui/dist/semantic.js', 'public/js')
+   .copy('node_modules/semantic-ui/dist/semantic.min.css', 'public/css')
+   .copy('node_modules/semantic-ui/dist/themes/default', 'public/css/themes/default');
