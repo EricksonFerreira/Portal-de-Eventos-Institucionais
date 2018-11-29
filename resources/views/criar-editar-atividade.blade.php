@@ -9,11 +9,14 @@
 					@isset($atividade)
 						<form action="{{route('atividade.update', $atividade->id)}}" class="ui form" id="cadastro" method="post" enctype="multipart/form-data">{{ csrf_field() }}{{method_field('PUT')}}
 					@else
-					<?php $eventos = 8;?>
-						<form action="{{route('atividade.store', $eventos)}}" class="ui form" id="cadastro" method="post">{{ csrf_field() }}
+						<form action="{{route('atividade.store', $evento)}}" class="ui form" id="cadastro" method="post">{{ csrf_field() }}
 					@endisset
 						<center>
-							<h2 class="ui  header">Editar Atividade</h2>
+						@isset($atividade)
+								<h2 class="ui  header">Editar Atividade</h2>
+						@else
+								<h2 class="ui  header">Criar Atividade</h2>
+						@endisset
 						</center>
 						<br>
 						<strong><h3 class="ui dividing header">Sobre a Atividade</h3></strong>
@@ -66,7 +69,14 @@
 									@isset($evento)
 										<input type="hidden" name="evento" value="{{$evento->id}}">
 									@endisset
-							<center><input type="submit" value="Cadastrar Evento" class="ui green inverted button submit"></center>
+							<center>
+								@isset($atividade)
+									<input type="submit" value="Editar Evento" class="ui green inverted button submit">
+								@else
+									<input type="submit" value="Cadastrar Evento" class="ui green inverted button submit">
+								@endisset
+							</center>
+
 						</div>
 					</div>
 				</div>
