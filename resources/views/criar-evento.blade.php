@@ -65,7 +65,7 @@
 								</div>
 								<div class="field">
 									<br><br><label for="file" class="ui icon green inverted button"><i class="file image icon"></i> Adicionar-Imagem
-										<input type="file" name="imagem" placeholder="Telefone para contato"   class="" value="{{old('imagem',$eventos->imagem ?? '')}}" style="display: none;" id="file" >
+										<input type="file" name="imagem" class="" value="{{old('imagem',$eventos->imagem ?? '')}}" style="display: none;" id="file" >
 									</label>
 								</div>
 							</div>
