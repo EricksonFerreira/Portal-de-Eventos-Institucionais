@@ -26,7 +26,7 @@ class CreatePalestrantesTable extends Migration
 
             $table->string('nome');
             $table->string('imagem')->nullable();
-            $table->text('descricao');
+            $table->text('descricao')->nullable();
             $table->timestamps();
         });
     }

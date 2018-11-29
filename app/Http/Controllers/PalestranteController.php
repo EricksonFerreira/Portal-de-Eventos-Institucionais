@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Evento;
 use App\Palestrante;
+use Illuminate\Http\Request;
 
 class PalestranteController extends Controller
 {
@@ -22,9 +23,10 @@ class PalestranteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $evento = Evento::find($id);
+        return view('criar-editar-palestrante', compact('evento'));
     }
 
     /**
@@ -33,9 +35,33 @@ class PalestranteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+
+    if($request->hasFile('imagem')){
+            $imagem = $request->file('imagem');
+            $numero = rand(1111,9999);
+            $dir = "img/evento/palestrante";
+            $ex = $imagem -> guessClientExtension();
+            $nomeImagem = "imagem_".$numero.".".$ex;
+            $imagem->move($dir,$nomeImagem);
+            $dados['imagem'] = $dir."/".$nomeImagem;
+        }
+  
+    $palestrante                    = new Palestrante;
+    $palestrante->evento_id         = $request->evento;
+    $palestrante->nome              = $request->nome;
+    if (isset($nomeImagem)) {
+    $palestrante->imagem            = $nomeImagem;
+    }
+    if (isset($request->descricao)) {
+        $palestrante->descricao         = $request->descricao;
+    }
+    $palestrante->save();
+    $idEvento = $request->evento;
+
+    $request->session()->flash('alert-success', 'Palestrante cadastrada com sucesso!');
+    return redirect(route('evento.show', ['id' => $idEvento]));
+
     }
 
     /**
@@ -57,7 +83,11 @@ class PalestranteController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Pega a model pelo id e coloca tudo que vem pelo request.
+        $palestrante = Palestrante::find($id);
+        $idEvento = $palestrante->evento_id;
+        $evento = Evento::find($idEvento);
+        return view('criar-editar-palestrante', compact('palestrante', 'evento'));
     }
 
     /**
@@ -69,7 +99,31 @@ class PalestranteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->hasFile('imagem')){
+            $imagem = $request->file('imagem');
+            $numero = rand(1111,9999);
+            $dir = "img/evento/palestrante";
+            $ex = $imagem -> guessClientExtension();
+            $nomeImagem = "imagem_".$numero.".".$ex;
+            $imagem->move($dir,$nomeImagem);
+            $dados['imagem'] = $dir."/".$nomeImagem;
+        }
+
+        $palestrante                    = Atividade::find($id);
+        $palestrante->evento_id         = $request->evento;
+        $palestrante->nome              = $request->nome;
+        if (isset($nomeImagem)) {
+            $palestrante->imagem        = $nomeImagem;
+        }
+        if (isset($request->descricao)) {
+            $palestrante->descricao     = $request->descricao;
+        }
+        $palestrante->save();
+        $idEvento = $request->evento;
+
+        $request->session()->flash('alert-success', 'Palestrante atualizado com sucesso!');
+        return redirect(route('evento.show', ['id' => $idEvento]));
+
     }
 
     /**

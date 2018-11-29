@@ -41,7 +41,7 @@ $teste = ucwords(strtolower($teste));
 							<th>Palestrante</th>
 							<th>Horário</th>
 							<th class="right aligned">Status</th>
-							@can('update-evento', $eventos)
+					@can('update-evento', $eventos)
 							<th>Editar Atividade</th>
 							<th>Apagar Atividade</tr>
 					@endcan
@@ -90,7 +90,13 @@ $teste = ucwords(strtolower($teste));
 							<button class="ui green inverted button ">
 								<i class="edit icon"></i>Criar Atividade
 							</button>
+						</a>	
+						<a href="{{route('palestrante.create', $eventos->id)}}">
+							<button class="ui green inverted button ">
+								<i class="edit icon"></i>Adicionar Palestrante
+							</button>
 						</a>
+
 					@endcan
 					</tbody>
 				</table>

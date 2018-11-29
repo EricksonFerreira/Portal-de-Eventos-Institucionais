@@ -18,6 +18,9 @@ Route::resource('palestrante', 'PalestranteController');
 /* Criar Atividade*/
 Route::get('/atividade/create/{id}', 'AtividadeController@create')->name('atividade.create');
 
+/* Criar Palestrante*/
+Route::get('/palestrante/create/{id}', 'PalestranteController@create')->name('palestrante.create');
+
 /* rota tradicional do método Auth*/
 Auth::routes();
 
