@@ -85,7 +85,10 @@ class PalestranteController extends Controller
 
     public function search($eventoId, $query) {
         //
-        $palestrantes = Palestrante::where('evento_id', $eventoId)->get();
+        $palestrantes = Palestrante
+            ::where('evento_id', $eventoId)
+            ->where('nome', 'like', '%' . $query . '%')
+            ->get();
         return json_encode(['items' => $palestrantes]);
     }
 }

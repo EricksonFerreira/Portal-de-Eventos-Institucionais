@@ -32,6 +32,7 @@
 								<div class="ui search">
 									<input class="prompt" type="text" name="palestrante" placeholder="Nome do palestrante ou usuário" value="{{old('titulo',$atividade->palestrante->nome ?? '')}}" required>
 									<div class="results"></div>
+									<input type="hidden" id="palestrante_id" name="palestrante_id" value="{{ old('palestrante_id', $atividade->palestrante_id ?? '') }}">
 								</div>
 							</label>
 								<div class="field">
@@ -84,9 +85,11 @@
     fields: {
       results : 'items',
       title   : 'nome'
-      // url     : 'html_url'
     },
-    minCharacters : 3
+    minCharacters : 3,
+    onSelect: function(part) {
+    	$('#palestrante_id').val(part['id']);
+    }
   })
 ;
 //   console.log('oi');
