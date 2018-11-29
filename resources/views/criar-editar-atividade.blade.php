@@ -86,6 +86,9 @@
 </div>
 </div>
 <script>
+$('.ui.search .prompt').on('change', function() {
+	$('#palestrante_id').val('');
+})
 	$('.ui.search')
   .search({
     apiSettings: {

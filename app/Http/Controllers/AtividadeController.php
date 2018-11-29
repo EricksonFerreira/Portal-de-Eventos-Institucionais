@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Evento;
 use App\Atividade;
+use App\Palestrante;
 use Illuminate\Http\Request;
 
 class AtividadeController extends Controller
@@ -44,8 +45,9 @@ class AtividadeController extends Controller
         }else{
             $dataForm = 1;
         }
-       	$atividade	 				= new Atividade;
-        $atividade->palestrante_id    = $request->palestrante;
+        $palestrante = Palestrante::where('nome', $request->palestrante);
+       	$atividade	 				  = new Atividade;
+        $atividade->palestrante_id    = $palestrante->id;
         $atividade->evento_id         = $request->evento;
         $atividade->titulo            = $request->titulo;
         $atividade->descricao         = $request->descricao;
@@ -99,9 +101,21 @@ class AtividadeController extends Controller
         }else{
             $dataForm = 1;
         }
+        // $palestrante = Palestrante::where('nome', $request->palestrante);
+        $palestrante_id = $request->palestrante_id ?? 0;
+        if ($palestrante_id == 0 || $palestrante_id == '') {
+            // inserir em Palestrante
+            $createPalestrante              = new Palestrante;
+            $createPalestrante->evento_id   = $request->evento;
+            $createPalestrante->nome        = $request->palestrante;
+            $createPalestrante->save();
+
+            $id_palestrante = Palestrante::count();
+            $palestrante_id = $id_palestrante;
+        }
         $atividade                    = Atividade::find($id);
-        $atividade->palestrante_id    = $request->palestrante;
-        $atividade->evento_id         = $atividade->evento_id;
+        $atividade->palestrante_id    = $palestrante_id;
+        $atividade->evento_id         = $request->evento;
         $atividade->titulo            = $request->titulo;
         $atividade->descricao         = $request->descricao;
         $atividade->confirmacao       = $dataForm;
