@@ -216,10 +216,16 @@ class EventoController extends Controller {
 
 	/*Gerenciamento do Evento para ver quem está participando*/
 	public function gerenciaEvento($id) {
+		
 		$evento = Evento::find($id);
-		$participantes = ParticiparEvento::where('evento_id', $id)->get();
-			return view('gerencia-evento' ,compact('evento', 'participantes'));
+		// $participantes = ParticiparEvento::where('evento_id', $id)->get();
+
+		$participantes = ParticiparEvento::with('user:id,name')->where('evento_id', '=', $evento->id)->get();
+
+
+		return view('gerencia-evento' ,compact('evento', 'participantes'));
 	}
+
 	public function checking($id) {
 		$participante		 				= ParticiparEvento::find($id);
 			if ($participante->checking == 0) {
