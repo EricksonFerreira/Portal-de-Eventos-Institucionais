@@ -99,6 +99,11 @@ $teste = ucwords(strtolower($teste));
 								<i class="edit icon"></i>Adicionar Palestrante
 							</button>
 						</a>
+						<a href="{{route('evento.gerenciaEvento', $eventos->id)}}">
+							<button class="ui green inverted button ">
+								<i class="edit icon"></i>Gerência do Evento
+							</button>
+						</a>
 
 					@endcan
 				@endif

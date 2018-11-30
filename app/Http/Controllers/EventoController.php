@@ -214,10 +214,26 @@ class EventoController extends Controller {
 		return view('index', compact('eventos','past'));
 	}
 
-	/*Treinamento*/
-	public function participar() {
-		$city = Evento::where('nome', 'Erickson')->get()->first();
-		echo $city->nome;
+	/*Gerenciamento do Evento para ver quem está participando*/
+	public function gerenciaEvento($id) {
+		$evento = Evento::find($id);
+		$participantes = ParticiparEvento::where('evento_id', $id)->get();
+			return view('gerencia-evento' ,compact('evento', 'participantes'));
+	}
+	public function checking($id) {
+		$participante		 				= ParticiparEvento::find($id);
+			if ($participante->checking == 0) {
+			$participante->checking = 1;
+			}else{
+			$participante->checking = 0;
+			}
+		$participante->user_id = $participante->user_id; 
+		$participante->evento_id = $participante->evento_id; 
+		$participante->role = $participante->role; 
+		$participante->save();
+		$evento = Evento::where('id', $participantes->evento_id)->get();
+		$participantes = ParticiparEvento::where('evento_id', $id)->get();
+			return view('gerencia-evento' ,compact('evento', 'participantes'));
 	}
 }
 

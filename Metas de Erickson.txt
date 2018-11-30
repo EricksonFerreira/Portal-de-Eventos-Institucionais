@@ -2,12 +2,6 @@
 
 Criar perfil do participante
 
-Criar ou Editar Evento só funciona o Palestrante colocando o Id do palestrante, como eu posso fazer para cadastrar palestrante sem colocar o id, colocando o nome?
-Pode ao Criar ou editar atividades ao lado do campus palestrante, um botão criar participantes, que ao clickar nele eu poderia criar um participante.
-E nesse palestrantes ter o nome dos palestrantes cadastrados?
-
-Ao Editar aparecer a data e a hora que a atividade foi cadastrada
-
 Ao Editar Evento aparecer o Campus do evento já cadastradas
 
 Ao recarregar a pagina não perder a imagem que fez o upload

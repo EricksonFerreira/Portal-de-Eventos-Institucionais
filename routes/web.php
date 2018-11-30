@@ -36,6 +36,12 @@ Route::get('/evento/{id}/participar', 'HomeController@participar');
 /* Chamar a função myevent*/
 Route::get('/evento/{id}/meuseventos', 'EventoController@myEvent');
 
+/* Chamar a função gerenciaEvento*/
+Route::get('/evento/{id}/gerenciaevento', 'EventoController@gerenciaEvento')->name('evento.gerenciaEvento');
+
+/* Chamar a função checking*/
+Route::get('/evento/{id}/checking', 'EventoController@checking')->name('evento.checking');
+
 /* Chamar a função destroyParticipante*/
 Route::get('/evento/{id}/destroy', 'HomeController@destroyParticipante');
 
