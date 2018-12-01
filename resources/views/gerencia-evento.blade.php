@@ -52,6 +52,11 @@
 					@endif
 				</tbody>
 			</table>
+			<script type="text/javascript">
+				document.getElementById('filtro').addEventListener('change', function() {
+    this.form.submit();
+});
+			</script>
 		</div>
 	</div>
 </div>

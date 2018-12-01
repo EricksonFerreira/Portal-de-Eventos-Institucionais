@@ -91,7 +91,7 @@
 								<select name="campus" class="ui fluid dropdown" >
 									@foreach ($campi as $campusValue => $campusNome)
 										<option value="{{$campusValue}}"	
-											@if( isset($eventos) && $eventos->campus == $campusNome) 
+											@if( isset($eventos) && $eventos->campus == $campusValue) 
 												Selected
 											@endif> 
 												{{ $campusNome }}
