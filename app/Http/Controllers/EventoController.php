@@ -220,7 +220,7 @@ class EventoController extends Controller {
 		$evento = Evento::find($id);
 		// $participantes = ParticiparEvento::where('evento_id', $id)->get();
 
-		$participantes = ParticiparEvento::with('user:id,name')->where('evento_id', '=', $evento->id)->get();
+		$participantes = ParticiparEvento::where('evento_id', '=', $evento->id)->get();
 
 
 		return view('gerencia-evento' ,compact('evento', 'participantes'));
@@ -233,13 +233,9 @@ class EventoController extends Controller {
 			}else{
 			$participante->checking = 0;
 			}
-		$participante->user_id = $participante->user_id; 
-		$participante->evento_id = $participante->evento_id; 
-		$participante->role = $participante->role; 
 		$participante->save();
-		$evento = Evento::where('id', $participantes->evento_id)->get();
-		$participantes = ParticiparEvento::where('evento_id', $id)->get();
-			return view('gerencia-evento' ,compact('evento', 'participantes'));
+		
+			return redirect('gerencia-evento');
 	}
 }
 

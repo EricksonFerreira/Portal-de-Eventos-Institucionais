@@ -17,7 +17,7 @@
 					@if($participantes)
 						@foreach($participantes as $participante)
 							<tr>
-								<td>{{$participante->user->name}}</td>
+								<td>{{$participante->gerencia->name}}</td>
 								@if($participante->checking == 0)
 									<td><a href="{{route('evento.checking', $participante->id)}}">{{$participante->checking}}</a></td>
 								@else

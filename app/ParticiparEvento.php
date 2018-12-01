@@ -5,7 +5,7 @@ namespace App;
 use App\User;
 use App\Evento;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\belongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ParticiparEvento extends Model
 {
@@ -24,6 +24,6 @@ class ParticiparEvento extends Model
   
   /*Função que representa o relacionamento de um para muitos*/
 	public function gerencia() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\User' , 'user_id', 'id');
     }
 }
