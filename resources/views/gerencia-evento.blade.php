@@ -32,7 +32,7 @@
 									<td><a href="{{route('evento.checking', $participante->id)}}">{{$participante->checking}}</a></td>
 								@endif
 								<td>
-									<select name="role" class="ui fluid dropdown">
+									<select name="role" id="filtro" class="ui fluid dropdown" onchange="this.form.submit()">
 										@foreach ($role as $roleValue => $roleNome)
 											<option value="{{$roleValue}}"
 												@if(isset($partipante) && $participante->role == $roleNome)
