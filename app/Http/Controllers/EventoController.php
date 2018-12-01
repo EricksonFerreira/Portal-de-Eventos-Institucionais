@@ -233,9 +233,12 @@ class EventoController extends Controller {
 			}else{
 			$participante->checking = 0;
 			}
+		$participante->user_id = $participante->user_id; 
+		$participante->evento_id = $participante->evento_id; 
+		$participante->role = $participante->role; 
 		$participante->save();
-		
-			return redirect('gerencia-evento');
+	
+			return redirect("/evento/{$participante->evento_id}/gerenciaevento");
 	}
 }
 

@@ -89,15 +89,14 @@
 							<div class="field">
 								<br><label>Campus do evento*</label>
 								<select name="campus" class="ui fluid dropdown" >
-						@foreach ($campi as $campusValue => $campusNome)
-							<option value="{{$campusValue}}"	
-							@if( isset($eventos) && $eventos->campus == $campusNome) 
-								Select 
-							@endif
-							> 
-							{{ $campusNome }}
-							</option>
-						@endforeach
+									@foreach ($campi as $campusValue => $campusNome)
+										<option value="{{$campusValue}}"	
+											@if( isset($eventos) && $eventos->campus == $campusNome) 
+												Selected
+											@endif> 
+												{{ $campusNome }}
+										</option>
+									@endforeach
 								</select>
 							</div>
 							<div class="ui dividing header"></div>

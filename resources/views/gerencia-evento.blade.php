@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+<?php 
+	$role = [
+		'participante' 	=> 'Participante',
+		'monitor' 	=> 'Monitor',
+		'manager' => 'Manager',
+	];
+?>
 <br><br><br><br>
 <div class="ui container">
 	<div class="position">
@@ -9,12 +16,13 @@
 			<table class="ui green table">
 				<thead>
 					<tr>
-						<th>User_id</th>
+						<th>Nome do Participante</th>
 						<th>Checking</th>
+						<th>Role</th>
 					</tr>
 				</thead>
 				<tbody>
-					@if($participantes)
+					@if(sizeof($participantes) > 0)
 						@foreach($participantes as $participante)
 							<tr>
 								<td>{{$participante->gerencia->name}}</td>
@@ -23,13 +31,25 @@
 								@else
 									<td><a href="{{route('evento.checking', $participante->id)}}">{{$participante->checking}}</a></td>
 								@endif
+								<td>
+									<select name="role" class="ui fluid dropdown">
+										@foreach ($role as $roleValue => $roleNome)
+											<option value="{{$roleValue}}"
+												@if(isset($partipante) && $participante->role == $roleNome)
+													Selected
+												@endif>
+												{{$roleNome}}
+											</option>
+										@endforeach	
+									</select>
+								</td>
 							</tr>
 						@endforeach
 					@else
 						<tr>
 							<td>Não há Participantes no momento</td>
 						</tr>
-					@endisset
+					@endif
 				</tbody>
 			</table>
 		</div>
