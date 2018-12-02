@@ -15,6 +15,9 @@ conf-git-erickson:
 conf-git-eduardo:
 	git config user.email "eduardobispof"
 	git config user.name "eduardobispof@gmail.com"
+conf-git-jhonatas:
+	git config user.email "jhonsnoow32@gmail.com"
+	git config user.name "Murielson"	
 
 bd-conf:
 	mysql -u root -p --execute="drop database if exists pei; create database pei; drop user if exists 'pei'; create user 'pei' identified by 'piadaruim'; grant all privileges on pei.* to 'pei';"
