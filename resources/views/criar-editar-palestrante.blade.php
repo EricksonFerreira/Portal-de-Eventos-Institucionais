@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<br><br><br>
+<br><br><br><br>	
 	<div class="ui container">
-		<div class="ui segment">
+		<div class="ui green segment">
 			<div class="ui vertically divided grid">
 				<div class="column">
 
@@ -23,19 +23,19 @@
 						<strong><h3 class="ui dividing header">Sobre a Palestrante</h3></strong>
 						<div class="field">
 							<br><label>Titulo*
-
 								<input type="text" name="nome" placeholder="Nome do palestrante" value="{{old('nome',$palestrante->nome ?? '')}}" required>
-
 							</label>
 							<div class="field">
 								<br><label>Descrição*
 									<textarea placeholder="Descrição do Palestrante" name="descricao" value="">{{old('descricao',$palestrante->descricao ?? '')}}</textarea>
 								</label>
 							</div>
-								<div class="field">
-									<br><br><label for="file" class="ui icon green inverted button"><i class="file image icon"></i> Adicionar-Imagem
-										<input type="file" name="imagem" class="" value="{{old('imagem',$palestrante->imagem ?? '')}}" style="display: none;" id="file" >
-									</label>
+								<div style="width: 20%">
+									<div class="field">
+										<label for="file" class="ui icon green button" style="color: white;"><i class="file image icon"></i> Adicionar-Imagem
+											<input type="file" name="imagem" class="" value="{{old('imagem',$palestrante->imagem ?? '')}}" style="display: none;" id="file" >
+										</label>
+									</div>
 								</div>
 							
 									<input type="hidden" name="user_id" value="{{auth()->user()->id}}">

@@ -40,21 +40,16 @@ $HrFim=date('H:i', 	strtotime($eventos->hora_fim));
 			<center><span><h1>Palestrantes do evento</h1></span></center>
 			<div class="ui list">
 				<center>
+				@foreach($atividades as $atividadea)
 					<div class="item">
 						<img class="ui avatar tiny image" src="/img/icone/ifpe.png">
 						<div class="content">
-							<h2>Jennifer Müller</h2>
-							<div class="description">Palestrante sobre o assunto XXXXX<b></div>
+							<h2>{{$atividadea->palestrante->nome}}</h2>
+							<div class="description" style="width: 50%">{{$atividadea->palestrante->descricao}}<b></div>
 							<div class="ui divider"></div>
 						</div>
 					</div>
-					<div class="item">
-						<img class="ui avatar tiny image" src="/img/icone/ifpe.png">
-						<div class="content">
-							<h2>Michell Otta</h2>
-							<div class="description">Palestrante sobre o assunto XXXXX<b></div>					
-						</div>
-					</div>
+					@endforeach
 				</center>
 			</div>
 		</div>
@@ -73,7 +68,7 @@ $HrFim=date('H:i', 	strtotime($eventos->hora_fim));
 					<th>Status</th>
 					@if($eventos->fim_evento > date('Y-m-d'))
 					@can('update-evento', $eventos)
-					<th class="right aligned">Ações</th>
+					<th class="center aligned">Ações</th>
 					@endcan
 					@endif
 				</tr>
@@ -96,12 +91,18 @@ $HrFim=date('H:i', 	strtotime($eventos->hora_fim));
 					@can('update-evento', $eventos)
 					<td class="right aligned">
 						<div class="ui mini buttons">
-							<button class="ui positive button">
-								<i class="check icon"></i>Confirmar</button>
-								<div class="or"></div>
-								<button class="ui negative button">
-									<i class="close icon"></i> Excluir
+							<a href="{{route('atividade.edit', $atividade->id)}}">
+								<button class="ui positive button">
+									<i class="edit icon"></i>Editar
 								</button>
+							</a>
+							<div class="or"></div>
+								<form method="POST" action="{{route('atividade.destroy', $atividade->id)}}">
+								<input type="hidden" name="_method" value="DELETE">
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
+									<button class="ui negative button">
+										<i class="close icon"></i> Excluir
+									</button>
 						</div>
 					</td>	
 						@endcan
@@ -200,13 +201,11 @@ $HrFim=date('H:i', 	strtotime($eventos->hora_fim));
 				<div class="ui green divider"></div>
 				<br>
 					<div class="ui equal width grid">
-						<div class="four wide row">
+						<div class="four wide row modal-actions">
 							<div class="column">
-								<div id="modal" id="modal>
-									<a href="" class="ui green tiny fluid button" id="modal">
-										<i class="plus icon"></i>Adicionar atividades
-									</a>
-								</div>
+								<a href="" class="ui green tiny fluid button" data-target="add-atividade">
+									<i class="plus icon"></i>Adicionar atividades
+								</a>
 							</div>
 							<div class="column">
 									<a href="{{route('palestrante.create', $eventos->id)}}" class="ui green tiny fluid button">
@@ -237,10 +236,15 @@ $HrFim=date('H:i', 	strtotime($eventos->hora_fim));
 							</div>
 						</div>
 					</div>
-		
+			@component('modal-adicionar-atividade', ['evento' => $eventos])
+			@endcomponent
 		<script>
-			$('#modal').click(function(){
-				$('.modal').modal('show');
+			$('.modal-actions a').click(function(e){
+				var modal_target = $(e.target).attr('data-target');
+				if (modal_target) {
+					e.preventDefault();
+					$('#' + modal_target).modal('show');
+				}
 			})
 		</script>
 

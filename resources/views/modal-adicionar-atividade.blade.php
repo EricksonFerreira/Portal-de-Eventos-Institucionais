@@ -1,9 +1,4 @@
-<style>
-	body{
-		background-color: #ccc;
-	}
-</style>
-<div class="ui tiny modal">
+<div class="ui tiny modal" id="add-atividade">
 	<i class="close icon"></i>
 	<div class="header">Adicionar Atividade</div>
 	<div class="content">
@@ -46,9 +41,3 @@
 		</form>
 	</div>
 </div>
-			
-<script>
-	$('#modal').click(function(){
-		$('.modal').modal('show');
-	})
-</script>

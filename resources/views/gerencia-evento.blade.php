@@ -8,7 +8,6 @@
 		'manager' => 'Manager',
 	];
 ?>
-<br><br><br><br>
 <div id="container" style="margin-top: 100px;">
 	<div id="body">
 		<div class="ui container tabela">
@@ -30,7 +29,10 @@
 							<tr>
 								<td>{{$participante->gerencia->name}}</td>
 								<td>{{$participante->gerencia->cpf}}</td>
-								<td>
+								<td>{{$participante->role}}</td>
+
+				<!-- Escolher o Cargo do participante do evento -->
+<!-- 								<td>
 									<select name="role" id="filtro" class="ui fluid dropdown" onchange="this.form.submit()">
 										@foreach ($role as $roleValue => $roleNome)
 											<option value="{{$roleValue}}"
@@ -41,14 +43,15 @@
 											</option>
 										@endforeach	
 									</select>
-								</td>
+								</td> -->
+
 								@if($participante->checking == 0)
 									<td class="right aligned">
-										<a href="{{route('evento.checking', $participante->id)}}" class="ui red button"><i class="delete icon"></i>Não está</a>
+										<a href="{{route('evento.checking', $participante->id)}}" class="ui red button"><i class="delete icon"></i>Omisso</a>
 									</td>
 								@else
 									<td class="right aligned">
-										<a href="{{route('evento.checking', $participante->id)}}" class="ui green button"><i class="check icon"></i>Ele está</a>
+										<a href="{{route('evento.checking', $participante->id)}}" class="ui green button"><i class="check icon"></i>Confirmado</a>
 									</td>
 								@endif
 								
