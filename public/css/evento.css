@@ -1,0 +1,51 @@
+body{
+		background-color: #e9e9e9;
+	}
+	.masthead{
+		min-height: 500px;
+	}
+	.position{
+		margin-top: -50px;
+		padding: 0px 0px 50px 0px;
+	}
+	.span{
+		font-size: 60px;
+		opacity: 0.9;
+	}
+	.opacity{
+		opacity: 0.9;
+	}
+	.justify{
+		text-align: center;
+	}
+	.justify p{
+		font-size: 20px;
+	}
+	span{
+		color: darkgreen;
+	}
+	tr td{
+		font-size: 16px;
+	}
+	th{
+		font-size: 16px;
+	}
+	.div3{
+		color: white;
+	}
+	.ui.vertical.masthead.center.aligned.segment{
+		background-image:url(../_imagem/_eventos/vikings.jpg);
+		position: relative;
+		background-size: cover;
+
+	}
+	.ui.vertical.masthead.center.aligned.segment:before{
+		background-color: red;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		content: '';
+		background-color: rgba(0,0,0,0.8);
+	}		

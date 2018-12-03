@@ -22,36 +22,28 @@
         <?php date_default_timezone_set("America/Recife");
 setlocale(LC_ALL, 'pt_BR');
 ?>
-		<!-- Se ela existir vai aparecer isso-->
-		@can('criar-evento')
-			<div class="column">
-				<div class="ui segment">
-					<center>
-						<a href="{{route('evento.create')}}">
-							<button class="ui basic medium button">
-								<h1 class="ui green header">Novo Evento<br>
-									<center><i class="plus large icon"></i></center>
-								</h1>
-							</button>
-						</a>
-					</center>
-				</div>
-			</div>
-		@endcan
+
 		<!-- Listar todos os atributos dos itens já cadastrados na tabela-->
 		<center><div style="width: 100%;">
-		@foreach($eventos as  $evento)
+		<div class="ui container" style="margin-top: 100px;padding: 0px 0px 0px 110px;">
+			<div class="ui link cards" >
+				@foreach($eventos as  $evento)
+					@component('card-evento', ['evento' => $evento, 'past' => false])
+					@endcomponent
 
-			@component('card-evento', ['evento' => $evento, 'past' => false])
-			@endcomponent
+				@endforeach
+			</div>
+		</div>
+		<div class="ui container" style="margin-top: 100px;padding: 0px 0px 0px 110px;">
+			<div class="ui link cards" >
+				@foreach($past as  $evento)
 
-		@endforeach
-		@foreach($past as  $evento)
+					@component('card-evento', ['evento' => $evento, 'past' => true])
+					@endcomponent
 
-			@component('card-evento', ['evento' => $evento, 'past' => true])
-			@endcomponent
-
-		@endforeach
+				@endforeach
+   		</div>
+   	</div>
    @endif
 </div></center>
 

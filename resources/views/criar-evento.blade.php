@@ -25,7 +25,7 @@
 			@endforeach
 		</ol>
 	<div class="ui container">
-		<div class="ui segment">
+		<div class="ui green segment">
 			<div class="ui vertically divided grid">
 				<div class="column">
 				@isset($atividade)
@@ -60,11 +60,11 @@
 								</div>								
 								<div class="field">
 									<br><label>Vagas*
-										<input type="number" name="vagas" value="{{old('vagas',$eventos->vagas ?? '')}}">
+										<input type="number" name="vagas" min="0" max="300" value="{{old('vagas',$eventos->vagas ?? 0)}}">
 									</label>
 								</div>
 								<div class="field">
-									<br><br><label for="file" class="ui icon green inverted button"><i class="file image icon"></i> Adicionar-Imagem
+									<br><br><label for="file" class="ui icon green button" style="color: white;"><i class="file image icon"></i> Adicionar-Imagem
 										<input type="file" name="imagem" class="" value="{{old('imagem',$eventos->imagem ?? '')}}" style="display: none;" id="file" >
 									</label>
 								</div>
@@ -108,7 +108,7 @@
 							<div class="ui dividing header"></div>
 									<input type="hidden" name="user_id" value="{{auth()->user()->id}}">
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
-							<center><input type="submit" value="Cadastrar Evento" class="ui green inverted button submit"></center>
+							<center><input type="submit" value="Cadastrar Evento" class="ui green button submit"></center>
 						</div>
 					</div>
 				</div>

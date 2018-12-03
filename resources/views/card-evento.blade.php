@@ -4,38 +4,29 @@
  	$fimDt=date('d-m-Y',strtotime($evento->fim_evento));
  	$HrFim=date('H:i', 	strtotime($evento->hora_fim));
 ?>
-<div style="float: left">
+<div class="card" style="padding: 3px;">
+		<a class="ui @if(!$past) green @endif ribbon label" style="position:absolute;z-index: 10; margin-left: 13px;margin-top: 10px;">{{$iniDt}} - {{$HrIni}} às {{$fimDt}} - {{$HrFim}}</a>
+		<div class="image">
+			@isset($evento->imagem)
+				<img class="ui massive image" src="/img/evento/{{$evento->imagem}}">
+			@else
+				<img class="ui massive image" src="/B.jpg">
+			@endisset
+		</div>
+	<div class="content" style="text-align: center;">
+		<div class="header">{{$evento->nome}}</div>
+		<div class="description" style="height: 10em;">
+		  {{$evento->descricao}}	
+		</div>
+	</div>
+	<div class="extra content">
 		<a href="{{route('evento.show', $evento->id)}}">
-		<div class="ui link cards">
-			<div class="green card" style="">
-				<div class="ui fluid image">
-					<label class="ui @if(!$past) green @endif ribbon label">{{$iniDt}} - {{$HrIni}} às {{$fimDt}} - {{$HrFim}}</label>		
-					<div class="image">
-						@isset($evento->imagem)
-							<img class="ui massive image" src="/img/evento/{{$evento->imagem}}">
-							<p>oi</p>
-						@else
-							<img class="ui massive image" src="/B.jpg">
-						@endisset
-					</div>
-				</div>
-				<div class="content">
-					<div class="header"><center>{{$evento->nome}}</center></div>
-					<div class="description" style="height: 10em;">
-						<center>
-					  <h5>{{$evento->descricao}}</h5>
-						</center>	
-					</div>
-				</div>
-				<div class="extra content">
-					<a href="{{route('evento.show', $evento->id)}}">
-						<div class="ui green inverted button" style="width: 100%;">
-							<i class="calendar icon"></i>
-							Consultar Evento
-						</div>
-					</a>
-				</div>
+			<div class="ui green fluid button">
+				<i class="calendar icon"></i>
+				<span class="ui inverted">Consultar Evento</span>
 			</div>
-		</div> 
-	</a>
-</div>	
+		</a>
+	</div>
+</div>
+
+	

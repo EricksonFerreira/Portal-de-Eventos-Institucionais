@@ -38,7 +38,7 @@ class AuthServiceProvider extends ServiceProvider
         });        
 
     /* Só o usuario manager pode criar evento */
-        $gate->define('criar-evento', function(User $user){
+        $gate->define('criar-meus-evento', function(User $user){
             return $user->role == 'manager';
         });
 
