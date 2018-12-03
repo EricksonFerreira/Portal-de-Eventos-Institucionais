@@ -84,15 +84,15 @@
 
             <div class="item">
                 <!-- <button class="ui red fluid button"><i class="sign-out icon"></i>Sair</button> -->
-              <a href="{{ route('logout') }}"class="item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a href="{{ route('logout') }}"class="item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <button class="ui red fluid button">
-                <i class="sign-out icon"></i>
-                    {{ __('Logout') }}
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                        @csrf
+                  <i class="sign-out icon"></i>
+                      {{ __('Logout') }}
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                         @csrf
                     </form>
                 </button>
-              </a>
+                </a>
             </div>  
         </div> 
         <!-- parte do dropdown -->
