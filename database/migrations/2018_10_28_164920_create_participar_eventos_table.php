@@ -33,8 +33,6 @@ class CreateParticiparEventosTable extends Migration
             $table->boolean('checking');
 
             $table->enum('role',['participante', 'monitor' , 'manager'])->default('participante');
-
-            $table->unique('evento_id', 'user_id');
             $table->timestamps();
         });
     }

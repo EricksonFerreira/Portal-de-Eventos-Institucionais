@@ -21,7 +21,6 @@
 		<div class="ui segment">
 			<div class="ui vertically divided grid">
 				<div class="column">
-					{{var_dump($eventos->campus)}}
 					<form action="{{route('evento.update', $eventos->id)}}" class="ui form" id="cadastro" method="post" enctype="multipart/form-data">{{ csrf_field() }}{{method_field('PUT')}}
 						<center>
 							<h2 class="ui  header">Editar Evento</h2>
