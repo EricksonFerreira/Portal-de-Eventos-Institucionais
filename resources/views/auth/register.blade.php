@@ -5,12 +5,14 @@
 @endsection
 
 @section('content')
-    <div class="column">
+<body style="background-color: #ccc;">
+    <br>
+    <div class="column" style="max-width: 450px;margin: 50px auto auto auto;">
         <div class="ui message">
             <h2 class="ui teal image header">
                 <img src="../img/icone/ifpe.png" class="ui hurger image" style="width: 15%;">
                 <div class="content">
-                     Cadastre-se, Eventos - IFPE
+                    <span style="color:darkgreen">Cadastre-se, Eventos - IFPE</span>   
                 </div>
             </h2>
         </div>
@@ -100,5 +102,5 @@
             <center>Já tem uma conta? <a href="{{ route('login') }}" style="color: #4ee44e;">Faça o login</a></center>
         </div>  
     </div>
-
+</body>
     @endsection

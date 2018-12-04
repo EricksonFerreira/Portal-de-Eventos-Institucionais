@@ -6,6 +6,7 @@
 
 @section('content')
 <body style="background-color: #ccc;">
+    <br>
     <div class="column" style="max-width: 450px;margin: 50px auto auto auto;">
         <div class="ui green segment">
             <h2 class="ui teal image header">
