@@ -42,7 +42,11 @@ $HrFim=date('H:i', 	strtotime($eventos->hora_fim));
 				<center>
 				@foreach($atividades as $atividadea)
 					<div class="item">
-						<img class="ui avatar tiny image" src="/img/icone/ifpe.png">
+				@isset($evento->imagem)						
+					<img class="ui avatar tiny image" src="/img/icone/ifpe.png">
+				@else
+					<img class="ui avatar tiny image" src="/img/evento/{{$atividadea->palestrante->imagem}}">
+				@endif
 						<div class="content">
 							<h2>{{$atividadea->palestrante->nome}}</h2>
 							<div class="description" style="width: 50%">{{$atividadea->palestrante->descricao}}<b></div>
