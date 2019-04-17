@@ -10,7 +10,7 @@
 			@isset($evento->imagem)
 				<img class="ui massive image" src="/img/evento/{{$evento->imagem}}">
 			@else
-				<img class="ui massive image" src="/B.jpg">
+				<img class="ui massive image" src="/logmaster.jpeg">
 			@endisset
 		</div>
 	<div class="content" style="text-align: center;">
