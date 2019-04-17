@@ -57,8 +57,9 @@ class AtividadeController extends Controller
         $atividade->save();
         $idEvento = $request->evento;
 
-		$request->session()->flash('alert-success', 'Atividade cadastrada com sucesso!');
-    	return redirect(route('evento.show', ['id' => $idEvento]));
+        $request->session()->flash('alert-success', 'Atividade cadastrada com sucesso!');
+        return redirect(route('evento.show', ['id' => $idEvento]));
+        $atividade->hora_inicio       = $request->hora_inicio;
     }
 
     /**
