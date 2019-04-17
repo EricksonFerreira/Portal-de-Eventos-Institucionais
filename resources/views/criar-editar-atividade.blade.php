@@ -5,7 +5,11 @@
 <br>
 <br>
 <br>
-	<div class="ui container">
+<?php  
+	$iniDt = date('Y-m-d\TH:i',strtotime($atividade->hora_inicio));
+	$fimDt = date('Y-m-d\TH:i',strtotime($atividade->hora_fim));
+?>	
+<div class="ui container">
 		<div class="ui segment">
 			<div class="ui vertically divided grid">
 				<div class="column">
@@ -56,7 +60,8 @@
 
 								<div class="field">
 									<br><label>Hora de Inicio*
-										<input type="datetime-local" name="hora_inicio" value="{{ old('hora_inicio',$atividade->hora_inicio ?? '') }}" min="{{$evento->inicio_evento}}T{{$evento->hora_inicio}}" max="{{$evento->fim_evento}}T{{$evento->hora_fim}}">
+										<input type="datetime-local" name="hora_inicio" value="{{ old('hora_inicio',$iniDt ?? '') }}" min="{{$evento->inicio_evento}}T{{$evento->hora_inicio}}" max="{{$evento->fim_evento}}T{{$evento->hora_fim}}">
+										
 									</label>
 								</div>
 								<div class="field">
@@ -64,7 +69,7 @@
 								</div>
 								<div class="field">
 									<br><label>Hora de Finalização*
-										<input type="datetime-local" name="hora_fim" value="{{ old('hora_fim',$atividade->hora_fim ?? '') }}" min="{{$evento->inicio_evento}}T{{$evento->hora_inicio}}" max="{{$evento->fim_evento}}T{{$evento->hora_fim}}">
+										<input type="datetime-local" name="hora_fim" value="{{ old('hora_fim',$fimDt ?? '') }}" min="{{$evento->inicio_evento}}T{{$evento->hora_inicio}}" max="{{$evento->fim_evento}}T{{$evento->hora_fim}}">
 									</label>
 								</div>
 							</div>
