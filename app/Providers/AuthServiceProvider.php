@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Evento;
 use App\User;
+use Auth;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -29,7 +30,9 @@ class AuthServiceProvider extends ServiceProvider
         
     /* Caso seja chamado e o usuario que criou o evento esteja logado poderá entrar no @can */
         $gate->define('update-evento', function(User $user, Evento $evento){
-            return $user->id == $evento->user_id;
+            if(Auth::user()->id == $evento->user_id){
+                return true;
+            }
         }); 
     
     /* O usuario manager pode editar e excluir qualquer evento */
