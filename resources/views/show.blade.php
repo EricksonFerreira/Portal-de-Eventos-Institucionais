@@ -40,20 +40,20 @@ $HrFim=date('H:i', 	strtotime($eventos->hora_fim));
 			<center><span><h1>Palestrantes do evento</h1></span></center>
 			<div class="ui list">
 				<center>
-				@foreach($atividades as $atividadea)
+				@foreach($palestrante as $palestrantes)
 					<div class="item">
-				@isset($evento->imagem)						
-					<img class="ui avatar tiny image" src="/img/icone/ifpe.png">
-				@else
-					<img class="ui avatar tiny image" src="/img/evento/{{$atividadea->palestrante->imagem}}">
-				@endif
+					@isset($palestrantes->imagem)						
+						<img class="ui avatar tiny image" src="/img/evento/palestrante/{{$palestrantes->imagem}}">
+					@else
+						<img class="ui avatar tiny image" src ="{{asset('img/icone/anonimo.png')}}">
+					@endif
 						<div class="content">
-							<h2>{{$atividadea->palestrante->nome}}</h2>
-							<div class="description" style="width: 50%">{{$atividadea->palestrante->descricao}}<b></div>
+							<h2>{{$palestrantes->nome}}</h2>
+							<div class="description" style="width: 50%">{{$palestrantes->descricao}}<b></div>
 							<div class="ui divider"></div>
 						</div>
 					</div>
-					@endforeach
+				@endforeach
 				</center>
 			</div>
 		</div>
@@ -80,35 +80,35 @@ $HrFim=date('H:i', 	strtotime($eventos->hora_fim));
 			<tbody>
 				@foreach($atividades as $atividade)
 				<tr>
-					<?php  	$AtvIni = date('d-m-Y H:i', 	strtotime($atividade->hora_inicio)); ?>
-					<?php  	$AtvFim = date('d-m-Y H:i', 	strtotime($atividade->hora_fim)); ?>
+					@php ($AtvIni = date('d-m-Y H:i', 	strtotime($atividade->hora_inicio)) )
+					@php ($AtvFim = date('d-m-Y H:i', 	strtotime($atividade->hora_fim)) )
 					<td>{{$atividade->titulo}}</td>
 					<td>{{$atividade->palestrante->nome}}</td>
 					<td>{{$AtvIni}} Ás {{$AtvFim}}</td>
 
 					@if($atividade->confirmacao == true)
-					<td>Confirmada</td>
+						<td>Confirmada</td>
 					@else
-					<td>Não Confirmada</td>
+						<td>Não Confirmada</td>
 					@endif
 					@if($eventos->fim_evento > date('Y-m-d'))
-					@can('update-evento', $eventos)
-					<td class="right aligned">
-						<div class="ui mini buttons">
-							<a href="{{route('atividade.edit', $atividade->id)}}">
-								<button class="ui positive button">
-									<i class="edit icon"></i>Editar
-								</button>
-							</a>
-							<div class="or"></div>
-								<form method="POST" action="{{route('atividade.destroy', $atividade->id)}}">
-								<input type="hidden" name="_method" value="DELETE">
-								<input type="hidden" name="_token" value="{{ csrf_token() }}">
-									<button class="ui negative button">
-										<i class="close icon"></i> Excluir
-									</button>
-						</div>
-					</td>	
+						@can('update-evento', $eventos)
+							<td class="right aligned">
+								<div class="ui mini buttons">
+									<a href="{{route('atividade.edit', $atividade->id)}}">
+										<button class="ui positive button">
+											<i class="edit icon"></i>Editar
+										</button>
+									</a>
+									<div class="or"></div>
+										<form method="POST" action="{{route('atividade.destroy', $atividade->id)}}">
+										<input type="hidden" name="_method" value="DELETE">
+										<input type="hidden" name="_token" value="{{ csrf_token() }}">
+											<button class="ui negative button">
+												<i class="close icon"></i> Excluir
+											</button>
+								</div>
+							</td>	
 						@endcan
 					@endif
 				</tr>
@@ -155,50 +155,52 @@ $HrFim=date('H:i', 	strtotime($eventos->hora_fim));
 								<p>{{$eventos->descricao}}</p>
 						</div>
 					</div>
-
+					
 						<!-- Inscricao -->
-
-					<div class="ui segment">
-						@if(Auth::check())
-							@if($eventos->fim_evento > date('Y-m-d'))
-								<center><span><h1>Inscreva-se</h1></span></center>
-									@if($QuantVagas > 0)
-										@foreach($participa as $participar)
-											@if(Auth::user()->id == $participar->user_id)
-											<form method="GET" action="{{url("/evento/{$participar->id}/destroy")}}">
-												<input type="hidden" name="_method" value="DELETE">
-												<input type="hidden" name="_token" value="{{ csrf_token() }}">
-												<br>
-												<center>
-													<button class="ui green  button" type="submit">
-														<i class="delete icon"></i>Deixar de participar
-													</button>
-												</center>
-											</br>
-											</form>
-										<?php $c = 1;?>
-											@endif
-										@endforeach
-									@unless($c == 1)
-								<div class="ui green divider"></div>
-								<br>
-								<center>
-									<a href="{{url("/evento/{$eventos->id}/participar")}}">
-										<button class="ui green button">Fazer inscrição</button>
-									</a>
-								</center>
-								<br>
-							@endunless
-						@else
-							<a href="#">Não há vagas</a><br>
+					@can('update-evento',  $eventos)
+					@else	
+						<div class="ui segment">
+							@if(Auth::check())
+								@if($eventos->fim_evento > date('Y-m-d'))
+									<center><span><h1>Inscreva-se</h1></span></center>
+										@if($QuantVagas > 0)
+											@foreach($participa as $participar)
+												@if(Auth::user()->id == $participar->user_id)
+												<form method="GET" action="{{url("/evento/{$participar->id}/destroy")}}">
+													<input type="hidden" name="_method" value="DELETE">
+													<input type="hidden" name="_token" value="{{ csrf_token() }}">
+													<br>
+													<center>
+														<button class="ui green  button" type="submit">
+															<i class="delete icon"></i>Deixar de participar
+														</button>
+													</center>
+												</br>
+												</form>
+											@php($c = 1)
+												@endif
+											@endforeach
+										@unless($c == 1)
+										<div class="ui green divider"></div>
+										<br>
+										<center>
+											<a href="{{url("/evento/{$eventos->id}/participar")}}">
+												<button class="ui green button" type="submit">Fazer inscrição</button>
+											</a>
+										</center>
+										<br>
+								@endunless
+							@else
+								<a href="#">Não há vagas</a><br>
+							@endif
 						@endif
 					@endif
-				@endif
-			</div>
+						</div>
+					@endcan
 						
 							<!-- Acoes -->
 
-			@can('update-evento', $eventos)
+			@can('update-evento',  $eventos)
 			<div class="ui segment">
 				<center><span><h1>Ações</h1></span></center>
 				<br>
