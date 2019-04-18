@@ -22,7 +22,7 @@
 <!-- Palestrante Evento -->
 <div class="ui vertical masthead center aligned segment">
 	<br><br><br><br><br>
-	<div class="div3">	
+	<div class="div3">
 		<h1 class="span">{{ucwords(strtolower($eventos->nome))}}</h1>
 		@if($iniDt == $fimDt)
 		<h2 class="opacity">{{$iniDt}} - {{$HrIni}} às {{$HrFim}}</h2>
@@ -34,14 +34,14 @@
 	</div>
 </div>
 <div class="ui container">
-	<div class="position">		
+	<div class="position">
 		<div class="ui segment">
 			<center><span><h1>Palestrantes do evento</h1></span></center>
 			<div class="ui list">
 				<center>
 				@foreach($palestrante as $palestrantes)
 					<div class="item">
-					@isset($palestrantes->imagem)						
+					@isset($palestrantes->imagem)
 						<img class="ui avatar tiny image" src="/img/evento/palestrante/{{$palestrantes->imagem}}">
 					@else
 						<img class="ui avatar tiny image" src ="{{asset('img/icone/anonimo.png')}}">
@@ -107,7 +107,7 @@
 												<i class="close icon"></i> Excluir
 											</button>
 								</div>
-							</td>	
+							</td>
 						@endcan
 					@endif
 				</tr>
@@ -121,7 +121,7 @@
 										<button class="ui green inverted button ">
 											<i class="edit icon"></i>Criar Atividade
 										</button>
-									</a>	
+									</a>
 								-->
 								<!-- Adicionar Palestrante						 -->
 
@@ -154,10 +154,10 @@
 								<p>{{$eventos->descricao}}</p>
 						</div>
 					</div>
-					
+
 						<!-- Inscricao -->
 					@can('update-evento',  $eventos)
-					@else	
+					@else
 						<div class="ui segment">
 							@if(Auth::check())
 								@if($eventos->fim_evento > date('Y-m-d'))
@@ -196,7 +196,7 @@
 					@endif
 						</div>
 					@endcan
-						
+
 							<!-- Acoes -->
 
 			@can('update-evento',  $eventos)
@@ -213,7 +213,7 @@
 								</a>
 							</div>
 							<div class="column">
-									<a href="{{route('palestrante.create', $eventos->id)}}" class="ui green tiny fluid button">
+									<a href="{{route('palestrante.criar', $eventos->id)}}" class="ui green tiny fluid button">
 										<i class="user icon plus"></i>Adicionar Palestrante
 									</a>
 							</div>

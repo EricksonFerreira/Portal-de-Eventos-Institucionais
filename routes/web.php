@@ -11,7 +11,7 @@ Route::resource('atividade', 'AtividadeController');
 
 
 /* Criar Palestrante*/
-Route::get('/palestrante/create/{id}', 'PalestranteController@create')->name('palestrante.create');
+Route::get('/palestrante/create/{id}', 'PalestranteController@create')->name('palestrante.criar');
 
 /*Resource que facilita chamar uma função do Controller*/
 Route::resource('palestrante', 'PalestranteController');
