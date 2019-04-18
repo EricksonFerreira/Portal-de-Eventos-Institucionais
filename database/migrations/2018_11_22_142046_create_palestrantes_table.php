@@ -18,7 +18,7 @@ class CreatePalestrantesTable extends Migration
             
             /* Chave Estrangeira do banco eventos*/
             $table->Integer('evento_id')->unsigned();
-            $table->foreign('evento_id')->references('id')->on('eventos');
+            $table->foreign('evento_id')->references('id')->on('eventos')->onDelete('cascade');
 
             /* Chave Estrangeira do banco users*/
             $table->Integer('user_id')->unsigned()->nullable();
