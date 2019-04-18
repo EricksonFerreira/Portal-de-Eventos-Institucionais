@@ -33,6 +33,12 @@ php artisan key:generate
 ```
 php artisan migrate:refresh
 ```
+Agora entre no arquivo .env e altere:
+```
+DB_DATABASE=homestead  para DB_DATABASE=extensao
+DB_USERNAME=homestead  para DB_USERNAME=root
+DB_PASSWORD=secret     para DB_PASSWORD=
+```
 
 ## Agora é só acessar o nosso Site:
 
