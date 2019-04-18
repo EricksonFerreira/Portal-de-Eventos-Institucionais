@@ -12,13 +12,12 @@
 <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
 @endif
 @endforeach
-<?php
-$iniDt=date('d-m-Y',strtotime($eventos->inicio_evento));
-$HrIni=date('H:i', 	strtotime($eventos->hora_inicio));
-$fimDt=date('d-m-Y',strtotime($eventos->fim_evento));
-$HrFim=date('H:i', 	strtotime($eventos->hora_fim));
-
-?>
+@php
+	$iniDt=date('d-m-Y',strtotime($eventos->inicio_evento));
+	$HrIni=date('H:i', 	strtotime($eventos->hora_inicio));
+	$fimDt=date('d-m-Y',strtotime($eventos->fim_evento));
+	$HrFim=date('H:i', 	strtotime($eventos->hora_fim));
+@endphp
 
 <!-- Palestrante Evento -->
 <div class="ui vertical masthead center aligned segment">
