@@ -47,11 +47,13 @@
 
 								@if($participante->checking == 0)
 									<td class="right aligned">
-										<a href="{{route('evento.checking', $participante->id)}}" class="ui red button"><i class="delete icon"></i>Omisso</a>
-									</td>
+										<a href="{{route('evento.checking', $participante->id)}}" class="ui button"><i class="check icon"></i></a>
+										<a class="ui red button"><i class="delete icon"></i></a>
+									</td>								
 								@else
 									<td class="right aligned">
-										<a href="{{route('evento.checking', $participante->id)}}" class="ui green button"><i class="check icon"></i>Confirmado</a>
+										<a class="ui green button"><i class="check icon"></i></a>
+										<a href="{{route('evento.checking', $participante->id)}}" class="ui  button"><i class="delete icon"></i></a>
 									</td>
 								@endif
 								
