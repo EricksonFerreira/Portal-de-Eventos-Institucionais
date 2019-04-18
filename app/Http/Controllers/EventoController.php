@@ -40,30 +40,32 @@ class EventoController extends Controller {
 		$validar 			= 	$request->validate([
 			'nome' 			=> 'required',
 			'descricao'		=> 'required',
-			// 'email' 		=> 'email',
-			'telefone' 		=> 'required',
+			'email' 		=> 'required|email',
+			'telefone' 		=> 'required|numeric',
 			// 'imagem' 		=> 'required',
 			'vagas' 		=> 'required',
 			'campus' 		=> 'required',
+			'fim_evento'	=> 'after:'.$request->inicio_evento
 		],
 			/*neste 2 array digo os indices e separando por um ponto
 			coloco a validação e neste indice coloco a mensagem que eu
 			quero que apareça*/
 			[
-			'nome.required' 		=> 'preenche o seu nome',
-			'descricao.required' 	=> 'coloque uma descrição',
-			// 'email.required' 		=> 'coloque um email',
-			'email.email'			=> 'coloque um email válido',
-			'telefone.required' 	=> 'coloque o seu telefone',
+			'nome.required' 		=> 'Preencha o seu nome',
+			'descricao.required' 	=> 'Coloque uma descrição',
+			'email.required' 		=> 'Coloque um email',
+			'email.email'			=> 'Coloque um email válido',
+			'telefone.required' 	=> 'Coloque o seu telefone',
+			'telefone.numeric' 		=> 'Digite apenas numeros no telefone',
 			// 'imagem.required' 		=> 'coloque uma imagem',
-			'vagas.required' 		=> 'coloque o numero de vagas',
-			'Campus.required' 		=> 'Coloque um campus',
+			'vagas.required' 		=> 'Coloque o numero de vagas',
+			'campus.required' 		=> 'Coloque um campus',
+			'fim_evento.after' 		=> 'O término do evento tem que ser depois da data de inicio',
 			]);
 		/*O {{old()}} faz com que o que eu tenha digitado não venha ser perdido
 
 		dd é um var_dump do laravel, listando todos os itens preenchidos
 		dd($request->all());*/
-
 		/*Cadastrando imagens no banco*/
 		// Verifica se informou o arquivo e se é válido
 
@@ -133,25 +135,29 @@ class EventoController extends Controller {
 		com os indices e o que eu quero que seja validado*/
 		$validar 			= 	$request->validate([
 			'nome' 			=> 'required',
-			'descricao'	=> 'required',
-			'email' 		=> 'email',
-			'telefone' 	=> 'required',
-			//'imagem' 	=> 'required',
+			'descricao'		=> 'required',
+			'email' 		=> 'required|email',
+			'telefone' 		=> 'numeric|min:10',
+			// 'imagem' 		=> 'required',
 			'vagas' 		=> 'required',
 			'campus' 		=> 'required',
+			'fim_evento'	=> 'after:'.$request->inicio_evento
 		],
 			/*neste 2 array digo os indices e separando por um ponto
 			coloco a validação e neste indice coloco a mensagem que eu
 			quero que apareça*/
 			[
-			'nome.required' 		=> 'preenche o seu nome',
-			'descricao.required' 	=> 'coloque uma descrição',
-			//'email.required' 		=> 'coloque um email',
-			'email.email'			=> 'coloque um email válido',
-			'telefone.required' 	=> 'coloque o seu telefone',
-			//'imagem.required' 		=> 'coloque uma imagem',
-			'vagas.required' 		=> 'coloque o numero de vagas',
-			'Campus.required' 		=> 'Coloque um campus',
+			'nome.required' 		=> 'Preencha o seu nome',
+			'descricao.required' 	=> 'Coloque uma descrição',
+			'email.required' 		=> 'Coloque um email',
+			'email.email'			=> 'Coloque um email válido',
+			// 'telefone.required' 	=> 'Coloque o seu telefone',
+			'telefone.numeric' 		=> 'Digite apenas numeros no telefone',
+			'telefone.min' 			=> 'Coloque uma quantidade de digitos de telefone válido',
+			// 'imagem.required' 		=> 'coloque uma imagem',
+			'vagas.required' 		=> 'Coloque o numero de vagas',
+			'campus.required' 		=> 'Coloque um campus',
+			'fim_evento.after' 		=> 'O término do evento tem que ser depois da data de inicio',
 			]);
 		/*O {{old()}} faz com que o que eu tenha digitado não venha ser perdido
 

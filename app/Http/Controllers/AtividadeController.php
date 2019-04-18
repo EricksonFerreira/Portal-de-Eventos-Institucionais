@@ -45,7 +45,7 @@ class AtividadeController extends Controller
         }else{
             $dataForm = 1;
         }
-        $palestrante = Palestrante::where('nome', $request->palestrante);
+        $palestrante = Palestrante::where('nome', $request->palestrante)->get()->first();
        	$atividade	 				  = new Atividade;
         $atividade->palestrante_id    = $palestrante->id;
         $atividade->evento_id         = $request->evento;
