@@ -112,6 +112,7 @@ class EventoController extends Controller {
 		$atividades = Atividade::with('palestrante')->where('evento_id', '=', $id)->get();
 		$user = User::where('id', '=', $palestrante);
 		$participantes = count(ParticiparEvento::where('evento_id', '=', $id)->get());
+		$past 	  = Evento::where('fim_evento', '<', date('Y-m-d'))->orderBy('inicio_evento', 'desc')->get();
 		$participa = ParticiparEvento::where('evento_id', '=', $id)->get();
 		$QuantVagas = $eventos->vagas - $participantes;
 		$c = 0;
