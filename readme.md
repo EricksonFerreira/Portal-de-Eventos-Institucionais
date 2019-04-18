@@ -31,7 +31,7 @@ copy .env.example .env
 php artisan key:generate
 ```
 ```
-php artisan migrate:refresh
+php artisan migrate --seed
 ```
 Agora entre no arquivo .env e altere:
 ```
