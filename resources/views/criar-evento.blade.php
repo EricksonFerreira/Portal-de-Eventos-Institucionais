@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<?php 
+@php 
 	$campi = [
 		'abreu' => 'IFPE - CAMPUS - ABREU E LIMA',
 		'afogados' => 'IFPE - CAMPUS - AFOGADOS',
@@ -10,21 +10,24 @@
 		'igarassu' => 'IFPE - CAMPUS - IGARASSU',
 		'recife' => 'IFPE - CAMPUS - RECIFE'
 	];
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Criar Evento</title>
-</head>
-<body>
+	$data2 = date('Y-m-d');
+	$dataHoje = $data2++;
+@endphp
 <br><br><br><br>
-		<ol>
-			@foreach($errors->all() as $error)
-				<li>{{$error}}</li>
-			@endforeach
-		</ol>
 	<div class="ui container">
+    @if ($errors->all())
+		<div class="ui negative message">
+			<i class="close icon"></i>
+			<div class="header">
+				Mensagens de Error
+			</div>
+			  <ul class="list">
+				@foreach($errors->all() as $error)
+					<li>{{$error}}</li>
+				@endforeach
+			  </ul>
+		</div>
+	@endif
 		<div class="ui green segment">
 			<div class="ui vertically divided grid">
 				<div class="column">
@@ -54,8 +57,8 @@
 									</label>
 								</div>
 								<div class="field">
-									<br><label>Telefone*
-										<input type="text" name="telefone" placeholder="Telefone para contato" value="{{old('telefone',$eventos->telefone ?? '')}}">
+									<br><label>Telefone
+										<input type="text" id="telefone" name="telefone" placeholder="Telefone para contato" value="{{old('telefone',$eventos->telefone ?? '')}}">
 									</label>
 								</div>								
 								<div class="field">
@@ -73,7 +76,8 @@
 							<div class="five fields">
 								<div class="field">
 									<br><label>Inicio*
-										<input type="date" name="inicio_evento" value="2018-11-21" placeholder="Data do evento">
+
+										<input type="date" name="inicio_evento" value="{{$dataHoje}}" placeholder="Data do evento">
 									</label>
 								</div>
 								<div class="field">
@@ -86,7 +90,7 @@
 								</div>
 								<div class="field">
 									<br><label>Término*
-										<input type="date" value="2018-11-22" name="fim_evento" >
+										<input type="date" value="{{$data2}}" min="{{$data2}}" name="fim_evento" >
 									</label>
 								</div>
 								<div class="field">
@@ -98,14 +102,17 @@
 							<br><strong><h3 class="ui dividing header">Endereço do evento</h3></strong>
 							<div class="field">
 								<br><label>Campus do evento*</label>
-								<select name="campus" class="ui fluid dropdown" value="Escolha um campus"   >
-									<option value=""></option>
-						@foreach ($campi as $campusValue => $campusNome)
-							<option value="{{$campusValue}}" {{old('campus') ==	 $campusValue ? 'selected' : ''}}>{{ $campusNome }}</option>
-						@endforeach
+								<select name="campus" class="ui fluid dropdown" >
+									@foreach ($campi as $campusValue => $campusNome)
+										<option value="{{$campusValue}}"	
+											@if( isset($eventos) && $eventos->campus == $campusValue) 
+												Selected
+											@endif> 
+												{{ $campusNome }}
+										</option>
+									@endforeach
 								</select>
 							</div>
-							<div class="ui dividing header"></div>
 									<input type="hidden" name="user_id" value="{{auth()->user()->id}}">
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<center><input type="submit" value="Cadastrar Evento" class="ui green button submit"></center>
@@ -117,8 +124,33 @@
 	</div>
 </div>
 </div>	
+							<!-- Scripts para o Telefone -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script> -->
+<script>
 
+	$('.message .close')
+	  .on('click', function() {
+	    $(this)
+	      .closest('.message')
+	      .transition('fade')
+	    ;
+	  })
+	;
+//Telefone
+jQuery("input#telefone")
+        .mask("(99) 9999-9999?9")
+        .focusout(function (event) {  
+            var target, phone, element;  
+            target = (event.currentTarget) ? event.currentTarget : event.srcElement;  
+            phone = target.value.replace(/\D/g, '');
+            element = $(target);  
+            element.unmask();  
+            if(phone.length > 10) {  
+                element.mask("(99) 99999-999?9");  
+            } else {  
+                element.mask("(99) 9999-9999?9");  
+            }  
+        });
+</script>
 @endsection
 	
-</body>
-</html>
