@@ -66,4 +66,61 @@ class HomeController extends Controller
         $participante->delete();
 
         return redirect(route('evento.show', ['id' => $idEvento]));    }
-}
+    }
+    public function atualizar(Request $request, $id) {
+        if ($request->password != $request->password1) {
+            return false;
+        }
+
+
+                /*validando os dados*/
+        $validar            =   $request->validate([
+            'name'          => 'required',
+            'email'         => 'required|email',
+            'password'      => 'required',
+            // 'imagem'        => 'required',
+            'role'          => 'required',
+            'cpf'           => 'required|numeric',
+            'telefone'      => 'numeric|min:10',
+        ],
+            [
+            'name.required'         => 'Preencha o seu nome',
+            'email.required'        => 'Coloque um email',
+            'email.email'           => 'Coloque um email válido',
+            'password.required'    => 'Coloque uma senha',
+            // 'imagem.required'        => 'coloque uma imagem',
+            'role.required'         => 'Escolha uma função',
+            'cpf.required'          => 'Digite seu CPF',
+            'cpf.numeric'           => 'Utilize apenas numeros no campo CPF',
+            // 'telefone.required'  => 'Coloque o seu telefone',
+            'telefone.numeric'      => 'Digite apenas numeros no telefone',
+            'telefone.min'          => 'Coloque uma quantidade de digitos de telefone válido',
+            ]);
+        
+        $imagem = $request->imagem;
+        if($request->hasFile('imagem')){
+            $imagem = $request->file('imagem');
+            $numero = rand(1111,9999);
+            $dir = "img/evento/";
+            $ex = $imagem -> guessClientExtension();
+            $nomeImagem = "imagem_".$numero.".".$ex;
+            $imagem->move($dir,$nomeImagem);
+            $dados['imagem'] = $dir."/".$nomeImagem;
+        }
+
+        /* Altera as Informações do Usuario */
+        $user                    = User::find($id);
+        $user->name              = $request->name;
+        $user->email             = $request->email;
+        $user->password          = $request->password;
+        // if(isset($nomeImagem)){
+        //     $user->imagem        = $nomeImagem;
+        // }
+        $user->role              = $request->role;
+        $user->cpf               = $request->cpf;
+        $user->telefone          = $request->telefone;
+        $user->save();
+
+        $request->session()->flash('alert-update', 'Evento Atualizado com sucesso!');
+        return redirect(route('evento.index'));
+    }

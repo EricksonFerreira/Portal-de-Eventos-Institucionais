@@ -41,6 +41,9 @@ Route::get('/evento/{id}/destroy', 'HomeController@destroyParticipante');
 /* Chamar  a função update*/
 Route::get('/evento/{id}/update', 'HomeController@update');
 
+/* Chamar  a função atualizar que Atualiza os dados do Usuário*/
+Route::get('/user/{id}/atualizar', 'HomeController@atualizar');
+
 /* Chamar a função upando*/
 Route::get('/evento/{id}/participar', 'HomeController@participar');
 
