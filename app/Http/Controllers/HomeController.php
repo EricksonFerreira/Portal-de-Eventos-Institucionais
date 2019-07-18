@@ -65,7 +65,7 @@ class HomeController extends Controller
         $idEvento = $participante->evento_id;
         $participante->delete();
 
-        return redirect(route('evento.show', ['id' => $idEvento]));    }
+        return redirect(route('evento.show', ['id' => $idEvento]));    
     }
     public function atualizar(Request $request, $id) {
         if ($request->password != $request->password1) {
@@ -124,3 +124,4 @@ class HomeController extends Controller
         $request->session()->flash('alert-update', 'Evento Atualizado com sucesso!');
         return redirect(route('evento.index'));
     }
+}

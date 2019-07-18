@@ -104,8 +104,9 @@
 											<input type="hidden" name="_method" value="DELETE">
 											<input type="hidden" name="_token" value="{{ csrf_token() }}">
 												<button class="ui negative button">
-													<i class="close icon"></i> Excluir
+													<i class="close icon"></i> Excluir {{$atividade->id}}
 												</button>
+											</form>
 									</div>
 								</td>
 							@endcan
